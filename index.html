@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
 
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <link rel="icon" href="./favicon_32.png" sizes="32x32" />
   <link rel="icon" href="./favicon_192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./favicon_512.png" />
@@ -22,6 +22,7 @@
     :root{
       --primary:#3b82f6;
       --primary-hover:#2563eb;
+      --ring: rgba(59,130,246,.35);
     }
 
     body{
@@ -29,56 +30,112 @@
       scroll-behavior:smooth;
     }
 
+    /* Subtle glass header */
     .glass{
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.78);
       backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,.2);
+      border-bottom:1px solid rgba(15,23,42,.08);
     }
-
     .dark .glass{
-      background:rgba(17,24,39,.7);
-      border:1px solid rgba(255,255,255,.05);
+      background:rgba(17,24,39,.72);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .project-card{
-      transition:transform .3s ease, box-shadow .3s ease;
+    /* Cards */
+    .card{
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .project-card:hover{
-      transform:translateY(-5px);
+    .card:hover{ transform: translateY(-2px); }
+
+    .chip{
+      background: rgba(59,130,246,.10);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: .875rem;
+      font-weight: 600;
+      line-height: 1.1;
+      border: 1px solid rgba(59,130,246,.14);
+    }
+    .dark .chip{
+      background: rgba(59,130,246,.12);
+      border-color: rgba(59,130,246,.18);
     }
 
-    .skill-tag{
-      background:rgba(59,130,246,.1);
-      color:#3b82f6;
-      padding:4px 12px;
-      border-radius:9999px;
-      font-size:.875rem;
-      font-weight:500;
+    /* HERO glow + gradient name */
+    .hero-glow{
+      position: relative;
+      isolation: isolate;
     }
-
-
-  .hero-glow{
-    position: relative;
-    isolation: isolate;
-  }
   .hero-glow::before{
-    content:"";
-    position:absolute;
-    inset:-120px -60px -120px -60px;
-    z-index:-1;
-    background:
-      radial-gradient(600px 380px at 50% 35%, rgba(59,130,246,.18), transparent 60%),
-      radial-gradient(520px 320px at 50% 60%, rgba(2,132,199,.12), transparent 62%);
-    filter: blur(0px);
-    pointer-events:none;
-  }
+  content:"";
+  position:absolute;
+  inset:-140px -80px -140px -80px;
+  z-index:-1;
+  background:
+    radial-gradient(600px 400px at 50% 40%, rgba(15,23,42,.05), transparent 60%);
+  pointer-events:none;
+}
 
-  .name-gradient{
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+    .name-gradient{
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Focus styles */
+    :focus-visible{
+      outline: 3px solid var(--ring);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top: 12px;
+      background: white;
+      color: #0f172a;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,.15);
+      z-index: 1000;
+    }
+    .skip-link:focus{ left: 12px; }
+    .dark .skip-link{
+      background:#111827;
+      color:#e5e7eb;
+      border-color: rgba(255,255,255,.12);
+    }
+
+    /* --------- COMPACT CARDS (requested) --------- */
+    .card-compact{ padding: 20px !important; }
+    .card-compact .card-icon{
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 14px !important;
+      margin-bottom: 14px !important;
+      font-size: 18px !important;
+    }
+    .card-compact h4{
+      font-size: 1.05rem !important;
+      margin-bottom: 8px !important;
+    }
+    .card-compact p{
+      font-size: 0.95rem !important;
+      line-height: 1.45 !important;
+      margin-bottom: 14px !important;
+    }
+    .card-compact .chip{
+      padding: 4px 10px !important;
+      font-size: .82rem !important;
+    }
+    .card-compact .chips{
+      gap: 8px !important;
+      margin-bottom: 0 !important;
+    }
   </style>
 
   <script>
@@ -95,222 +152,498 @@
 
 <body class="bg-slate-50 dark:bg-gray-900 text-slate-900 dark:text-gray-100 transition-colors duration-300">
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- Header / Navigation -->
-  <nav class="fixed top-0 w-full z-50 glass">
+  <header class="fixed top-0 w-full z-50 glass">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#" class="text-xl font-bold tracking-tight">
+      <a href="#top" class="text-xl font-extrabold tracking-tight" aria-label="Home">
         YS<span class="text-primary">.</span>
       </a>
 
-      <div class="flex items-center space-x-4">
-        <a href="#projects" class="hidden sm:inline text-sm font-medium text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+      <nav class="flex items-center space-x-4" aria-label="Primary">
+        <a href="#projects" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           Projects
         </a>
-        <a href="#about" class="hidden sm:inline text-sm font-medium text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+
+        </a>
+        <a href="#about" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           About
         </a>
-        <a href="#contact" class="hidden sm:inline text-sm font-medium text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+        <a href="#contact" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           Contact
         </a>
 
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
-          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        <button id="theme-toggle" class="p-2 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
+          <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
         </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="top" class="pt-32 pb-20 px-4">
+      <div class="max-w-5xl mx-auto text-center hero-glow">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-5">
+          <span class="text-slate-900 dark:text-white">Yurii</span>
+          <span class="name-gradient">Sika</span>
+        </h1>
+
+        <p class="text-lg md:text-xl font-semibold text-slate-700 dark:text-gray-200 mb-3">
+          Android Software Engineer
+        </p>
+
+        <p class="text-sm md:text-base text-slate-500 dark:text-gray-400 mb-10">
+          Kotlin · Jetpack Compose · Kotlin Multiplatform · Clean Architecture
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 mb-10">
+          <a href="#projects"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
+            View Projects
+            <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+          </a>
+          <a target="_blank" rel="noopener"
+             href="https://github.com/yurasika25"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+            GitHub
+          </a>
+          <a target="_blank" rel="noopener"
+             href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            LinkedIn
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-500 dark:text-gray-400">
+          UK-based · Eligible to work in the UK ·
+          <a class="font-semibold hover:text-primary transition-colors" href="mailto:yurii.sika@outlook.com">yurii.sika@outlook.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+   <section id="projects" class="py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+    <header class="text-center mb-12">
+      <h2 class="text-1xl md:text-4xl font-extrabold mb-3">Building the Future of Mobile</h2>
+        <p class="text-sm text-slate-500 dark:text-gray-400">
+        A selection of modern mobile products
+      </p>
+    </header>
+
+    <!-- Commercial / Client Work -->
+    <div class="mb-12">
+      <h3 class="text-xl md:text-2xl font-bold mb-6">Commercial / Client Work</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- UK Taxi -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-taxi"></i>
+          </div>
+          <h4 class="font-bold">UK Taxi Aggregator</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Ride-hailing aggregator across 270+ providers in 30+ UK cities. Led UI redesign and improved real-time availability UX.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">Mobility</span>
+            <span class="chip">Maps</span>
+            <span class="chip">Real-time</span>
+            <span class="chip">UX</span>
+          </div>
+        </article>
+
+        <!-- Telecom -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-signal"></i>
+          </div>
+          <h4 class="font-bold">Telecom Self-Service App</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Real-time self-service platform for balances, data, SMS, and VAS. Reduced Customer Care interactions by ~30%.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">Telecom</span>
+            <span class="chip">Real-time</span>
+            <span class="chip">Reliability</span>
+          </div>
+        </article>
+
+        <!-- Marketplace -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-bag-shopping"></i>
+          </div>
+          <h4 class="font-bold">E-Commerce Marketplace</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Marketplace app with scalable client architecture supporting upload, management, and purchasing workflows.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">Marketplace</span>
+            <span class="chip">Scalability</span>
+            <span class="chip">Architecture</span>
+          </div>
+        </article>
+
+        <!-- Women -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <h4 class="font-bold">Women’s Health App</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Health and wellbeing app with safety-critical features including SOS flow and tracking.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">Health</span>
+            <span class="chip">Safety</span>
+            <span class="chip">Privacy</span>
+          </div>
+        </article>
+
+        <!-- Learning -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h4 class="font-bold">E-Learning Platform</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Learning platform with offline support for video lessons and study materials.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">Education</span>
+            <span class="chip">Offline</span>
+            <span class="chip">Video</span>
+          </div>
+        </article>
+
+        <!-- KMP -->
+        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <h4 class="font-bold">Kotlin Multiplatform Migration</h4>
+          <p class="text-slate-600 dark:text-gray-400">
+            Migration to shared business logic across Android and iOS using Kotlin Multiplatform.
+          </p>
+          <div class="chips flex flex-wrap gap-2">
+            <span class="chip">KMP</span>
+            <span class="chip">Architecture</span>
+          </div>
+        </article>
+
       </div>
     </div>
-  </nav>
 
- <!-- Hero Section (new style like screenshot) -->
-<section class="pt-32 pb-24 px-4">
-<div class="max-w-5xl mx-auto text-center">
-    <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-6">
-      <span class="text-slate-900 dark:text-white">Yurii</span>
-      <span class="name-gradient">Sika</span>
-    </h1>
+    <!-- Personal Products -->
+    <div>
+  <h3 class="text-xl md:text-2xl font-bold mb-6">Personal Products</h3>
 
-    <p class="text-xl md:text-xl font-medium text-slate-700 dark:text-gray-300 mb-3">
-      Android Software Engineer <span class="opacity-70">|</span> Kotlin Multiplatform
-    </p>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <p class="text-lg md:text-xl text-slate-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12">
-      Building modern, scalable mobile products with Kotlin and Jetpack<br class="hidden md:block" />
-      Compose.
-    </p>
+    <!-- Affirmation -->
+    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
 
-    <div class="flex justify-center items-center gap-8 mb-16 text-slate-500 dark:text-gray-400">
+      <h4 class="font-bold">Affirmation Space</h4>
+
+      <p class="text-slate-600 dark:text-gray-400">
+        A modern affirmation and mindset app designed to support daily motivation and mental clarity. Built with Kotlin Multiplatform for iOS and Android.  
+      </p>
+
+      <div class="chips flex flex-wrap gap-2 mb-3">
+        <span class="chip">KMP</span>
+        <span class="chip">Mental Wellness</span>
+        <span class="chip">Compose</span>
+      </div>
+
       <a target="_blank" rel="noopener"
-         href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-         class="text-3xl hover:text-primary transition-colors" aria-label="LinkedIn">
-        <i class="fa-brands fa-linkedin"></i>
+         href="https://affirmationspace.lovable.app/"
+         class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+        View product →
       </a>
+    </article>
+
+    <!-- Voice -->
+    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+        <i class="fa-solid fa-microphone-lines"></i>
+      </div>
+
+      <h4 class="font-bold">Voice Transcribe</h4>
+
+      <p class="text-slate-600 dark:text-gray-400">
+        Multilingual speech-to-text mobile application supporting 14+ languages, with real-time transcription and a modern Compose UI.
+      </p>
+
+      <div class="chips flex flex-wrap gap-2 mb-3">
+        <span class="chip">Android</span>
+        <span class="chip">Speech-to-Text</span>
+        <span class="chip">Real-time</span>
+      </div>
 
       <a target="_blank" rel="noopener"
-         href="https://github.com/yurasika25"
-         class="text-3xl hover:text-primary transition-colors" aria-label="GitHub">
-        <i class="fa-brands fa-github"></i>
+         href="https://voicetranscribe-app.lovable.app/"
+         class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+        View product →
       </a>
+    </article>
 
-      <a href="mailto:yurii.sika@outlook.com"
-         class="text-3xl hover:text-primary transition-colors" aria-label="Email">
-        <i class="fa-solid fa-envelope"></i>
+    <!-- Notebook -->
+    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+        <i class="fa-solid fa-book-open"></i>
+      </div>
+
+      <h4 class="font-bold">Easy Notebook</h4>
+
+      <p class="text-slate-600 dark:text-gray-400">
+        Minimal and distraction-free note-taking application focused on clarity, speed, and user experience, built using modern Android best practices.
+      </p>
+
+      <div class="chips flex flex-wrap gap-2 mb-3">
+        <span class="chip">Productivity</span>
+        <span class="chip">Android</span>
+      </div>
+
+      <a target="_blank" rel="noopener"
+         href="https://easynotebook.lovable.app/"
+         class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+        View product →
       </a>
+    </article>
+
+  </div>
+</div>
+
+
+  </div>
+</section>
+<!-- 
+    ENGINEERING PHILOSOPHY
+     <section id="philosophy" class="py-16 px-4 bg-white dark:bg-gray-800/50">
+      <div class="max-w-6xl mx-auto">
+        <header class="mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">How I build software</h2>
+          <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
+            A practical set of principles I use to keep mobile systems maintainable and fast as they scale.
+          </p>
+        </header>
+
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-5">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-primary mt-1" aria-hidden="true"></i>
+              <span class="font-semibold">Design for change and scalability</span>
+            </div>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-5">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-primary mt-1" aria-hidden="true"></i>
+              <span class="font-semibold">Prefer simplicity over complexity</span>
+            </div>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-5">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-primary mt-1" aria-hidden="true"></i>
+              <span class="font-semibold">Measure performance early</span>
+            </div>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-5">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-primary mt-1" aria-hidden="true"></i>
+              <span class="font-semibold">Build with product mindset</span>
+            </div>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-5 md:col-span-2">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-check text-primary mt-1" aria-hidden="true"></i>
+              <span class="font-semibold">Think in systems, not screens</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section> --> 
+
+     <!-- TECH STACK / EXPERTISE -->
+<section id="stack" class="py-16 px-4">
+  <div class="max-w-6xl mx-auto">
+
+    <header class="mb-10">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Engineering expertise</h2>
+      <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
+        Core capabilities I rely on to design, build, and ship reliable mobile systems.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Mobile -->
+      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+        <h3 class="font-bold text-lg mb-3">Mobile</h3>
+        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+          <li>Kotlin</li>
+          <li>Jetpack Compose</li>
+          <li>Kotlin Multiplatform</li>
+          <li>Coroutines / Flow</li>
+        </ul>
+      </article>
+
+      <!-- Architecture -->
+      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+        <h3 class="font-bold text-lg mb-3">Architecture</h3>
+        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+          <li>Clean Architecture</li>
+          <li>MVVM / MVI</li>
+          <li>Modularisation</li>
+          <li>Designing for scalability</li>
+        </ul>
+      </article>
+
+      <!-- Delivery -->
+      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+        <h3 class="font-bold text-lg mb-3">Delivery</h3>
+        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+          <li>CI/CD (GitHub Actions)</li>
+          <li>Performance optimisation</li>
+          <li>Crash monitoring</li>
+          <li>Release ownership</li>
+        </ul>
+      </article>
+
+      <!-- Quality -->
+      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+        <h3 class="font-bold text-lg mb-3">Quality</h3>
+        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+          <li>Code reviews</li>
+          <li>Testing strategy</li>
+          <li>Observability mindset</li>
+        </ul>
+      </article>
     </div>
-
-    <a href="#projects"
-       class="inline-flex items-center gap-3 text-primary font-semibold text-xl hover:opacity-80 transition-opacity">
-      View Projects <span class="text-2xl leading-none">↓</span>
-    </a>
   </div>
 </section>
 
 
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-white dark:bg-gray-800/50">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold mb-6">Building the Future of Mobile</h2>
+    <!-- IMPACT / HIGHLIGHTS
+    <section id="impact" class="py-16 px-4 bg-white dark:bg-gray-800/50">
+      <div class="max-w-6xl mx-auto">
+        <header class="mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Impact / highlights</h2>
+          <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
+            NDA-safe outcomes that show scale, reliability, and user value.
+          </p>
+        </header>
 
-        <p class="text-lg text-slate-600 dark:text-gray-400 mb-6 leading-relaxed">
-          Product-focused Android Developer with a strong emphasis on clean architecture, high-quality UI,
-          and performance. I build apps end-to-end: from UX details to scalable codebases and release workflows.
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-6">
+            <p class="text-2xl font-extrabold mb-1">270+ / 30+</p>
+            <p class="text-slate-700 dark:text-gray-200 font-semibold">Providers / UK cities</p>
+            <p class="text-slate-600 dark:text-gray-400 mt-2">Ride-hailing aggregator supporting real-time availability at scale.</p>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-6">
+            <p class="text-2xl font-extrabold mb-1">~30%</p>
+            <p class="text-slate-700 dark:text-gray-200 font-semibold">Reduction in Customer Care interactions</p>
+            <p class="text-slate-600 dark:text-gray-400 mt-2">Telecom self-service flows enabling reliable in-app service control.</p>
+          </li>
+          <li class="bg-slate-50 dark:bg-gray-900/40 border border-slate-200/60 dark:border-gray-700 rounded-2xl p-6">
+            <p class="text-2xl font-extrabold mb-1">~3,000</p>
+            <p class="text-slate-700 dark:text-gray-200 font-semibold">Students supported offline</p>
+            <p class="text-slate-600 dark:text-gray-400 mt-2">Offline lessons and study materials for unstable connectivity environments.</p>
+          </li>
+        </ul>
+      </div>
+    </section> -->
+
+    <!-- EXPERIENCE
+    <section id="experience" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <header class="mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Experience</h2>
+          <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
+            Senior-level ownership across mobility, telecom, marketplace, health, education, and platform work.
+          </p>
+        </header>
+
+        <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
+            <div>
+              <h3 class="text-lg font-extrabold">Abto Software</h3>
+              <p class="text-slate-600 dark:text-gray-400 font-semibold">Android Software Engineer</p>
+            </div>
+            <div class="text-slate-500 dark:text-gray-400 font-semibold">
+              Oct 2021 – Present
+            </div>
+          </div>
+
+          <ul class="list-disc pl-5 space-y-2 text-slate-700 dark:text-gray-200">
+            <li>Delivered production Android apps across mobility, telecom, marketplace, health, and education domains in cross-functional Agile teams.</li>
+            <li>Owned client-side architecture and feature delivery with clean boundaries, maintainable state management, and performance-first decisions.</li>
+            <li>Led UI/UX improvements and redesign work to increase usability while preserving robustness and release quality.</li>
+            <li>Implemented offline-first capabilities and resilient data flows to support real-world connectivity constraints.</li>
+            <li>Contributed to early Kotlin Multiplatform migration efforts by shaping shared business logic and data layers across Android and iOS.</li>
+          </ul>
+        </article>
+      </div>
+    </section> -->
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 px-4 bg-white dark:bg-gray-800/50">
+      <div class="max-w-6xl mx-auto">
+        <header class="mb-6">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">About</h2>
+        </header>
+
+        <p class="text-slate-700 dark:text-gray-200 max-w-3xl leading-relaxed">
+         Android Software Engineer with 5+ years of experience delivering complete mobile solutions from concept to release in Agile, cross-functional teams using Scrum. Skilled in Kotlin, Jetpack Compose, Coroutines, Retrofit, and Clean Architecture, developing clean, maintainable code and reliable Android products.
         </p>
+      </div>
+    </section>
 
-        <p class="text-lg text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
-          I work with native Android, Jetpack Compose, and Kotlin Multiplatform to ship reliable products
-          and iterate quickly.
-        </p>
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Contact</h2>
+          <p class="text-slate-600 dark:text-gray-400">
+            The fastest way to reach me is email. Links below.
+          </p>
+        </header>
 
-        <div class="grid grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-check text-primary"></i>
-            <span>Kotlin / Coroutines / Flow</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-check text-primary"></i>
-            <span>Jetpack Compose</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-check text-primary"></i>
-            <span>Clean Architecture (MVVM/MVI)</span>
-          </div>
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-check text-primary"></i>
-            <span>Kotlin Multiplatform</span>
-          </div>
+        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+          <a href="mailto:yurii.sika@outlook.com"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+            <i class="fa-solid fa-envelope" aria-hidden="false"></i>
+            yurii.sika@outlook.com
+          </a>
+
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+            <i class="fa-brands fa-linkedin" aria-hidden="false"></i>
+            LinkedIn
+          </a>
+
+          <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
+             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+            <i class="fa-brands fa-github" aria-hidden="false"></i>
+            GitHub
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Projects Grid -->
-  <section id="projects" class="py-20 px-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4">Portfolio Highlights</h2>
-        <p class="text-slate-600 dark:text-gray-400">A selection of modern mobile products</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-        <!-- Affirmation Space -->
-        <div class="project-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary mb-6 text-xl">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Affirmation Space</h3>
-          <p class="text-slate-600 dark:text-gray-400 mb-6">
-            A modern affirmation and mindset app designed to support daily motivation and mental clarity.
-            Built with Kotlin Multiplatform for iOS and Android.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="skill-tag">Kotlin Multiplatform</span>
-            <span class="skill-tag">Compose</span>
-            <span class="skill-tag">Mental Wellness</span>
-            <span class="skill-tag">Productivity</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a target="_blank" rel="noopener" href="https://affirmationspace.lovable.app/"
-               class="text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-              Open landing →
-            </a>
-          </div>
-        </div>
-
-        <!-- Voice Transcribe -->
-        <div class="project-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary mb-6 text-xl">
-            <i class="fa-solid fa-microphone-lines"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Voice Transcribe</h3>
-          <p class="text-slate-600 dark:text-gray-400 mb-6">
-            Multilingual speech-to-text mobile application supporting 14+ languages,
-            with real-time transcription and a modern Compose UI.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="skill-tag">Android</span>
-            <span class="skill-tag">Speech-to-Text</span>
-            <span class="skill-tag">Performance</span>
-            <span class="skill-tag">Compose</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a target="_blank" rel="noopener" href="https://voicetranscribe-app.lovable.app/"
-               class="text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-              Open landing →
-            </a>
-          </div>
-        </div>
-
-        <!-- Easy Notebook -->
-        <div class="project-card bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary mb-6 text-xl">
-            <i class="fa-solid fa-book-open"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Easy Notebook</h3>
-          <p class="text-slate-600 dark:text-gray-400 mb-6">
-            Minimal and distraction-free note-taking application focused on clarity, speed,
-            and user experience, built using modern Android best practices.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="skill-tag">Android</span>
-            <span class="skill-tag">Productivity</span>
-            <span class="skill-tag">Clean Architecture</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <a target="_blank" rel="noopener" href="https://easynotebook.lovable.app/"
-               class="text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-              Open landing →
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Simple stores row (optional) -->
- <section class="py-16 text-center bg-slate-50 dark:bg-gray-900">
-  <div class="flex justify-center">
-
-    <a target="_blank" rel="noopener"
-       href="https://play.google.com/store/apps/developer?id=Yurii+Sika+Developer"
-       class="transition-transform hover:scale-105">
-
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-        alt="Get it on Google Play"
-        class="h-16"
-      />
-
-    </a>
-
-  </div>
-</section>
-
-
-  <!-- Footer / Contact -->
-  <footer id="contact" class="bg-white dark:bg-gray-800 py-12 border-t border-slate-100 dark:border-gray-700">
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 py-10 border-t border-slate-100 dark:border-gray-700">
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <div class="flex flex-wrap justify-center gap-6 mb-6">
+      <div class="flex flex-wrap justify-center gap-6 mb-4">
         <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
            class="font-semibold hover:text-primary transition-colors">
           LinkedIn
@@ -340,7 +673,7 @@
     const themeIcon = document.getElementById('theme-icon');
     const htmlElement = document.documentElement;
 
-    // initial theme
+    // Initial theme
     if (
       localStorage.theme === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -360,21 +693,6 @@
         themeIcon.classList.replace('fa-moon', 'fa-sun');
         localStorage.theme = 'dark';
       }
-    });
-
-    // Fade-in for cards
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-          entry.target.classList.remove('opacity-0', 'translate-y-10');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.project-card').forEach((el) => {
-      el.classList.add('transition-all','duration-700','opacity-0','translate-y-10');
-      observer.observe(el);
     });
   </script>
 </body>
