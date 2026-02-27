@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Voice Transcribe — Speech to text. Simplified</title>
+  <meta name="description" content="Voice Transcribe is a fast, minimal speech-to-text app. Tap, speak, and instantly get accurate text — in 14 languages." />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon_192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+  <meta name="theme-color" content="#0b1020">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Voice Transcribe — Speech to text. Simplified" />
+  <meta property="og:description" content="Tap, speak, and instantly get accurate text — in 14 languages." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./voice_transcribe_graphic.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg0:#070813;
+      --bg1:#0b1020;
+      --glass: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --muted2: rgba(255,255,255,.45);
+      --brand1:#7c3aed; /* purple */
+      --brand2:#2563eb; /* blue */
+      --brand3:#22d3ee; /* cyan */
+    }
+    html,body{height:100%;}
+    body{
+      background:
+        radial-gradient(1200px 700px at 50% 22%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(900px 600px at 30% 60%, rgba(37,99,235,.18), transparent 62%),
+        radial-gradient(800px 520px at 70% 65%, rgba(34,211,238,.12), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      overflow-x:hidden;
+    }
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid var(--stroke);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+    }
+    .glass-soft{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
+      backdrop-filter: blur(14px);
+    }
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    }
+    .glow-btn{
+      position: relative;
+      overflow:hidden;
+    }
+    .glow-btn::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(450px 180px at 50% 30%, rgba(124,58,237,.45), transparent 65%),
+                  radial-gradient(380px 160px at 60% 70%, rgba(37,99,235,.28), transparent 60%);
+      opacity:.9;
+      filter: blur(12px);
+      z-index:0;
+    }
+    .glow-btn > span{position:relative; z-index:1;}
+    .shadow-deep{
+      filter: drop-shadow(0 30px 70px rgba(0,0,0,.55));
+    }
+    .chip{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+    .muted{color: var(--muted);}
+    .muted2{color: var(--muted2);}
+    .ring-brand{
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.10),
+        0 22px 60px rgba(124,58,237,.18),
+        0 18px 50px rgba(37,99,235,.14);
+    }
+    .toast{
+      transform: translateY(8px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.show{
+      transform: translateY(0);
+      opacity:1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50">
+    <div class="divider"></div>
+    <div class="backdrop-blur-xl bg-black/20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="h-16 flex items-center justify-between">
+          <a href="#top" class="flex items-center gap-3 group">
+            <span class="h-9 w-9 rounded-xl grid place-items-center glass-soft ring-brand">
+              <img src="./voice_logo.jpg" alt="Voice Transcribe logo" class="h-6 w-6 object-contain rounded-lg" />
+            </span>
+            <span class="font-semibold tracking-tight text-white/90 group-hover:text-white transition">Voice Transcribe</span>
+          </a>
+
+          <nav class="hidden md:flex items-center gap-6 text-sm text-white/70">
+            <a class="hover:text-white transition" href="#how">How it works</a>
+            <a class="hover:text-white transition" href="#features">Features</a>
+            <a class="hover:text-white transition" href="#languages">Languages</a>
+            <a class="hover:text-white transition" href="#contact">Contact</a>
+          </nav>
+
+          <a
+            class="glow-btn inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-deep"
+            href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
+            target="_blank" rel="noopener"
+            aria-label="Get the app on Google Play"
+          >
+            <span class="inline-flex items-center gap-2">
+              Get the App
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 7H17V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-20 pb-10 sm:pb-14">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full chip text-xs text-white/70">
+          <span class="h-2 w-2 rounded-full bg-emerald-400/80"></span>
+          Available on Google Play
+        </div>
+
+        <h1 class="mt-6 text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">
+          Voice Transcribe
+        </h1>
+
+        <p class="mt-6 text-lg sm:text-xl muted">
+          Speech to text. Simplified
+        </p>
+
+        <div class="mt-4 flex items-center justify-center">
+            <!-- <p class="text-sm italic text-emerald-430/0">Tap, speak, and instantly get accurate text — in 14 languages.</p> -->
+        </div>
+
+        <div class="mt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
+            target="_blank" rel="noopener"
+            class="glow-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white shadow-deep"
+          >
+            <span class="inline-flex items-center gap-2">
+              Start Speaking
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          <a
+            href="#how"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white/85 glass-soft hover:text-white transition"
+          >
+            See how it works
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="opacity-90">
+              <path d="M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 13L12 19L18 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="mt-6 text-sm muted2">
+          No sign-up. No setup. Just your voice.
+        </p>
+      </div>
+    </section>
+
+<!-- Device showcase -->
+<section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+  <div class="relative">
+    <div class="absolute inset-0 -z-10 rounded-3xl blur-2xl opacity-60"
+         style="background: radial-gradient(600px 300px at 50% 0%, rgba(124,58,237,.22), transparent 65%),
+                radial-gradient(500px 260px at 70% 60%, rgba(37,99,235,.18), transparent 60%);">
+    </div>
+
+    <!-- make this relative so we can place the icon -->
+    <div class="glass rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+      
+<!-- Animated waveform icon -->
+    <div class="pointer-events-none absolute hidden lg:block left-[200px] top-[100px] opacity-90">
+     <div class="flex items-end gap-[8px]">
+    <span class="vt-bar h-[42px] w-[6px]"></span>
+    <span class="vt-bar h-[64px] w-[6px]"></span>
+    <span class="vt-bar h-[44px] w-[6px]"></span>
+    <span class="vt-bar h-[40px] w-[6px]"></span>
+    <span class="vt-bar h-[38px] w-[6px]"></span>
+
+    <span class="vt-bar h-[72px] w-[6px]"></span>
+
+    <span class="vt-bar h-[50px] w-[6px]"></span>
+    <span class="vt-bar h-[58px] w-[6px]"></span>
+    <span class="vt-bar h-[54px] w-[6px]"></span>
+
+    <span class="vt-bar h-[46px] w-[6px]"></span>
+  </div>
+    </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
+            Speak naturally. Get text instantly.
+          </h2>
+
+          <p class="mt-4 muted text-lg leading-relaxed">
+            Just tap and talk. Voice Transcribe listens to your voice and converts it into accurate text instantly —
+            without complicated settings or a learning curve.
+          </p>
+
+          <div class="mt-8 flex items-center gap-4">
+            <div class="h-12 w-12 rounded-2xl glass-soft grid place-items-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white/80">
+                <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-semibold">Real-time voice recognition</div>
+              <div class="text-sm muted2">Tap once. Speak freely. Copy text anywhere.</div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-2">
+            <span class="chip px-3 py-1.5 rounded-full text-xs text-white/75">Fast</span>
+            <span class="chip px-3 py-1.5 rounded-full text-xs text-white/75">Accurate</span>
+            <span class="chip px-3 py-1.5 rounded-full text-xs text-white/75">Minimal UI</span>
+            <span class="chip px-3 py-1.5 rounded-full text-xs text-white/75">14 languages</span>
+          </div>
+        </div>
+
+        <div class="flex justify-center lg:justify-start">
+          <img
+            src="./im_device.png"
+            alt="Voice Transcribe app on device"
+            class="w-[320px] sm:w-[360px] lg:w-[400px] shadow-deep"
+          />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Wave bars look */
+  .vt-bar{
+    background: linear-gradient(180deg, rgba(96,165,250,.95), rgba(124,58,237,.95));
+    box-shadow: 0 10px 40px rgba(124,58,237,.25);
+    transform-origin: center bottom;
+    animation: vt-wave 1.15s ease-in-out infinite;
+  }
+
+  /* Staggered animation offsets */
+  .vt-bar:nth-child(1){ animation-delay: 0s; }
+  .vt-bar:nth-child(2){ animation-delay: .08s; }
+  .vt-bar:nth-child(3){ animation-delay: .16s; }
+  .vt-bar:nth-child(4){ animation-delay: .24s; }
+  .vt-bar:nth-child(5){ animation-delay: .32s; }    
+  .vt-bar:nth-child(6){ animation-delay: .40s; }
+  .vt-bar:nth-child(7){ animation-delay: .48s; }
+
+  @keyframes vt-wave{
+    0%,100%{ transform: scaleY(.65); opacity: .75; }
+    50%{ transform: scaleY(1.25); opacity: 1; }
+  }
+
+  /* Optional: respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .vt-bar{ animation: none; }
+  }
+</style>
+
+
+
+
+    <!-- How it works -->
+    <section id="how" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">How it works?</h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="glass rounded-3xl p-6">
+          <div class="flex items-center gap-3">
+            <span class="h-2 w-2 rounded-full bg-rose-400/90"></span>
+            <span class="muted2 text-sm">Listening...</span>
+          </div>
+          <div class="mt-6 flex justify-center">
+             <img 
+    src="./voice_transcribe_graphic.png" 
+    alt="Voice Transcribe Preview"
+    class="w-full max-w-[420px] rounded-2xl opacity-95 shadow-2xl shadow-black/30
+           ring-1 ring-white/10 object-cover"
+  />
+          </div>
+          <p class="mt-6 text-center italic muted2">Just speak, we do the rest</p>
+        </div>
+
+        <div class="glass rounded-3xl p-6 lg:col-span-2">
+          <div class="space-y-7">
+            <div class="flex gap-5">
+              <div class="w-14 text-4xl font-extrabold" style="color: rgba(124,58,237,.75);">01</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3">
+                  <span class="h-12 w-12 rounded-2xl glass-soft grid place-items-center">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white/80">
+                      <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="font-semibold text-xl">Tap Start and Speak</div>
+                    <div class="text-sm muted2">The app listens to your voice</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-14 text-4xl font-extrabold" style="color: rgba(124,58,237,.75);">02</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3">
+                  <span class="h-12 w-12 rounded-2xl glass-soft grid place-items-center">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white/80">
+                      <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="font-semibold text-xl">AI Converts Speech</div>
+                    <div class="text-sm muted2">Fast and accurate transcription</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex gap-5">
+              <div class="w-14 text-4xl font-extrabold" style="color: rgba(124,58,237,.75);">03</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3">
+                  <span class="h-12 w-12 rounded-2xl glass-soft grid place-items-center">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white/80">
+                      <path d="M7 7h10v10H7V7Z" stroke="currentColor" stroke-width="2"/>
+                      <path d="M9 3h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <div class="font-semibold text-xl">Save or Copy Text</div>
+                    <div class="text-sm muted2">Use it anywhere you want</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Save / Copy -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Save or Copy Text</h2>
+        <p class="mt-3 text-xl muted">Use your transcribed text anywhere you need</p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M9 9h10v10H9V9Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M5 5h10v10H5V5Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Copy to Clipboard</div>
+          <p class="mt-2 text-sm muted2">One tap to copy your text and paste it anywhere</p>
+        </div>
+
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M7 3h10v6H7V3Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M6 21h12V9H6v12Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Save Locally</div>
+          <p class="mt-2 text-sm muted2">Keep your transcriptions stored on your device</p>
+        </div>
+
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 7l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 21h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Share Anywhere</div>
+          <p class="mt-2 text-sm muted2">Send to notes, messages, documents, and more</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section id="languages" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Multiple Languages</h2>
+        <p class="mt-3 text-xl muted">Transcribe speech in 14 supported languages</p>
+      </div>
+
+      <div class="mt-10 glass rounded-3xl p-6 sm:p-10">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇬🇧</span> English (UK)</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇺🇸</span> English (US)</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇩🇪</span> Deutsch</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇳🇱</span> Dutch</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇫🇷</span> Français</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇪🇸</span> Español</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇮🇹</span> Italiano</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇧🇷</span> Português (BR)</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇷🇴</span> Română</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇵🇱</span> Polski</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇨🇿</span> Čeština</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇸🇰</span> Slovenčina</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇺🇦</span> Українська</span>
+          <span class="chip rounded-2xl px-4 py-3 text-sm flex items-center gap-3"><span>🇭🇺</span> Magyar</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Designed for everyday work -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Designed for Everyday Work</h2>
+        <p class="mt-3 text-xl muted">Notes · Messages · Interviews · Dictation</p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M7 4h10v16H7V4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M9 8h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Notes</div>
+        </div>
+
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M4 5h16v12H7l-3 3V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M7 9h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 12h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Messages</div>
+        </div>
+
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Interviews</div>
+        </div>
+
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Dictation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Voice Transcribe -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Why Voice Transcribe</h2>
+      </div>
+
+      <div class="mt-10 space-y-5">
+        <div class="glass rounded-3xl p-6 flex items-start gap-4">
+          <div class="h-12 w-12 rounded-2xl glass-soft grid place-items-center text-xl">🗣️</div>
+          <div>
+            <div class="font-semibold text-lg">Speaking is natural</div>
+            <div class="muted2">Your voice is the fastest way to capture thoughts.</div>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-6 flex items-start gap-4">
+          <div class="h-12 w-12 rounded-2xl glass-soft grid place-items-center text-xl">⌨️</div>
+          <div>
+            <div class="font-semibold text-lg">Typing is slow</div>
+            <div class="muted2">Stop wasting time on keyboards when your voice is right there.</div>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-6 flex items-start gap-4">
+          <div class="h-12 w-12 rounded-2xl glass-soft grid place-items-center text-xl">⚡</div>
+          <div>
+            <div class="font-semibold text-lg">Save time instantly</div>
+            <div class="muted2">Voice Transcribe converts speech to text in real-time.</div>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-6 flex items-start gap-4">
+          <div class="h-12 w-12 rounded-2xl glass-soft grid place-items-center text-xl">🙌</div>
+          <div>
+            <div class="font-semibold text-lg">Hands-free productivity</div>
+            <div class="muted2">Capture ideas anywhere — while walking, cooking, or commuting.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="glass rounded-3xl p-8 sm:p-12 text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Ready in Seconds</h2>
+        <p class="mt-3 text-lg muted">No sign-up. No setup. Just your voice.</p>
+
+        <div class="mt-8">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
+            target="_blank" rel="noopener"
+            class="glow-btn inline-flex items-center justify-center gap-2 rounded-full px-10 py-4 text-base font-semibold text-white shadow-deep"
+          >
+            <span class="inline-flex items-center gap-2">
+              Start Speaking
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="opacity-90">
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="mt-4 text-sm muted2">Available on Google Play</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="text-center">
+        <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Contact</h2>
+        <p class="mt-3 text-lg muted">Get in touch or connect with me directly.</p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- LinkedIn -->
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M4 4h4v16H4V4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 9h4v2a4 4 0 0 1 4-2c2.2 0 4 1.8 4 4v7h-4v-6c0-1.1-.9-2-2-2s-2 .9-2 2v6h-4V9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M6 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">LinkedIn</div>
+          <div class="mt-3 flex flex-col gap-2">
+            <a
+              href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+              target="_blank" rel="noopener"
+              class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold glass-soft hover:text-white transition"
+            >
+              View Profile →
+            </a>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold chip hover:text-white transition"
+              data-copy="https://www.linkedin.com/in/yurii-sika-ld-in/"
+            >
+              Copy link
+            </button>
+          </div>
+        </div>
+
+        <!-- Email (copy only, no mailto) -->
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">Email</div>
+          <div class="mt-2 text-sm muted2">yurii.sika@outlook.com</div>
+          <div class="mt-4">
+            <button
+              type="button"
+              class="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold glass-soft hover:text-white transition"
+              data-copy="yurii.sika@outlook.com"
+            >
+              Copy email
+            </button>
+          </div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="glass rounded-3xl p-7 text-center">
+          <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
+              <path d="M9 19c-4 1.5-4-2-5-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 22v-3.5c0-1 .1-1.4-.5-2 2.5-.3 5-1.2 5-5.5 0-1.2-.4-2.2-1.1-3 .1-.3.5-1.6-.1-3.3 0 0-.9-.3-3.3 1.1a11.4 11.4 0 0 0-6 0C6.6 1.9 5.7 2.2 5.7 2.2c-.6 1.7-.2 3-.1 3.3-.7.8-1.1 1.8-1.1 3 0 4.3 2.5 5.2 5 5.5-.4.4-.5.9-.5 1.7V22" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="mt-4 font-semibold text-lg">GitHub</div>
+          <div class="mt-3 flex flex-col gap-2">
+            <a
+              href="https://github.com/yurasika25"
+              target="_blank" rel="noopener"
+              class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold glass-soft hover:text-white transition"
+            >
+              View Profile →
+            </a>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold chip hover:text-white transition"
+              data-copy="https://github.com/yurasika25"
+            >
+              Copy link
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[999] toast">
+        <div class="glass rounded-2xl px-4 py-3 text-sm font-semibold">
+          Copied to clipboard
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pb-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="divider mb-6"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="h-10 w-10 rounded-xl grid place-items-center glass-soft ring-brand">
+            <img src="./voice_logo.jpg" alt="Voice Transcribe logo" class="h-7 w-7 object-contain rounded-lg" />
+          </span>
+          <div class="font-semibold">Voice Transcribe</div>
+        </div>
+
+        <div class="flex items-center gap-6 text-sm muted">
+          <a
+            class="hover:text-white transition"
+            href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
+            target="_blank" rel="noopener"
+          >
+            Google Play
+          </a>
+          <a class="hover:text-white/70 transition-colors"
+   href="https://www.privacypolicies.com/live/03be2114-cef5-43bc-8e04-c50921c86c7c"
+   target="_blank"
+   rel="noopener">
+  Privacy Policy
+</a>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center text-xs muted2">
+        © 2026 Voice Transcribe. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Copy-to-clipboard helpers (Email is copy-only, no redirect)
+    const toast = document.getElementById('toast');
+
+    function showToast(text){
+      if (!toast) return;
+      toast.querySelector('div').textContent = text || 'Copied to clipboard';
+      toast.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 1300);
+    }
+
+    async function copyText(value){
+      try{
+        await navigator.clipboard.writeText(value);
+        showToast('Copied to clipboard');
+      }catch(e){
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = value;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Copied to clipboard');
+      }
+    }
+
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy')));
+    });
+  </script>
+</body>
+</html>
