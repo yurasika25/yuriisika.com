@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Easy NoteBook — Simple notes. Clear mind.</title>
+    <meta name="description"
+        content="Easy NoteBook is a minimal note app built for fast capture, calm focus, and privacy by design. Your notes stay on your device — no clutter, no noise." />
+
+    <!-- Open Graph  -->
+    <meta property="og:title" content="Easy NoteBook — Simple notes. Clear mind." />
+    <meta property="og:description"
+        content="Fast capture. Calm design. Privacy by design. A premium minimal notebook for clear thinking." />
+    <meta property="og:type" content="website" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon_192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
+    <meta name="theme-color" content="#070611">
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 700ms ease, transform 700ms ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-white selection:bg-violet-400/30 selection:text-white">
+    <!-- Background: cinematic gradient + vignette + subtle noise -->
+    <div class="fixed inset-0 -z-10">
+        <div
+            class="absolute inset-0 bg-[radial-gradient(1200px_700px_at_50%_18%,rgba(139,92,246,0.22),rgba(0,0,0,0)_60%),radial-gradient(900px_700px_at_80%_30%,rgba(99,102,241,0.14),rgba(0,0,0,0)_55%),radial-gradient(900px_700px_at_20%_55%,rgba(168,85,247,0.12),rgba(0,0,0,0)_55%),linear-gradient(180deg,#070611_0%,#05040d_55%,#04030a_100%)]">
+        </div>
+        <div
+            class="absolute inset-0 bg-[radial-gradient(1200px_900px_at_50%_40%,rgba(0,0,0,0)_45%,rgba(0,0,0,0.70)_100%)]">
+        </div>
+        <div class="absolute inset-0 opacity-[0.07] mix-blend-soft-light"
+            style="background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%2260%22 height=%2260%22 filter=%22url(%23n)%22 opacity=%220.5%22/%3E%3C/svg%3E');">
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="pointer-events-none fixed left-1/2 top-6 z-50 -translate-x-1/2 translate-y-[-8px] opacity-0
+              rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white/90 backdrop-blur-xl
+              shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition-all duration-300" role="status" aria-live="polite">
+        Copied
+    </div>
+
+    <!-- Header / Sticky Nav -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-black/10 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+            <a href="#top"
+                class="group inline-flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-2xl">
+                <span class="relative grid h-10 w-10 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10">
+                    <img src="./notebook_logo.png" alt="Easy NoteBook logo" class="h-7 w-7" />
+                    <span
+                        class="absolute -inset-1 rounded-2xl bg-[radial-gradient(20px_20px_at_60%_40%,rgba(168,85,247,0.35),transparent)] opacity-0 blur-sm transition-opacity group-hover:opacity-100"></span>
+                </span>
+                <span class="text-sm font-semibold tracking-tight text-white/90">Easy NoteBook</span>
+            </a>
+
+            <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+                <a href="#features"
+                    class="text-sm font-medium text-white/65 hover:text-white/90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1">
+                    Features
+                </a>
+                <a href="#contact"
+                    class="text-sm font-medium text-white/65 hover:text-white/90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1">
+                    Privacy
+                </a>
+                <a href="#contact"
+                    class="text-sm font-medium text-white/65 hover:text-white/90 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1">
+                    Contact
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="#contact"
+                    class="inline-flex md:hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white/70
+                  ring-1 ring-white/10 bg-white/5 hover:bg-white/8 hover:text-white/90 transition
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    aria-label="Jump to contact section">
+                    Contact
+                </a>
+
+                <a href="https://play.google.com/store/apps/details?id=com.notes.easynotebook&pcampaignid=web_share"
+                    target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white
+                  bg-gradient-to-r from-violet-500/90 via-fuchsia-500/80 to-indigo-500/85
+                  shadow-[0_14px_55px_rgba(139,92,246,0.35)] ring-1 ring-white/10
+                  hover:shadow-[0_18px_70px_rgba(139,92,246,0.45)] hover:brightness-110 transition
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    aria-label="Get Easy NoteBook on Google Play">
+                    <span class="grid h-6 w-6 place-items-center rounded-full bg-white/15">
+                        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                    Get it on Google Play
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top" class="mx-auto max-w-6xl px-5">
+        <!-- HERO -->
+        <section class="grid items-center gap-10 pb-14 pt-12 lg:grid-cols-2 lg:pb-20">
+            <div class="reveal">
+                <!-- Headline options (pick one by commenting/uncommenting) -->
+                <h1
+                    class="text-[2.6rem] leading-[1.05] tracking-[-0.03em] font-extrabold text-white/95 sm:text-5xl lg:text-[4rem]">
+                    Simple notes. <span class="text-violet-300">Clear mind.</span>
+                </h1>
+            
+
+                <!-- Subheadline options (pick one) -->
+                <p class="mt-6 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg">
+                    Capture thoughts instantly in a calm space built for speed and clarity. Your notes stay on your
+                    device – privacy by design.
+                </p>
+              
+                <div class="mt-8 flex flex-wrap items-center gap-3">
+                    <a href="https://play.google.com/store/apps/details?id=com.notes.easynotebook&pcampaignid=web_share"
+                        target="_blank" rel="noopener"
+                        class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white
+                    bg-gradient-to-r from-violet-500/90 via-fuchsia-500/80 to-indigo-500/85
+                    shadow-[0_14px_55px_rgba(139,92,246,0.35)] ring-1 ring-white/10
+                    hover:shadow-[0_18px_70px_rgba(139,92,246,0.45)] hover:brightness-110 transition
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                        aria-label="Primary call to action: Get it on Google Play">
+                        <span class="grid h-6 w-6 place-items-center rounded-full bg-white/15">
+                            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </span>
+                        Get it on Google Play
+                    </a>
+
+                    <a href="#features"
+                        class="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white/80
+                    ring-1 ring-white/12 bg-white/5 hover:bg-white/8 hover:text-white/95 transition
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                        aria-label="Secondary action: Explore features">
+                        Explore features
+                    </a>
+                </div>
+
+                <!-- Trust strip -->
+                <div class="mt-10 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="grid h-8 w-8 place-items-center rounded-xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                                <svg class="h-4 w-4 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 2l8 4v6c0 6-3.5 9-8 10-4.5-1-8-4-8-10V6l8-4z" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            <span class="text-sm font-semibold text-white/85">Private by design</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="grid h-8 w-8 place-items-center rounded-xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                                <svg class="h-4 w-4 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor"
+                                        stroke-width="1.8" />
+                                </svg>
+                            </span>
+                            <span class="text-sm font-semibold text-white/85">Fast & lightweight</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="grid h-8 w-8 place-items-center rounded-xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                                <svg class="h-4 w-4 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span class="text-sm font-semibold text-white/85">Offline-first</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone mockup -->
+            <div class="reveal">
+                <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+                    <div
+                        class="absolute -inset-8 -z-10 rounded-[2.5rem] bg-[radial-gradient(260px_260px_at_55%_30%,rgba(139,92,246,0.35),transparent_70%)] blur-2xl">
+                    </div>
+                    <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+                        <img src="./android-phone-BNzlUyAn.png" alt="Easy NoteBook app screen" loading="lazy"
+                            class="w-[50%] mx-auto rotate-[0deg] origin-center" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section id="features" class="py-16 lg:py-20">
+            <div class="reveal text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Built for clarity – <span class="text-violet-300">not clutter</span>
+                </h2>
+                <p class="mx-auto mt-4 max-w-2xl text-base text-white/60">
+                    Six essentials that keep your writing fast, calm, and organized.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Card template -->
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="1.8"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Instant start</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        Open and write immediately – no setup, no friction.
+                    </p>
+                </article>
+
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-6 w-6 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                            <!-- folder tab -->
+                            <path d="M3 7
+             a2 2 0 0 1 2-2h4
+             l2 2h8
+             a2 2 0 0 1 2 2v1H3V7z" />
+
+                            <!-- folder body -->
+                            <path d="M3 10h18l-1.2 7
+             a2 2 0 0 1-2 1.7H6.2
+             a2 2 0 0 1-2-1.7L3 10z" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Clean structure</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        Keep notes tidy with a simple, natural flow.
+                    </p>
+                </article>
+
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 2l8 4v6c0 6-3.5 9-8 10-4.5-1-8-4-8-10V6l8-4z" stroke="currentColor"
+                                stroke-width="1.8" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">On-device privacy</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        Notes stay on your device. No cloud claims, no drama.
+                    </p>
+                </article>
+
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="1.8" />
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Lightweight feel</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        Smooth, responsive, and designed to stay out of your way.
+                    </p>
+                </article>
+
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-6 w-6 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                            <!-- palette shape -->
+                            <path d="M12 3
+             C7 3 3 6.5 3 11
+             c0 4 3 7 7 7
+             h1
+             c1 0 2 .8 2 1.8
+             0 1.2 1 2.2 2.2 2.2
+             C18.5 22 21 18 21 14
+             21 8 16.5 3 12 3z" />
+
+                            <!-- paint holes -->
+                            <circle cx="8.5" cy="9" r="1" fill="currentColor" stroke="none" />
+                            <circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none" />
+                            <circle cx="15.5" cy="9.5" r="1" fill="currentColor" stroke="none" />
+                            <circle cx="10.5" cy="12" r="1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Beautifully minimal</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        A calm UI with purpose – nothing extra to learn.
+                    </p>
+                </article>
+
+                <article
+                    class="reveal rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                        shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                        hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-6 w-6 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                            <!-- corners -->
+                            <path d="M4 9V6a2 2 0 0 1 2-2h3" />
+                            <path d="M20 9V6a2 2 0 0 0-2-2h-3" />
+                            <path d="M4 15v3a2 2 0 0 0 2 2h3" />
+                            <path d="M20 15v3a2 2 0 0 1-2 2h-3" />
+
+                            <!-- center dot -->
+                            <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Quiet focus</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-white/60">
+                        No feature overload – just writing, uninterrupted.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- MANIFESTO / PRIVACY -->
+        <section id="privacy" class="py-16 lg:py-20">
+            <div class="mx-auto max-w-3xl text-center reveal">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    Designed to help you <span class="text-violet-300">think</span>, not manage UI
+                </h2>
+
+                <p class="mt-6 text-base leading-relaxed text-white/60">
+                    Easy NoteBook is intentionally small: fewer controls, fewer decisions, more clarity.
+                    It’s a notebook that feels invisible – so your ideas can take the spotlight.
+                </p>
+
+                <p class="mt-4 text-base leading-relaxed text-white/60">
+                    Privacy is straightforward: your notes are stored on your device. If you back up your phone, your
+                    notes may be included –
+                    but Easy NoteBook itself doesn’t require an account to start writing.
+                </p>
+
+                <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                    <span
+                        class="rounded-full bg-white/5 px-4 py-2 text-sm text-violet-200 ring-1 ring-white/10 backdrop-blur-xl">Minimalism</span>
+                    <span
+                        class="rounded-full bg-white/5 px-4 py-2 text-sm text-violet-200 ring-1 ring-white/10 backdrop-blur-xl">Clarity</span>
+                    <span
+                        class="rounded-full bg-white/5 px-4 py-2 text-sm text-violet-200 ring-1 ring-white/10 backdrop-blur-xl">Speed</span>
+                    <span
+                        class="rounded-full bg-white/5 px-4 py-2 text-sm text-violet-200 ring-1 ring-white/10 backdrop-blur-xl">Privacy</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="py-14 lg:py-16">
+            <div class="reveal relative overflow-hidden rounded-[2rem] bg-white/5 p-10 ring-1 ring-white/10 backdrop-blur-xl
+                  shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+                <div class="absolute -left-10 -top-10 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"></div>
+                <div class="absolute -bottom-10 -right-10 h-72 w-72 rounded-full bg-indigo-500/15 blur-3xl"></div>
+
+                <div class="relative mx-auto max-w-2xl text-center">
+                    <div class="mx-auto grid h-14 w-14 place-items-center rounded-3xl bg-white/5 ring-1 ring-white/10">
+                        <img src="./notebook_logo.png" alt="Easy NoteBook app icon" class="h-9 w-9" loading="lazy" />
+                    </div>
+
+                    <h2 class="mt-6 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                        Start writing with <span class="text-violet-300">zero noise</span>
+                    </h2>
+                    <p class="mx-auto mt-4 max-w-xl text-base text-white/60">
+                        A premium notebook experience focused on speed, calm, and privacy – built for everyday thinking.
+                    </p>
+
+                    <div class="mt-8">
+                        <a href="https://play.google.com/store/apps/details?id=com.notes.easynotebook&pcampaignid=web_share"
+                            target="_blank" rel="noopener"
+                            class="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-white
+                      bg-gradient-to-r from-violet-500/90 via-fuchsia-500/80 to-indigo-500/85
+                      shadow-[0_14px_55px_rgba(139,92,246,0.35)] ring-1 ring-white/10
+                      hover:shadow-[0_18px_70px_rgba(139,92,246,0.45)] hover:brightness-110 transition
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                            aria-label="Get Easy NoteBook on Google Play (final call to action)">
+                            <span class="grid h-6 w-6 place-items-center rounded-full bg-white/15">
+                                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
+                                    <path d="M8 5v14l11-7z"></path>
+                                </svg>
+                            </span>
+                            Get it on Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-16 lg:py-20">
+            <div class="text-center reveal">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl text-white/95">
+                    Contact
+                </h2>
+                <p class="mx-auto mt-3 max-w-2xl text-base text-white/60">
+                    Connect with me or copy the email in one tap.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-5 md:grid-cols-3">
+                <a class="reveal group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                  shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                  hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    href="https://www.linkedin.com/in/yurii-sika-ld-in/" target="_blank" rel="noopener"
+                    aria-label="Open LinkedIn profile">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg width="26" height="26" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"
+                            class="text-violet-300" fill="currentColor">
+                            <g transform="translate(45 40) scale(0.9)">
+                                <path
+                                    d="M100.28 448H7.4V148.9h92.88zm-46.44-341A53.66 53.66 0 1 1 107.5 53.3a53.66 53.66 0 0 1-53.66 53.7zM447.9 448h-92.4V302.4c0-34.7-12.4-58.4-43.4-58.4-23.7 0-37.8 16-44 31.4-2.3 5.6-2.9 13.4-2.9 21.2V448h-92.5s1.2-244.3 0-269.1h92.5v38.1c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.5V448z" />
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">LinkedIn</h3>
+                    <p class="mt-2 text-sm text-white/60 break-all">yurii-sika-ld-in</p>
+                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Open
+                        →</p>
+                </a>
+
+                <button type="button"
+                    class="reveal group text-left rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                       shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                       hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    onclick="copyEmail()" aria-label="Copy email address to clipboard">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">Email</h3>
+                    <p class="mt-2 text-sm text-white/60 break-all" id="emailText">yurii.sika@outlook.com</p>
+                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Copy
+                    </p>
+                </button>
+
+                <a class="reveal group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
+                  shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
+                  hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    href="https://github.com/yurasika25" target="_blank" rel="noopener"
+                    aria-label="Open GitHub profile">
+                    <div
+                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
+                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M12 .5C5.73.5.7 5.53.7 11.8c0 4.86 3.16 8.98 7.55 10.43.55.1.75-.24.75-.53v-1.87c-3.07.67-3.72-1.31-3.72-1.31-.5-1.27-1.23-1.61-1.23-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.91.1-.71.38-1.2.69-1.47-2.45-.28-5.02-1.22-5.02-5.45 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.92 0 0 .92-.29 3.01 1.13.87-.24 1.8-.36 2.73-.36.93 0 1.86.12 2.73.36 2.09-1.42 3.01-1.13 3.01-1.13.6 1.52.22 2.64.11 2.92.7.77 1.13 1.75 1.13 2.95 0 4.24-2.58 5.17-5.04 5.44.39.34.74 1 .74 2.02v2.99c0 .29.2.64.76.53 4.38-1.45 7.54-5.57 7.54-10.43C23.3 5.53 18.27.5 12 .5z" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-5 text-lg font-bold">GitHub</h3>
+                    <p class="mt-2 text-sm text-white/60 break-all">yurasika25</p>
+                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Open
+                        →</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/10 py-10">
+            <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div class="inline-flex items-center gap-3">
+                    <span
+                        class="grid h-10 w-10 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl">
+                        <img src="./notebook_logo.png" alt="Easy NoteBook logo" class="h-7 w-7" loading="lazy" />
+                    </span>
+                    <span class="text-sm font-semibold text-white/85">Easy NoteBook</span>
+                </div>
+
+                <div class="flex items-center justify-center gap-6 text-sm text-white/60">
+                    <a class="hover:text-white/85 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1"
+                        href="https://play.google.com/store/apps/details?id=com.notes.easynotebook&pcampaignid=web_share"
+                        target="_blank" rel="noopener" aria-label="Google Play link">
+                        Google Play
+                    </a>
+                    <a class="hover:text-white/85 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1"
+                        href="https://www.privacypolicies.com/live/bf8f781b-a971-4b7c-845f-78816f4e9193" target="_blank"
+                        rel="noopener" aria-label="Privacy Policy link">
+                        Privacy Policy
+                    </a>
+                </div>
+
+                <div class="text-center text-sm text-white/50 sm:text-right">
+                    © 2026 Easy NoteBook
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const EMAIL = "yurii.sika@outlook.com";
+
+        function showToast(text) {
+            const el = document.getElementById("toast");
+            el.textContent = text;
+            el.classList.remove("opacity-0", "translate-y-[-8px]");
+            el.classList.add("opacity-100", "translate-y-0");
+            window.clearTimeout(window.__toastTimer);
+            window.__toastTimer = window.setTimeout(() => {
+                el.classList.add("opacity-0", "translate-y-[-8px]");
+                el.classList.remove("opacity-100", "translate-y-0");
+            }, 1300);
+        }
+
+        async function copyEmail() {
+            try {
+                await navigator.clipboard.writeText(EMAIL);
+                showToast("Copied");
+            } catch (e) {
+                // Fallback for older browsers
+                const ta = document.createElement("textarea");
+                ta.value = EMAIL;
+                ta.setAttribute("readonly", "");
+                ta.style.position = "absolute";
+                ta.style.left = "-9999px";
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+                showToast("Copied");
+            }
+        }
+
+        (function initReveal() {
+            const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (prefersReducedMotion) return;
+
+            const items = document.querySelectorAll(".reveal");
+            const io = new IntersectionObserver((entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        io.unobserve(entry.target);
+                    }
+                }
+            }, { root: null, threshold: 0.12 });
+
+            items.forEach(el => io.observe(el));
+        })();
+    </script>
+</body>
+
+</html>

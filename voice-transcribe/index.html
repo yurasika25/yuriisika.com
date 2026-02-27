@@ -27,7 +27,6 @@
     <style>
         .vt-icon {
             color: rgba(165, 243, 252, .92);
-            /* близько до Tailwind cyan-200 */
             filter: drop-shadow(0 10px 22px rgba(34, 211, 238, .18));
         }
     </style>
@@ -793,38 +792,46 @@
     </main>
 
     <!-- Footer -->
-    <footer class="pb-10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="divider mb-6"></div>
+<footer class="py-6 bg-[#070813]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <span class="h-10 w-10 rounded-xl grid place-items-center glass-soft ring-brand">
-                        <img src="./voice_logo.jpg" alt="Voice Transcribe logo"
-                            class="h-7 w-7 object-contain rounded-lg" />
-                    </span>
-                    <div class="font-semibold">Voice Transcribe</div>
-                </div>
+        <div class="flex items-center justify-between text-sm">
 
-                <div class="flex items-center gap-6 text-sm muted">
-                    <a class="hover:text-white transition"
-                        href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
-                        target="_blank" rel="noopener">
-                        Google Play
-                    </a>
-                    <a class="hover:text-white/70 transition-colors"
-                        href="https://www.privacypolicies.com/live/03be2114-cef5-43bc-8e04-c50921c86c7c" target="_blank"
-                        rel="noopener">
-                        Privacy Policy
-                    </a>
-                </div>
+            <!-- Left -->
+            <div class="flex items-center gap-3">
+                <span class="h-9 w-9 rounded-xl grid place-items-center glass-soft ring-brand">
+                    <img src="./voice_logo.jpg"
+                         class="h-6 w-6 object-contain rounded-lg" />
+                </span>
+                <span class="font-semibold">Voice Transcribe</span>
             </div>
 
-            <div class="mt-6 text-center text-xs muted2">
+            <!-- Center -->
+            <div class="text-xs muted2">
                 © 2026 Voice Transcribe. All rights reserved.
             </div>
+
+            <!-- Right -->
+            <div class="flex items-center gap-6 muted">
+                <a href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
+                   target="_blank"
+                   rel="noopener"
+                   class="hover:text-white transition">
+                    Google Play
+                </a>
+
+                <a href="https://www.privacypolicies.com/live/03be2114-cef5-43bc-8e04-c50921c86c7c"
+                   target="_blank"
+                   rel="noopener"
+                   class="hover:text-white transition">
+                    Privacy Policy
+                </a>
+            </div>
+
         </div>
-    </footer>
+
+    </div>
+</footer>
 
     <script>
         // Copy-to-clipboard helpers 

@@ -161,7 +161,6 @@
 
 <!-- FEATURES -->
 <section class="relative overflow-hidden py-24 md:py-28">
-  <!-- soft background like in design -->
   <div class="pointer-events-none absolute inset-0">
     <div class="absolute inset-0 bg-gradient-to-b from-[#EEF3FB] via-[#F7FAFF] to-[#EEF3FB]"></div>
     <div class="absolute left-1/2 top-[-220px] h-[520px] w-[920px] -translate-x-1/2 rounded-full bg-[#D7E6FF] opacity-35 blur-3xl"></div>
@@ -181,8 +180,11 @@
 
     <div class="mt-16 grid gap-7 md:grid-cols-3">
       <!-- Card 1 -->
-      <div class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-        <div class="flex items-center gap-4">
+<div class="rounded-[22px] bg-white/65 p-8 ring-1 ring-black/5 backdrop-blur
+            shadow-[0_24px_60px_rgba(15,23,42,0.10)]
+            transition duration-300
+            hover:-translate-y-1 hover:bg-white/80 hover:ring-black/10
+            hover:shadow-[0_28px_75px_rgba(15,23,42,0.16)]">        <div class="flex items-center gap-4">
           <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
             <!-- heart -->
            <svg viewBox="0 0 24 24" fill="none"
@@ -360,7 +362,7 @@
 
   <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-6">
 
-    <!-- EMAIL (COPY ONLY) -->
+    <!-- EMAIL -->
     <button onclick="copyEmail()" 
       class="flex items-center gap-4 px-8 py-5 rounded-2xl 
              bg-white/80 backdrop-blur 
