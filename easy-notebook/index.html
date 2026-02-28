@@ -4,23 +4,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <title>Easy NoteBook — Simple notes. Clear mind.</title>
-<meta name="description" content="Easy NoteBook is a minimal note app built for fast capture, calm focus, and privacy by design. Your notes stay on your device — no clutter, no noise.">
+    <title>Easy NoteBook — Simple notes. Clear mind.</title>
+    <meta name="description"
+        content="Easy NoteBook is a minimal note app built for fast capture, calm focus, and privacy by design. Your notes stay on your device — no clutter, no noise.">
 
-<link rel="canonical" href="https://yuriisika.com/easy-notebook/">
+    <link rel="canonical" href="https://yuriisika.com/easy-notebook/">
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yuriisika.com/easy-notebook/">
-<meta property="og:title" content="Easy NoteBook — Simple notes. Clear mind.">
-<meta property="og:description" content="Fast capture. Calm design. Privacy by design. A premium minimal notebook for clear thinking.">
-<meta property="og:image" content="https://yuriisika.com/easy-notebook/easy_notebook_graphic.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yuriisika.com/easy-notebook/">
+    <meta property="og:title" content="Easy NoteBook — Simple notes. Clear mind.">
+    <meta property="og:description"
+        content="Fast capture. Calm design. Privacy by design. A premium minimal notebook for clear thinking.">
+    <meta property="og:image" content="https://yuriisika.com/easy-notebook/easy_notebook_graphic.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Easy NoteBook — Simple notes. Clear mind.">
-<meta name="twitter:description" content="Fast capture. Calm design. Privacy by design.">
-<meta name="twitter:image" content="https://yuriisika.com/easy-notebook/easy_notebook_graphic.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Easy NoteBook — Simple notes. Clear mind.">
+    <meta name="twitter:description" content="Fast capture. Calm design. Privacy by design.">
+    <meta name="twitter:image" content="https://yuriisika.com/easy-notebook/easy_notebook_graphic.png">
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -72,6 +74,11 @@
                 transform: none;
                 transition: none;
             }
+        }
+
+        footer[id],
+        section[id] {
+            scroll-margin-top: 90px;
         }
     </style>
 </head>
@@ -438,7 +445,7 @@
             </div>
         </section>
 
-        <!-- FINAL CTA -->
+        <!-- CTA -->
         <section class="py-14 lg:py-16">
             <div class="reveal relative overflow-hidden rounded-[2rem] bg-white/5 p-10 ring-1 ring-white/10 backdrop-blur-xl
                   shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
@@ -478,107 +485,44 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="py-16 lg:py-20">
-            <div class="text-center reveal">
-                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl text-white/95">
-                    Contact
-                </h2>
-                <p class="mx-auto mt-3 max-w-2xl text-base text-white/60">
-                    Connect with me or copy the email in one tap.
-                </p>
-            </div>
+        <footer id="contact" class="border-t border-white/10 py-10">
+            <div class="mx-auto max-w-6xl px-5 text-center">
 
-            <div class="mt-10 grid gap-5 md:grid-cols-3">
-                <a class="reveal group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
-                  shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
-                  hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
-                    href="https://www.linkedin.com/in/yurii-sika-ld-in/" target="_blank" rel="noopener"
-                    aria-label="Open LinkedIn profile">
-                    <div
-                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
-                        <svg width="26" height="26" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"
-                            class="text-violet-300" fill="currentColor">
-                            <g transform="translate(45 40) scale(0.9)">
-                                <path
-                                    d="M100.28 448H7.4V148.9h92.88zm-46.44-341A53.66 53.66 0 1 1 107.5 53.3a53.66 53.66 0 0 1-53.66 53.7zM447.9 448h-92.4V302.4c0-34.7-12.4-58.4-43.4-58.4-23.7 0-37.8 16-44 31.4-2.3 5.6-2.9 13.4-2.9 21.2V448h-92.5s1.2-244.3 0-269.1h92.5v38.1c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.5V448z" />
-                            </g>
-                        </svg>
-                    </div>
-                    <h3 class="mt-5 text-lg font-bold">LinkedIn</h3>
-                    <p class="mt-2 text-sm text-white/60 break-all">yurii-sika-ld-in</p>
-                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Open
-                        →</p>
-                </a>
+                <!-- contact row -->
+                <div class="flex flex-wrap justify-center gap-10 text-[14px] font-semibold text-white/90">
+                    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+                        class="hover:text-white transition">
+                        LinkedIn
+                    </a>
 
-                <button type="button"
-                    class="reveal group text-left rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
-                       shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
-                       hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
-                    onclick="copyEmail()" aria-label="Copy email address to clipboard">
-                    <div
-                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
-                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="mt-5 text-lg font-bold">Email</h3>
-                    <p class="mt-2 text-sm text-white/60 break-all" id="emailText">yurii.sika@outlook.com</p>
-                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Copy
-                    </p>
-                </button>
+                    <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
+                        class="hover:text-white transition">
+                        GitHub
+                    </a>
 
-                <a class="reveal group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur-xl
-                  shadow-[0_18px_60px_rgba(0,0,0,0.38)] transition
-                  hover:-translate-y-1 hover:bg-white/7 hover:ring-white/15 hover:shadow-[0_22px_80px_rgba(0,0,0,0.5)]
-                  focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
-                    href="https://github.com/yurasika25" target="_blank" rel="noopener"
-                    aria-label="Open GitHub profile">
-                    <div
-                        class="grid h-12 w-12 place-items-center rounded-2xl bg-violet-500/10 ring-1 ring-violet-300/15">
-                        <svg class="h-5 w-5 text-violet-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12 .5C5.73.5.7 5.53.7 11.8c0 4.86 3.16 8.98 7.55 10.43.55.1.75-.24.75-.53v-1.87c-3.07.67-3.72-1.31-3.72-1.31-.5-1.27-1.23-1.61-1.23-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.68 2.57 1.2 3.2.91.1-.71.38-1.2.69-1.47-2.45-.28-5.02-1.22-5.02-5.45 0-1.2.43-2.18 1.13-2.95-.11-.28-.49-1.4.11-2.92 0 0 .92-.29 3.01 1.13.87-.24 1.8-.36 2.73-.36.93 0 1.86.12 2.73.36 2.09-1.42 3.01-1.13 3.01-1.13.6 1.52.22 2.64.11 2.92.7.77 1.13 1.75 1.13 2.95 0 4.24-2.58 5.17-5.04 5.44.39.34.74 1 .74 2.02v2.99c0 .29.2.64.76.53 4.38-1.45 7.54-5.57 7.54-10.43C23.3 5.53 18.27.5 12 .5z" />
-                        </svg>
-                    </div>
-                    <h3 class="mt-5 text-lg font-bold">GitHub</h3>
-                    <p class="mt-2 text-sm text-white/60 break-all">yurasika25</p>
-                    <p class="mt-4 text-sm font-semibold text-violet-200/90 group-hover:text-violet-100 transition">Open
-                        →</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="border-t border-white/10 py-10">
-            <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-                <div class="inline-flex items-center gap-3">
-                    <span
-                        class="grid h-10 w-10 place-items-center rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-xl">
-                        <img src="./notebook_logo.png" alt="Easy NoteBook logo" class="h-7 w-7" loading="lazy" />
-                    </span>
-                    <span class="text-sm font-semibold text-white/85">Easy NoteBook</span>
+                    <a href="mailto:yurii.sika@outlook.com" class="hover:text-white transition">
+                        yurii.sika@outlook.com
+                    </a>
                 </div>
 
-                <div class="flex items-center justify-center gap-6 text-sm text-white/60">
-                    <a class="hover:text-white/85 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1"
+                <div class="mt-8 flex flex-wrap justify-center gap-8 text-[14px] text-white/55">
+                    <a class="hover:text-white/80 transition"
                         href="https://play.google.com/store/apps/details?id=com.notes.easynotebook&pcampaignid=web_share"
-                        target="_blank" rel="noopener" aria-label="Google Play link">
+                        target="_blank" rel="noopener">
                         Google Play
                     </a>
-                    <a class="hover:text-white/85 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 rounded-lg px-1"
+
+                    <a class="hover:text-white/80 transition"
                         href="https://www.privacypolicies.com/live/bf8f781b-a971-4b7c-845f-78816f4e9193" target="_blank"
-                        rel="noopener" aria-label="Privacy Policy link">
+                        rel="noopener">
                         Privacy Policy
                     </a>
                 </div>
 
-                <div class="text-center text-sm text-white/50 sm:text-right">
-                    © 2026 Easy NoteBook
-                </div>
+                <!-- copyright -->
+                <p class="mt-8 text-[14px] text-white/55">
+                    © 2026 Easy NoteBook. All rights reserved.
+                </p>
             </div>
         </footer>
     </main>

@@ -362,6 +362,15 @@
                 animation-delay: .48s;
             }
 
+            .anchor-offset {
+                scroll-margin-top: 88px;
+
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
             @keyframes vt-wave {
 
                 0%,
@@ -716,129 +725,38 @@
             </div>
         </section>
 
-        <!-- Contact -->
-        <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-            <div class="text-center">
-                <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Contact</h2>
-                <p class="mt-3 text-lg muted">Get in touch or connect with me directly.</p>
+        <div id="contact" class="anchor-offset"></div>
+
+
+        <footer class=" text-center border-t border-white/10 py-10">
+            <!-- contact row -->
+            <div class="flex flex-wrap justify-center gap-10 text-[14px] font-semibold text-white/90">
+                <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+                    class="hover:text-white transition">
+                    LinkedIn
+                </a>
+
+                <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
+                    class="hover:text-white transition">
+                    GitHub
+                </a>
+
+                <a href="mailto:yurii.sika@outlook.com" class="hover:text-white transition">
+                    yurii.sika@outlook.com
+                </a>
             </div>
 
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- LinkedIn -->
-                <div class="glass rounded-3xl p-7 text-center">
-                    <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
-                        <svg width="26" height="26" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"
-                            class="text-cyan-200/90" fill="currentColor">
-                            <g transform="translate(45 40) scale(0.9)">
-                                <path
-                                    d="M100.28 448H7.4V148.9h92.88zm-46.44-341A53.66 53.66 0 1 1 107.5 53.3a53.66 53.66 0 0 1-53.66 53.7zM447.9 448h-92.4V302.4c0-34.7-12.4-58.4-43.4-58.4-23.7 0-37.8 16-44 31.4-2.3 5.6-2.9 13.4-2.9 21.2V448h-92.5s1.2-244.3 0-269.1h92.5v38.1c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.5V448z" />
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="mt-4 font-semibold text-lg">LinkedIn</div>
-                    <div class="mt-3 flex flex-col gap-2">
-                        <a href="https://www.linkedin.com/in/yurii-sika-ld-in/" target="_blank" rel="noopener"
-                            class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold glass-soft hover:text-white transition">
-                            View Profile →
-                        </a>
-                        <button type="button"
-                            class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold chip hover:text-white transition"
-                            data-copy="https://www.linkedin.com/in/yurii-sika-ld-in/">
-                            Copy link
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Email -->
-                <div class="glass rounded-3xl p-7 text-center">
-                    <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
-                            <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2" />
-                            <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="mt-4 font-semibold text-lg">Email</div>
-                    <div class="mt-2 text-sm muted2">yurii.sika@outlook.com</div>
-                    <div class="mt-4">
-                        <button type="button"
-                            class="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold glass-soft hover:text-white transition"
-                            data-copy="yurii.sika@outlook.com">
-                            Copy email
-                        </button>
-                    </div>
-                </div>
-
-                <!-- GitHub -->
-                <div class="glass rounded-3xl p-7 text-center">
-                    <div class="mx-auto h-14 w-14 rounded-2xl glass-soft grid place-items-center">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" class="text-cyan-200/90">
-                            <path d="M9 19c-4 1.5-4-2-5-2" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                            <path
-                                d="M9,19c-5,1.5 -5,-2.5 -7,-3m14,6v-3.87a3.37,3.37 0,0 0,-0.94 -2.61c3.14,-0.35 6.44,-1.54 6.44,-7A5.44,5.44 0,0 0,20 4.77,5.07 5.07,0 0,0 19.91,1S18.73,0.65 16,2.48a13.38,13.38 0,0 0,-7 0C6.27,0.65 5.09,1 5.09,1A5.07,5.07 0,0 0,5 4.77a5.44,5.44 0,0 0,-1.5 3.78c0,5.42 3.3,6.61 6.44,7A3.37,3.37 0,0 0,9 18.13V22"
-                                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="mt-4 font-semibold text-lg">GitHub</div>
-                    <div class="mt-3 flex flex-col gap-2">
-                        <a href="https://github.com/yurasika25" target="_blank" rel="noopener"
-                            class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold glass-soft hover:text-white transition">
-                            View Profile →
-                        </a>
-                        <button type="button"
-                            class="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold chip hover:text-white transition"
-                            data-copy="https://github.com/yurasika25">
-                            Copy link
-                        </button>
-                    </div>
-                </div>
+            <!-- copyright -->
+            <p class="mt-8 text-[14px] text-white/55">
+                © 2026 Voice Transcribe. All rights reserved.
+            </p>
             </div>
+        </footer>
 
-            <!-- Toast -->
-            <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[999] toast">
-                <div class="glass rounded-2xl px-4 py-3 text-sm font-semibold">
-                    Copied to clipboard
-                </div>
-            </div>
-        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="py-6 bg-[#070813]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-            <div class="flex items-center justify-between text-sm">
-
-                <!-- Left -->
-                <div class="flex items-center gap-3">
-                    <span class="h-9 w-9 rounded-xl grid place-items-center glass-soft ring-brand">
-                        <img src="./voice_logo.jpg" class="h-6 w-6 object-contain rounded-lg" />
-                    </span>
-                    <span class="font-semibold">Voice Transcribe</span>
-                </div>
-
-                <!-- Center -->
-                <div class="text-xs muted2">
-                    © 2026 Voice Transcribe. All rights reserved.
-                </div>
-
-                <!-- Right -->
-                <div class="flex items-center gap-6 muted">
-                    <a href="https://play.google.com/store/apps/details?id=com.voice.transcribe&pcampaignid=web_share"
-                        target="_blank" rel="noopener" class="hover:text-white transition">
-                        Google Play
-                    </a>
-
-                    <a href="https://www.privacypolicies.com/live/03be2114-cef5-43bc-8e04-c50921c86c7c" target="_blank"
-                        rel="noopener" class="hover:text-white transition">
-                        Privacy Policy
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-    </footer>
 
     <script>
         // Copy-to-clipboard helpers 

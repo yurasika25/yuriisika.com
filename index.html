@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" class="">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yurii Sika | Android Software Engineer</title>
 
   <meta name="description"
-  content="Yurii Sika — Android Software Engineer specializing in Kotlin, Jetpack Compose and scalable mobile architecture. Based in the UK." />
+    content="Yurii Sika — Android Software Engineer specializing in Kotlin, Jetpack Compose and scalable mobile architecture. Based in the UK." />
 
-<link rel="canonical" href="https://yuriisika.com/" />
+  <link rel="canonical" href="https://yuriisika.com/" />
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yuriisika.com/" />
-<meta property="og:title" content="Yurii Sika | Android Software Engineer" />
-<meta property="og:description"
-  content="Android Engineer building mobile apps with Kotlin, Jetpack Compose and Clean Architecture." />
-<meta property="og:image"
-  content="https://yuriisika.com/favicon_192.png" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yuriisika.com/" />
+  <meta property="og:title" content="Yurii Sika | Android Software Engineer" />
+  <meta property="og:description"
+    content="Android Engineer building mobile apps with Kotlin, Jetpack Compose and Clean Architecture." />
+  <meta property="og:image" content="https://yuriisika.com/favicon_192.png" />
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Yurii Sika | Android Software Engineer" />
-<meta name="twitter:description"
-  content="Android Engineer building mobile apps with Kotlin and modern Android architecture." />
-<meta name="twitter:image"
-  content="https://yuriisika.com/favicon_512.png" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Yurii Sika | Android Software Engineer" />
+  <meta name="twitter:description"
+    content="Android Engineer building mobile apps with Kotlin and modern Android architecture." />
+  <meta name="twitter:image" content="https://yuriisika.com/favicon_512.png" />
 
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -41,65 +40,85 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-    :root{
-      --primary:#3b82f6;
-      --primary-hover:#2563eb;
-      --ring: rgba(59,130,246,.35);
+    :root {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --ring: rgba(59, 130, 246, .35);
     }
 
-    body{
-      font-family:'Inter',sans-serif;
-      scroll-behavior:smooth;
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
 
     /* Subtle glass header */
-    .glass{
-      background:rgba(255,255,255,.78);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(15,23,42,.08);
+    .glass {
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, .08);
     }
-    .dark .glass{
-      background:rgba(17,24,39,.72);
-      border-bottom:1px solid rgba(255,255,255,.08);
+
+    .dark .glass {
+      background: rgba(17, 24, 39, .72);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
     /* Cards */
-    .card{
+    .card {
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .card:hover{ transform: translateY(-2px); }
 
-    .chip{
-      background: rgba(59,130,246,.10);
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Contact hover lift (subtle, premium) */
+    .contact-card {
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(2, 6, 23, .10);
+    }
+
+    .dark .contact-card:hover {
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .35);
+    }
+
+    .chip {
+      background: rgba(59, 130, 246, .10);
       color: var(--primary);
       padding: 5px 12px;
       border-radius: 9999px;
       font-size: .875rem;
       font-weight: 600;
       line-height: 1.1;
-      border: 1px solid rgba(59,130,246,.14);
+      border: 1px solid rgba(59, 130, 246, .14);
     }
-    .dark .chip{
-      background: rgba(59,130,246,.12);
-      border-color: rgba(59,130,246,.18);
+
+    .dark .chip {
+      background: rgba(59, 130, 246, .12);
+      border-color: rgba(59, 130, 246, .18);
     }
 
     /* HERO glow + gradient name */
-    .hero-glow{
+    .hero-glow {
       position: relative;
       isolation: isolate;
     }
-  .hero-glow::before{
-  content:"";
-  position:absolute;
-  inset:-140px -80px -140px -80px;
-  z-index:-1;
-  background:
-    radial-gradient(600px 400px at 50% 40%, rgba(15,23,42,.05), transparent 60%);
-  pointer-events:none;
-}
 
-    .name-gradient{
+    .hero-glow::before {
+      content: "";
+      position: absolute;
+      inset: -140px -80px -140px -80px;
+      z-index: -1;
+      background:
+        radial-gradient(600px 400px at 50% 40%, rgba(15, 23, 42, .05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .name-gradient {
       background: linear-gradient(90deg, #2563eb, #60a5fa);
       -webkit-background-clip: text;
       background-clip: text;
@@ -107,54 +126,65 @@
     }
 
     /* Focus styles */
-    :focus-visible{
+    :focus-visible {
       outline: 3px solid var(--ring);
       outline-offset: 3px;
       border-radius: 12px;
     }
 
     /* Skip link */
-    .skip-link{
-      position:absolute;
-      left:-999px;
+    .skip-link {
+      position: absolute;
+      left: -999px;
       top: 12px;
       background: white;
       color: #0f172a;
       padding: 10px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(15,23,42,.15);
+      border: 1px solid rgba(15, 23, 42, .15);
       z-index: 1000;
     }
-    .skip-link:focus{ left: 12px; }
-    .dark .skip-link{
-      background:#111827;
-      color:#e5e7eb;
-      border-color: rgba(255,255,255,.12);
+
+    .skip-link:focus {
+      left: 12px;
+    }
+
+    .dark .skip-link {
+      background: #111827;
+      color: #e5e7eb;
+      border-color: rgba(255, 255, 255, .12);
     }
 
     /* --------- COMPACT CARDS (requested) --------- */
-    .card-compact{ padding: 20px !important; }
-    .card-compact .card-icon{
+    .card-compact {
+      padding: 20px !important;
+    }
+
+    .card-compact .card-icon {
       width: 44px !important;
       height: 44px !important;
       border-radius: 14px !important;
       margin-bottom: 14px !important;
       font-size: 18px !important;
     }
-    .card-compact h4{
+
+    .card-compact h4 {
       font-size: 1.05rem !important;
       margin-bottom: 8px !important;
     }
-    .card-compact p{
+
+    .card-compact p {
       font-size: 0.95rem !important;
       line-height: 1.45 !important;
       margin-bottom: 14px !important;
     }
-    .card-compact .chip{
+
+    .card-compact .chip {
       padding: 4px 10px !important;
       font-size: .82rem !important;
     }
-    .card-compact .chips{
+
+    .card-compact .chips {
       gap: 8px !important;
       margin-bottom: 0 !important;
     }
@@ -184,19 +214,23 @@
       </a>
 
       <nav class="flex items-center space-x-4" aria-label="Primary">
-        <a href="#projects" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+        <a href="#projects"
+          class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           Projects
         </a>
 
         </a>
-        <a href="#about" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+        <a href="#about"
+          class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           About
         </a>
-        <a href="#contact" class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
+        <a href="#contact"
+          class="hidden sm:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">
           Contact
         </a>
 
-        <button id="theme-toggle" class="p-2 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
+        <button id="theme-toggle" class="p-2 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle theme">
           <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
         </button>
       </nav>
@@ -222,19 +256,17 @@
 
         <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-4 mb-10">
           <a href="#projects"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
+            class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
             View Projects
             <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
           </a>
-          <a target="_blank" rel="noopener"
-             href="https://github.com/yurasika25"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+          <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
+            class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
             <i class="fa-brands fa-github" aria-hidden="true"></i>
             GitHub
           </a>
-          <a target="_blank" rel="noopener"
-             href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+            class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
             <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
             LinkedIn
           </a>
@@ -242,210 +274,235 @@
 
         <p class="text-sm text-slate-500 dark:text-gray-400">
           UK-based · Eligible to work in the UK ·
-          <a class="font-semibold hover:text-primary transition-colors" href="mailto:yurii.sika@outlook.com">yurii.sika@outlook.com</a>
+          <a class="font-semibold hover:text-primary transition-colors"
+            href="mailto:yurii.sika@outlook.com">yurii.sika@outlook.com</a>
         </p>
       </div>
     </section>
 
     <!-- FEATURED PROJECTS -->
-   <section id="projects" class="py-16 px-4">
-  <div class="max-w-6xl mx-auto">
-    <header class="text-center mb-12">
-      <h2 class="text-1xl md:text-4xl font-extrabold mb-3">Building the Future of Mobile</h2>
-        <p class="text-sm text-slate-500 dark:text-gray-400">
-        A selection of modern mobile products
-      </p>
-    </header>
-
-    <!-- Commercial / Client Work -->
-    <div class="mb-12">
-      <h3 class="text-xl md:text-2xl font-bold mb-6">Commercial / Client Work</h3>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- UK Taxi -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-taxi"></i>
-          </div>
-          <h4 class="font-bold">UK Taxi Aggregator</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Ride-hailing aggregator across 270+ providers in 30+ UK cities. Led UI redesign and improved real-time availability UX.
+    <section id="projects" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-12">
+          <h2 class="text-1xl md:text-4xl font-extrabold mb-3">Building the Future of Mobile</h2>
+          <p class="text-sm text-slate-500 dark:text-gray-400">
+            A selection of modern mobile products
           </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">Mobility</span>
-            <span class="chip">Maps</span>
-            <span class="chip">Real-time</span>
-            <span class="chip">UX</span>
-          </div>
-        </article>
+        </header>
 
-        <!-- Telecom -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-signal"></i>
-          </div>
-          <h4 class="font-bold">Telecom Self-Service App</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Real-time self-service platform for balances, data, SMS, and VAS. Reduced Customer Care interactions by ~30%.
-          </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">Telecom</span>
-            <span class="chip">Real-time</span>
-            <span class="chip">Reliability</span>
-          </div>
-        </article>
+        <!-- Commercial / Client Work -->
+        <div class="mb-12">
+          <h3 class="text-xl md:text-2xl font-bold mb-6">Commercial / Client Work</h3>
 
-        <!-- Marketplace -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-bag-shopping"></i>
-          </div>
-          <h4 class="font-bold">E-Commerce Marketplace</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Marketplace app with scalable client architecture supporting upload, management, and purchasing workflows.
-          </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">Marketplace</span>
-            <span class="chip">Scalability</span>
-            <span class="chip">Architecture</span>
-          </div>
-        </article>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Women -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-heart-pulse"></i>
-          </div>
-          <h4 class="font-bold">Women’s Health App</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Health and wellbeing app with safety-critical features including SOS flow and tracking.
-          </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">Health</span>
-            <span class="chip">Safety</span>
-            <span class="chip">Privacy</span>
-          </div>
-        </article>
+            <!-- UK Taxi -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-taxi"></i>
+              </div>
+              <h4 class="font-bold">UK Taxi Aggregator</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Ride-hailing aggregator across 270+ providers in 30+ UK cities. Led UI redesign and improved real-time
+                availability UX.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">Mobility</span>
+                <span class="chip">Maps</span>
+                <span class="chip">Real-time</span>
+                <span class="chip">UX</span>
+              </div>
+            </article>
 
-        <!-- Learning -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-graduation-cap"></i>
-          </div>
-          <h4 class="font-bold">E-Learning Platform</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Learning platform with offline support for video lessons and study materials.
-          </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">Education</span>
-            <span class="chip">Offline</span>
-            <span class="chip">Video</span>
-          </div>
-        </article>
+            <!-- Telecom -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-signal"></i>
+              </div>
+              <h4 class="font-bold">Telecom Self-Service App</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Real-time self-service platform for balances, data, SMS, and VAS. Reduced Customer Care interactions by
+                ~30%.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">Telecom</span>
+                <span class="chip">Real-time</span>
+                <span class="chip">Reliability</span>
+              </div>
+            </article>
 
-        <!-- KMP -->
-        <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-          <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-            <i class="fa-solid fa-code-branch"></i>
+            <!-- Marketplace -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </div>
+              <h4 class="font-bold">E-Commerce Marketplace</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Marketplace app with scalable client architecture supporting upload, management, and purchasing
+                workflows.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">Marketplace</span>
+                <span class="chip">Scalability</span>
+                <span class="chip">Architecture</span>
+              </div>
+            </article>
+
+            <!-- Women -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </div>
+              <h4 class="font-bold">Women’s Health App</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Health and wellbeing app with safety-critical features including SOS flow and tracking.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">Health</span>
+                <span class="chip">Safety</span>
+                <span class="chip">Privacy</span>
+              </div>
+            </article>
+
+            <!-- Learning -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h4 class="font-bold">E-Learning Platform</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Learning platform with offline support for video lessons and study materials.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">Education</span>
+                <span class="chip">Offline</span>
+                <span class="chip">Video</span>
+              </div>
+            </article>
+
+            <!-- KMP -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-code-branch"></i>
+              </div>
+              <h4 class="font-bold">Kotlin Multiplatform Migration</h4>
+              <p class="text-slate-600 dark:text-gray-400">
+                Migration to shared business logic across Android and iOS using Kotlin Multiplatform.
+              </p>
+              <div class="chips flex flex-wrap gap-2">
+                <span class="chip">KMP</span>
+                <span class="chip">Architecture</span>
+              </div>
+            </article>
+
           </div>
-          <h4 class="font-bold">Kotlin Multiplatform Migration</h4>
-          <p class="text-slate-600 dark:text-gray-400">
-            Migration to shared business logic across Android and iOS using Kotlin Multiplatform.
-          </p>
-          <div class="chips flex flex-wrap gap-2">
-            <span class="chip">KMP</span>
-            <span class="chip">Architecture</span>
+        </div>
+
+        <!-- Personal Products -->
+        <div>
+          <h3 class="text-xl md:text-2xl font-bold mb-6">Personal Products</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Affirmation -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+
+              <h4 class="font-bold">Affirmation Space</h4>
+
+              <p class="text-slate-600 dark:text-gray-400">
+                A modern affirmation and mindset app designed to support daily motivation and mental clarity. Built with
+                Kotlin Multiplatform for iOS and Android.
+              </p>
+
+              <div class="chips flex flex-wrap gap-2 mb-3">
+                <span class="chip">KMP</span>
+                <span class="chip">Mental Wellness</span>
+                <span class="chip">Compose</span>
+              </div>
+
+              <a href="/affirmation-app/"
+                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+                View product →
+              </a>
+            </article>
+
+            <!-- Voice -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-microphone-lines"></i>
+              </div>
+
+              <h4 class="font-bold">Voice Transcribe</h4>
+
+              <p class="text-slate-600 dark:text-gray-400">
+                Multilingual speech-to-text mobile application supporting 14+ languages, with real-time transcription
+                and a modern Compose UI.
+              </p>
+
+              <div class="chips flex flex-wrap gap-2 mb-3">
+                <span class="chip">Android</span>
+                <span class="chip">Speech-to-Text</span>
+                <span class="chip">Real-time</span>
+              </div>
+
+              <a href="/voice-transcribe/"
+                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+                View product →
+              </a>
+            </article>
+
+            <!-- Notebook -->
+            <article
+              class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+              <div
+                class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
+                <i class="fa-solid fa-book-open"></i>
+              </div>
+
+              <h4 class="font-bold">Easy Notebook</h4>
+
+              <p class="text-slate-600 dark:text-gray-400">
+                Minimal and distraction-free note-taking application focused on clarity, speed, and user experience,
+                built using modern Android best practices.
+              </p>
+
+              <div class="chips flex flex-wrap gap-2 mb-3">
+                <span class="chip">Productivity</span>
+                <span class="chip">Android</span>
+              </div>
+
+              <a href="/easy-notebook/"
+                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+                View product →
+              </a>
+            </article>
+
           </div>
-        </article>
+        </div>
+
 
       </div>
-    </div>
-
-    <!-- Personal Products -->
-    <div>
-  <h3 class="text-xl md:text-2xl font-bold mb-6">Personal Products</h3>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-    <!-- Affirmation -->
-    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-      </div>
-
-      <h4 class="font-bold">Affirmation Space</h4>
-
-      <p class="text-slate-600 dark:text-gray-400">
-        A modern affirmation and mindset app designed to support daily motivation and mental clarity. Built with Kotlin Multiplatform for iOS and Android.  
-      </p>
-
-      <div class="chips flex flex-wrap gap-2 mb-3">
-        <span class="chip">KMP</span>
-        <span class="chip">Mental Wellness</span>
-        <span class="chip">Compose</span>
-      </div>
-
-      <a href="/affirmation-app/"
-   class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-  View product →
-</a>
-    </article>
-
-    <!-- Voice -->
-    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-        <i class="fa-solid fa-microphone-lines"></i>
-      </div>
-
-      <h4 class="font-bold">Voice Transcribe</h4>
-
-      <p class="text-slate-600 dark:text-gray-400">
-        Multilingual speech-to-text mobile application supporting 14+ languages, with real-time transcription and a modern Compose UI.
-      </p>
-
-      <div class="chips flex flex-wrap gap-2 mb-3">
-        <span class="chip">Android</span>
-        <span class="chip">Speech-to-Text</span>
-        <span class="chip">Real-time</span>
-      </div>
-
-       <a href="/voice-transcribe/"
-   class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-  View product →
-</a>
-    </article>
-
-    <!-- Notebook -->
-    <article class="card card-compact bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-      <div class="card-icon bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-primary">
-        <i class="fa-solid fa-book-open"></i>
-      </div>
-
-      <h4 class="font-bold">Easy Notebook</h4>
-
-      <p class="text-slate-600 dark:text-gray-400">
-        Minimal and distraction-free note-taking application focused on clarity, speed, and user experience, built using modern Android best practices.
-      </p>
-
-      <div class="chips flex flex-wrap gap-2 mb-3">
-        <span class="chip">Productivity</span>
-        <span class="chip">Android</span>
-      </div>
-
-      <a href="/easy-notebook/"
-         class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
-        View product →
-      </a>
-    </article>
-
-  </div>
-</div>
-
-
-  </div>
-</section>
-<!-- 
+    </section>
+    <!-- 
     ENGINEERING PHILOSOPHY
      <section id="philosophy" class="py-16 px-4 bg-white dark:bg-gray-800/50">
       <div class="max-w-6xl mx-auto">
@@ -489,67 +546,71 @@
           </li>
         </ul>
       </div>
-    </section> --> 
+    </section> -->
 
-     <!-- TECH STACK / EXPERTISE -->
-<section id="stack" class="py-16 px-4">
-  <div class="max-w-6xl mx-auto">
+    <!-- TECH STACK / EXPERTISE -->
+    <section id="stack" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
 
-    <header class="mb-10">
-      <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Engineering expertise</h2>
-      <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
-        Core capabilities I rely on to design, build, and ship reliable mobile systems.
-      </p>
-    </header>
+        <header class="mb-10">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Engineering expertise</h2>
+          <p class="text-slate-600 dark:text-gray-400 max-w-2xl">
+            Core capabilities I rely on to design, build, and ship reliable mobile systems.
+          </p>
+        </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <!-- Mobile -->
-      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-        <h3 class="font-bold text-lg mb-3">Mobile</h3>
-        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
-          <li>Kotlin</li>
-          <li>Jetpack Compose</li>
-          <li>Kotlin Multiplatform</li>
-          <li>Coroutines / Flow</li>
-        </ul>
-      </article>
+          <!-- Mobile -->
+          <article
+            class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+            <h3 class="font-bold text-lg mb-3">Mobile</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+              <li>Kotlin</li>
+              <li>Jetpack Compose</li>
+              <li>Kotlin Multiplatform</li>
+              <li>Coroutines / Flow</li>
+            </ul>
+          </article>
 
-      <!-- Architecture -->
-      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-        <h3 class="font-bold text-lg mb-3">Architecture</h3>
-        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
-          <li>Clean Architecture</li>
-          <li>MVVM / MVI</li>
-          <li>Modularisation</li>
-          <li>Designing for scalability</li>
-        </ul>
-      </article>
+          <!-- Architecture -->
+          <article
+            class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+            <h3 class="font-bold text-lg mb-3">Architecture</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+              <li>Clean Architecture</li>
+              <li>MVVM / MVI</li>
+              <li>Modularisation</li>
+              <li>Designing for scalability</li>
+            </ul>
+          </article>
 
-      <!-- Delivery -->
-      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-        <h3 class="font-bold text-lg mb-3">Delivery</h3>
-        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
-          <li>CI/CD (GitHub Actions)</li>
-          <li>Performance optimisation</li>
-          <li>Crash monitoring</li>
-          <li>Release ownership</li>
-        </ul>
-      </article>
+          <!-- Delivery -->
+          <article
+            class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+            <h3 class="font-bold text-lg mb-3">Delivery</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+              <li>CI/CD (GitHub Actions)</li>
+              <li>Performance optimisation</li>
+              <li>Crash monitoring</li>
+              <li>Release ownership</li>
+            </ul>
+          </article>
 
-      <!-- Quality -->
-      <article class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
-        <h3 class="font-bold text-lg mb-3">Quality</h3>
-        <ul class="space-y-2 text-slate-700 dark:text-gray-200">
-          <li>Code reviews</li>
-          <li>Testing strategy</li>
-          <li>Observability mindset</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-  
+          <!-- Quality -->
+          <article
+            class="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-sm border border-slate-100 dark:border-gray-700">
+            <h3 class="font-bold text-lg mb-3">Quality</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-gray-200">
+              <li>Code reviews</li>
+              <li>Testing strategy</li>
+              <li>Observability mindset</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section id="about" class="py-16 px-4 bg-white dark:bg-gray-800/50">
       <div class="max-w-6xl mx-auto">
@@ -558,42 +619,136 @@
         </header>
 
         <p class="text-slate-700 dark:text-gray-200 max-w-3xl leading-relaxed">
-         Android Software Engineer with 5+ years of experience delivering complete mobile solutions from concept to release in Agile, cross-functional teams using Scrum. Skilled in Kotlin, Jetpack Compose, Coroutines, Retrofit, and Clean Architecture, developing clean, maintainable code and reliable Android products.
+          Android Software Engineer with 5+ years of experience delivering complete mobile solutions from concept to
+          release in Agile, cross-functional teams using Scrum. Skilled in Kotlin, Jetpack Compose, Coroutines,
+          Retrofit, and Clean Architecture, developing clean, maintainable code and reliable Android products.
         </p>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-16 px-4">
-      <div class="max-w-6xl mx-auto">
-        <header class="text-center mb-8">
-          <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Contact</h2>
-          <p class="text-slate-600 dark:text-gray-400">
-            The fastest way to reach me is email. Links below.
+    <!-- CONTACT (STRONG) -->
+    <section id="contact" class="py-20 px-4 relative overflow-hidden">
+      <!-- soft glow background -->
+      <div class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 h-[520px] w-[900px] rounded-full opacity-60 blur-3xl"
+          style="background: radial-gradient(closest-side, rgba(59,130,246,.18), transparent 70%);"></div>
+        <div class="absolute -bottom-48 left-1/2 -translate-x-1/2 h-[520px] w-[900px] rounded-full opacity-50 blur-3xl"
+          style="background: radial-gradient(closest-side, rgba(59,130,246,.12), transparent 70%);"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto relative">
+        <header class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">Contact</h2>
+          <p class="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+            The fastest way to reach me is email. You can also connect via LinkedIn or GitHub.
           </p>
         </header>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-          <a href="mailto:yurii.sika@outlook.com"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
-            <i class="fa-solid fa-envelope" aria-hidden="false"></i>
-            yurii.sika@outlook.com
-          </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Email -->
+          <article class="contact-card bg-white dark:bg-gray-800 rounded-3xl border border-slate-200/70 dark:border-gray-700
+                      shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">Email</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all" id="emailValue">yurii.sika@outlook.com
+                </div>
+              </div>
+            </div>
 
-          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
-            <i class="fa-brands fa-linkedin" aria-hidden="false"></i>
-            LinkedIn
-          </a>
+            <div class="mt-5 flex gap-2">
+              <button type="button" class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold
+                   hover:bg-[color:var(--primary-hover)] transition-colors" data-copy="yurii.sika@outlook.com">
+                <i class="fa-solid copy"></i>
+                Copy
+              </button>
 
-          <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
-             class="inline-flex justify-center items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
-            <i class="fa-brands fa-github" aria-hidden="false"></i>
-            GitHub
-          </a>
+              <a href="mailto:yurii.sika@outlook.com"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-white dark:bg-gray-900/40
+                   border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors">
+                Open
+              </a>
+            </div>
+
+          </article>
+
+          <!-- LinkedIn -->
+          <article class="contact-card bg-white dark:bg-gray-800 rounded-3xl border border-slate-200/70 dark:border-gray-700
+                      shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-brands fa-linkedin"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">LinkedIn</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all">yurii-sika-ld-in</div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex gap-2">
+              <button type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-gray-900/40
+                   border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors"
+                data-copy="https://www.linkedin.com/in/yurii-sika-ld-in/">
+                <i class="fa-solid copy"></i>
+                Copy
+              </button>
+
+              <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/" class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold
+                   hover:bg-[color:var(--primary-hover)] transition-colors">
+                Open
+              </a>
+            </div>
+
+          </article>
+
+          <!-- GitHub -->
+          <article class="contact-card bg-white dark:bg-gray-800 rounded-3xl border border-slate-200/70 dark:border-gray-700
+                      shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-brands fa-github"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">GitHub</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all">github.com/yurasika25</div>
+              </div>
+            </div>
+
+            <div class="mt-5 flex gap-2">
+              <button type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-gray-900/40
+                   border border-slate-200 dark:border-gray-700 font-semibold hover:border-slate-300 dark:hover:border-gray-600 transition-colors"
+                data-copy="https://github.com/yurasika25">
+                <i class="fa-solid copy"></i>
+                Copy
+              </button>
+
+              <a target="_blank" rel="noopener" href="https://github.com/yurasika25" class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold
+                   hover:bg-[color:var(--primary-hover)] transition-colors">
+                Open
+              </a>
+            </div>
+
+
+          </article>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="contactToast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[999] opacity-0 translate-y-2 pointer-events-none
+                              transition duration-200">
+        <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-slate-200/70 dark:border-gray-700
+                shadow-lg rounded-2xl px-4 py-3 text-sm font-semibold">
+          Copied ✓
         </div>
       </div>
     </section>
+
+
   </main>
 
   <!-- Footer -->
@@ -601,15 +756,14 @@
     <div class="max-w-6xl mx-auto px-4 text-center">
       <div class="flex flex-wrap justify-center gap-6 mb-4">
         <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-           class="font-semibold hover:text-primary transition-colors">
+          class="font-semibold hover:text-primary transition-colors">
           LinkedIn
         </a>
         <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
-           class="font-semibold hover:text-primary transition-colors">
+          class="font-semibold hover:text-primary transition-colors">
           GitHub
         </a>
-        <a href="mailto:yurii.sika@outlook.com"
-           class="font-semibold hover:text-primary transition-colors">
+        <a href="mailto:yurii.sika@outlook.com" class="font-semibold hover:text-primary transition-colors">
           yurii.sika@outlook.com
         </a>
       </div>
@@ -651,5 +805,44 @@
       }
     });
   </script>
+
+  <script>
+    (function () {
+      const toast = document.getElementById('contactToast');
+      function showToast(text) {
+        if (!toast) return;
+        toast.querySelector('div').textContent = text || 'Copied ✓';
+        toast.classList.remove('opacity-0', 'translate-y-2');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(window.__contactToastTimer);
+        window.__contactToastTimer = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-2');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 1300);
+      }
+
+      async function copyText(value) {
+        try {
+          await navigator.clipboard.writeText(value);
+          showToast('Copied ✓');
+        } catch (e) {
+          const ta = document.createElement('textarea');
+          ta.value = value;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast('Copied ✓');
+        }
+      }
+
+      document.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy')));
+      });
+    })();
+  </script>
 </body>
+
 </html>
