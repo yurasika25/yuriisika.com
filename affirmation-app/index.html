@@ -388,9 +388,10 @@
         GitHub
       </a>
 
-      <a href="mailto:yurii.sika@outlook.com" class="hover:opacity-70 transition">
+      <button type="button" data-copy="yurii.sika@outlook.com"
+        class="hover:opacity-70 transition font-semibold cursor-pointer">
         yurii.sika@outlook.com
-      </a>
+      </button>
     </div>
 
     <!-- project copyright -->
@@ -399,17 +400,33 @@
     </p>
   </footer>
 
+  <!-- Bottom Toast -->
+  <div id="contactToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 
+            opacity-0 translate-y-2
+            transition-all duration-300 ease-out
+            pointer-events-none z-50">
+    <div class="bg-white/80 backdrop-blur-md
+            text-slate-800 text-sm font-semibold
+            px-6 py-3 rounded-full
+            shadow-[0_20px_50px_rgba(15,23,42,0.15)]
+            ring-1 ring-black/5">
+      Copied ✓
+    </div>
+  </div>
+
   <script>
     (function () {
-      const toast = document.getElementById('ctaToast');
+      const toast = document.getElementById('contactToast');
 
       function showToast(text) {
         if (!toast) return;
         toast.querySelector('div').textContent = text || 'Copied ✓';
+
         toast.classList.remove('opacity-0', 'translate-y-2');
         toast.classList.add('opacity-100', 'translate-y-0');
-        clearTimeout(window.__ctaToastTimer);
-        window.__ctaToastTimer = setTimeout(() => {
+
+        clearTimeout(window.__contactToastTimer);
+        window.__contactToastTimer = setTimeout(() => {
           toast.classList.add('opacity-0', 'translate-y-2');
           toast.classList.remove('opacity-100', 'translate-y-0');
         }, 1300);
@@ -433,10 +450,13 @@
       }
 
       document.querySelectorAll('[data-copy]').forEach(btn => {
-        btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy')));
+        btn.addEventListener('click', () =>
+          copyText(btn.getAttribute('data-copy'))
+        );
       });
     })();
   </script>
+
 
 </body>
 
