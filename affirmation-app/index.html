@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Affirmation App — Calm, Focus & Confidence</title>
@@ -45,411 +46,1058 @@
   <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
   <meta name="theme-color" content="#e5e7eb">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
+    :root {
+      color-scheme: light;
     }
 
-    .serif {
-      font-family: 'Playfair Display', serif;
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .font-serif {
+      font-family: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    /* Accessible focus ring (works with Tailwind classes too) */
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+      border-radius: 12px;
+    }
+
+    /* Simple, low-cost background noise */
+    .noise {
+      background-image:
+        radial-gradient(900px 420px at 18% 12%, rgba(217, 223, 234, 0.14), transparent 60%),
+        radial-gradient(900px 420px at 82% 18%, rgba(99, 102, 241, 0.10), transparent 60%),
+        radial-gradient(900px 420px at 50% 90%, rgba(231, 243, 249, 0.08), transparent 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 35%, rgba(255, 255, 255, 1) 100%);
+    }
+
+    /* Glass card with subtle border */
+    .glass {
+      background: rgba(255, 255, 255, 0.70);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Soft shadow for image frames */
+    .frame-shadow {
+      box-shadow:
+        0 18px 55px rgba(15, 23, 42, 0.14),
+        0 1px 0 rgba(255, 255, 255, 0.85) inset;
     }
   </style>
 </head>
 
-<body class="bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 text-slate-800">
+<body class="noise text-slate-900">
+  <!-- Skip link -->
+  <a href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:rounded-xl focus:shadow-lg">
+    Skip to content
+  </a>
 
-  <!-- HERO -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
-
-    <div
-      class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000')] bg-cover bg-center opacity-20">
-    </div>
-    <div class="relative z-10 max-w-4xl">
-
-      <div class="flex justify-center mb-100">
-        <img src="./affirm_logo_512.png" alt="Affirmation App Logo"
-          class="w-24 sm:w-28 md:w-32 lg:w-36 opacity-95 drop-shadow-[0_18px_36px_rgba(47,111,230,0.28)]" />
-      </div>
-      <h1
-        class="serif text-[44px] md:text-[54px] font-medium leading-[1.08] tracking-[-0.015em] text-[#0F172A] mb-8 md:mb-8">
-        Start Your Day With <br>
-
-        <span class="text-[#3D73E0] drop-shadow-[0_8px_18px_rgba(61,115,224,0.22)]">
-          Calm, Focus,
-        </span>
-        <br>
-
-        <span class="text-[#0F172A]">and</span>
-        <span class="text-[#3D73E0] drop-shadow-[0_8px_18px_rgba(61,115,224,0.22)] mb-20">
-          Confidence
-        </span>
-      </h1>
-
-      <p class="text-lg text-slate-600 mb-150">
-        A beautifully designed affirmation and mindfulness <br>
-        app for intentional living.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-6 justify-center mt-6">
-
-        <!-- App Store -->
-        <div class="flex items-center gap-3 bg-white/90 px-6 py-3 rounded-xl 
-            shadow-[0_18px_50px_rgba(15,23,42,0.12)] 
-            transition duration-300">
-
-          <img src="./im_app_store.png" alt="App Store" class="w-9 h-9 object-contain" />
-
-          <div class="text-left">
-            <div class="text-[10px] tracking-[0.15em] text-slate-500 font-medium uppercase">
-              Coming Soon On
-            </div>
-            <div class="text-[16px] font-semibold text-slate-800">
-              App Store
-            </div>
+  <!-- Sticky Top Nav -->
+  <header class="sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav class="mt-3 flex items-center justify-between rounded-2xl glass px-4 py-3">
+        <a href="#" class="flex items-center gap-3" aria-label="Affirmation App home">
+          <img src="./affirm_logo_512.png" alt="Affirmation App logo" width="40" height="40"
+            class="h-10 w-10 rounded-2xl object-cover ring-1 ring-slate-900/10" loading="eager" decoding="async" />
+          <div class="leading-tight">
+            <div class="font-serif text-lg font-semibold tracking-tight">Affirmation App</div>
+            <div class="text-xs text-slate-600">Calm • Focus • Confidence</div>
           </div>
+        </a>
+
+        <!-- Desktop nav -->
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#features">Features</a>
+          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#screenshots">Screenshots</a>
+          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#premium">Premium</a>
+          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#faq">FAQ</a>
+          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#contact">Contact</a>
         </div>
 
-        <!-- Google Play -->
-        <div class="flex items-center gap-3 bg-white/90 px-6 py-3 rounded-xl 
-            shadow-[0_18px_50px_rgba(15,23,42,0.12)] 
-            transition duration-300">
-
-          <img src="./im_play_market.png" alt="Play " class="w-9 h-9 object-contain" />
-
-          <div class="text-left">
-            <div class="text-[10px] tracking-[0.15em] text-slate-500 font-medium uppercase">
-              Coming Soon On
-            </div>
-            <div class="text-[16px] font-semibold text-slate-800">
-              Google Play
-            </div>
-          </div>
+        <!-- Desktop CTAs -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#contact"
+            class="rounded-xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors">
+            Join waitlist
+          </a>
+          <a href="#hero"
+            class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+            aria-label="Get the app (coming soon)">
+            Coming soon
+          </a>
         </div>
 
-      </div>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" type="button"
+          class="md:hidden inline-flex items-center justify-center rounded-xl bg-slate-900/5 px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
+          aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="sr-only">Open navigation menu</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </nav>
 
-    </div>
-  </section>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden hidden mt-3 rounded-2xl glass p-4">
+        <div class="grid gap-2 text-sm">
+          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#features">Features</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#screenshots">Screenshots</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#premium">Premium</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#faq">FAQ</a>
+          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#contact">Contact</a>
 
-  <!-- EXPERIENCE -->
-  <section class="py-24 md:py-28 px-6 text-center">
-    <h2 class="serif text-4xl mb-4">Experience the App</h2>
-    <p class="text-slate-500 mb-12">
-      A preview of the calm, intentional experience that awaits you.
-    </p>
-
-    <div class="flex flex-wrap justify-center gap-10">
-      <!-- Screen 1 -->
-      <div class="w-[220px] md:w-[240px]">
-        <img src="./affirm_1.png" alt="Affirmation App — screen 1"
-          class="w-full rounded-[28px] shadow-[0_24px_60px_rgba(15,23,42,0.18)]" loading="lazy" />
-      </div>
-
-      <!-- Screen 2 -->
-      <div class="w-[220px] md:w-[240px]">
-        <img src="./affirm_2.png" alt="Affirmation App — screen 2"
-          class="w-full rounded-[28px] shadow-[0_24px_60px_rgba(15,23,42,0.18)]" loading="lazy" />
-      </div>
-
-      <!-- Screen 3 -->
-      <div class="w-[220px] md:w-[240px]">
-        <img src="./affirm_3.png" alt="Affirmation App — screen 3"
-          class="w-full rounded-[28px] shadow-[0_24px_60px_rgba(15,23,42,0.18)]" loading="lazy" />
-      </div>
-
-      <!-- Screen 4 -->
-      <div class="w-[220px] md:w-[240px]">
-        <img src="./affirm_4.png" alt="Affirmation App — screen 4"
-          class="w-full rounded-[28px] shadow-[0_24px_60px_rgba(15,23,42,0.18)]" loading="lazy" />
-      </div>
-
-      <!-- Screen 5 -->
-      <div class="w-[220px] md:w-[240px]">
-        <img src="./affirm_5.png" alt="Affirmation App — screen 5"
-          class="w-full rounded-[28px] shadow-[0_24px_60px_rgba(15,23,42,0.18)]" loading="lazy" />
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="relative overflow-hidden py-24 md:py-28">
-    <div class="pointer-events-none absolute inset-0">
-      <div class="absolute inset-0 bg-gradient-to-b from-[#EEF3FB] via-[#F7FAFF] to-[#EEF3FB]"></div>
-      <div
-        class="absolute left-1/2 top-[-220px] h-[520px] w-[920px] -translate-x-1/2 rounded-full bg-[#D7E6FF] opacity-35 blur-3xl">
-      </div>
-      <div
-        class="absolute left-1/2 bottom-[-260px] h-[560px] w-[980px] -translate-x-1/2 rounded-full bg-[#E6F0FF] opacity-55 blur-3xl">
-      </div>
-    </div>
-
-    <div class="relative mx-auto max-w-6xl px-6">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="serif text-[40px] md:text-[44px] font-semibold tracking-tight text-slate-800">
-          Designed for Your Wellbeing
-        </h2>
-        <p class="mt-4 text-[17px] md:text-[18px] leading-relaxed text-slate-500">
-          Every feature is crafted to bring peace, clarity, and confidence<br class="hidden sm:block">
-          into your daily life.
-        </p>
-      </div>
-
-      <div class="mt-16 grid gap-7 md:grid-cols-3">
-        <!-- Card 1 -->
-        <div class="rounded-[22px] bg-white/65 p-8 ring-1 ring-black/5 backdrop-blur
-            shadow-[0_24px_60px_rgba(15,23,42,0.10)]
-            transition duration-300
-            hover:-translate-y-1 hover:bg-white/80 hover:ring-black/10
-            hover:shadow-[0_28px_75px_rgba(15,23,42,0.16)]">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- heart -->
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
-                <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5
-       C2 5.42 4.42 3 7.5 3
-       C9.24 3 10.91 3.81 12 5.09
-       C13.09 3.81 14.76 3 16.5 3
-       C19.58 3 22 5.42 22 8.5
-       C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" stroke="#2F5FEA" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
+          <div class="hidden md:flex items-center gap-2">
+            <a href="#contact" class="btn btn-primary focus-ring" aria-label="Join waitlist">
+              Join waitlist
+              <span aria-hidden="false">→</span>
+            </a>
           </div>
+          <a class="mt-2 rounded-xl bg-blue-600 px-3 py-2 text-center font-semibold text-white hover:bg-blue-700 transition-colors"
+            href="#hero">
+            Coming soon<span>
 
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Daily Affirmations
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Begin each morning with words that empower and inspire your best self.
-          </p>
-        </div>
-
-        <!-- Card 2 -->
-        <div
-          class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- music -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18V6l12-2v12" stroke="#2F5FEA" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-                <path d="M9 18c0 1.7-1.6 3-3.5 3S2 19.7 2 18s1.6-3 3.5-3S9 16.3 9 18z" stroke="#2F5FEA"
-                  stroke-width="1.8" />
-                <path d="M21 16c0 1.7-1.6 3-3.5 3S14 17.7 14 16s1.6-3 3.5-3S21 14.3 21 16z" stroke="#2F5FEA"
-                  stroke-width="1.8" />
-              </svg>
-            </div>
-          </div>
-
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Nature Sounds &amp; Music
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Immerse yourself in calming melodies and soothing natural soundscapes.
-          </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- layers -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3l9 5-9 5-9-5 9-5z" stroke="#2F5FEA" stroke-width="1.8" stroke-linejoin="round" />
-                <path d="M21 12l-9 5-9-5" stroke="#2F5FEA" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-                <path d="M21 16l-9 5-9-5" stroke="#2F5FEA" stroke-width="1.8" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-          </div>
-
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Mood-Based Categories
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Find exactly what you need — from focus and calm to confidence and joy.
-          </p>
-        </div>
-
-        <!-- Card 4 -->
-        <div
-          class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- fullscreen -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" stroke="#2F5FEA" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </div>
-          </div>
-
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Immersive Affirmations
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Full-screen beautiful visuals paired with powerful, resonating words.
-          </p>
-        </div>
-
-        <!-- Card 5 -->
-        <div
-          class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- headphones -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 14v-2a8 8 0 0 1 16 0v2" stroke="#2F5FEA" stroke-width="1.8" stroke-linecap="round" />
-                <path d="M4 14a2 2 0 0 0 2 2h1v-4H6a2 2 0 0 0-2 2z" stroke="#2F5FEA" stroke-width="1.8"
-                  stroke-linejoin="round" />
-                <path d="M20 14a2 2 0 0 1-2 2h-1v-4h1a2 2 0 0 1 2 2z" stroke="#2F5FEA" stroke-width="1.8"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-          </div>
-
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Audio & Video Player
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Your space for calm, immersive audio and video experiences.
-          </p>
-        </div>
-
-        <!-- Card 6 -->
-        <div
-          class="rounded-[22px] bg-white/65 p-8 shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-black/5 backdrop-blur">
-          <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EAF1FF] ring-1 ring-black/5">
-              <!-- star -->
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3l2.6 5.6 6.2.8-4.6 4.3 1.2 6.1L12 17.9 6.6 19.8l1.2-6.1L3.2 9.4l6.2-.8L12 3z"
-                  stroke="#2F5FEA" stroke-width="1.8" stroke-linejoin="round" />
-              </svg>
-            </div>
-          </div>
-
-          <h3 class="serif mt-6 text-[22px] font-semibold text-slate-800">
-            Favorites &amp; Tracking
-          </h3>
-          <p class="mt-3 text-[15.5px] leading-relaxed text-slate-500">
-            Save what moves you and build a personal ritual of positivity.
-          </p>
+            </span>
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- HOW IT FEELS -->
-  <section class="py-24 text-center px-6">
-    <h2 class="serif text-4xl mb-10">How It Feels</h2>
-    <div class="space-y-4 text-lg text-slate-600">
-      <p>Feel more grounded.</p>
-      <p>Start mornings with clarity.</p>
-      <p>End evenings with calm.</p>
-      <p>Build confidence daily.</p>
-      <p>Create a personal ritual of positivity.</p>
+  <main id="main">
+    <!-- Hero -->
+    <section id="hero" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-10 sm:pb-14">
+        <div class="grid items-center gap-10 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <div
+              class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-900/10">
+              <span class="inline-block h-2 w-2 rounded-full bg-blue-600" aria-hidden="true"></span>
+              Calm, airy, premium wellness
+            </div>
+
+            <h1 class="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900">
+              Find calm and daily inspiration.
+            </h1>
+
+            <p class="mt-4 text-base sm:text-lg text-slate-700 max-w-xl">
+              Daily affirmations, music, visual stories, and mindful moments — designed to help you start your day with
+              calm, focus &amp; confidence.
+            </p>
+
+            <div class="mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
+              <!-- Store buttons (Coming soon) -->
+              <button type="button"
+                class="group glass rounded-2xl px-4 py-3 text-left hover:shadow-lg transition-shadow"
+                aria-label="App Store coming soon">
+                <div class="flex items-center gap-3">
+                  <img src="./im_app_store.png" alt="App Store badge" width="120" height="36"
+                    class="h-9 w-auto object-contain" loading="eager" decoding="async" />
+                  <span class="text-xs font-semibold text-slate-600">Coming soon</span>
+                </div>
+              </button>
+
+              <button type="button"
+                class="group glass rounded-2xl px-4 py-3 text-left hover:shadow-lg transition-shadow"
+                aria-label="Google Play coming soon">
+                <div class="flex items-center gap-3">
+                  <img src="./im_play_market.png" alt="Google Play badge" width="120" height="36"
+                    class="h-9 w-auto object-contain" loading="eager" decoding="async" />
+                  <span class="text-xs font-semibold text-slate-600">Coming soon</span>
+                </div>
+              </button>
+            </div>
+
+            <dl class="mt-8 grid grid-cols-2 gap-4 max-w-xl">
+              <div class="rounded-2xl glass p-4">
+                <dt class="text-xs font-semibold text-slate-600">Made for daily calm</dt>
+                <dd class="mt-1 text-sm text-slate-800">Gentle routines, minimal friction.</dd>
+              </div>
+              <div class="rounded-2xl glass p-4">
+                <dt class="text-xs font-semibold text-slate-600">Personal style</dt>
+                <dd class="mt-1 text-sm text-slate-800">Themes, typography, reminders.</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="lg:col-span-6">
+            <figure class="relative mx-auto max-w-[520px]">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <!-- Reserve space to avoid CLS -->
+                <img src="im_main.png"
+                  alt="Affirmation App marketing screenshot: Feel Calm Every Day / Start Your Day Positive" width="1200"
+                  height="1200" class="w-full h-auto" loading="eager" decoding="async" />
+              </div>
+
+
+              <figcaption class="mt-3 text-xs text-slate-600 text-center">
+                Story-driven experiences — affirmations, music, mindful moments.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story sections -->
+    <section id="screenshots" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">A calming stories in
+              moments</h2>
+            <p class="mt-2 text-slate-700 max-w-2xl">
+              Each screen is designed to guide you — from a calm start to a personalized daily routine.
+            </p>
+          </div>
+          <div class="hidden lg:block text-sm text-slate-600">
+            Scroll → explore the journey
+          </div>
+        </div>
+
+        <!-- Moment 1 -->
+        <article class="mt-10 grid items-center gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <div class="rounded-[28px] glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <img src="new_1.png" alt="Marketing screenshot: Feel Calm Every Day / Start Your Day Positive"
+                  width="1200" height="1200" class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6">
+            <p class="text-xs font-semibold text-blue-700">Moment 01</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-semibold tracking-tight">
+              Feel Calm Every Day <span class="text-slate-400">/</span> Start Your Day Positive
+            </h3>
+            <p class="mt-3 text-slate-700">
+              Begin with daily calm &amp; inspiration — uplifting affirmations, music, and mindful moments that set the
+              tone for your day.
+            </p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl glass p-4">
+                <div class="text-sm font-semibold text-slate-800">Daily affirmations</div>
+                <div class="mt-1 text-sm text-slate-600">Gentle prompts for a positive mindset.</div>
+              </div>
+              <div class="rounded-2xl glass p-4">
+                <div class="text-sm font-semibold text-slate-800">Mindful moments</div>
+                <div class="mt-1 text-sm text-slate-600">Short, calm pauses you can repeat daily.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Moment 2 -->
+        <article class="mt-14 grid items-center gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-6 lg:order-2">
+            <div class="rounded-[28px] glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <img src="new2.png"
+                  alt="Marketing screenshot: Find Your Inner Calm / Peace Anytime You Need (Subtitles ON/OFF)"
+                  width="1200" height="1200" class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:order-1">
+            <p class="text-xs font-semibold text-blue-700">Moment 02</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-semibold tracking-tight">
+              Find Your Inner Calm <span class="text-slate-400">/</span> Peace Anytime You Need
+            </h3>
+            <p class="mt-3 text-slate-700">
+              Focus music &amp; relaxation soundscapes, plus aesthetic videos with affirmations —
+              with subtitles you can toggle ON/OFF.
+            </p>
+            <ul class="mt-6 space-y-3 text-sm text-slate-700">
+              <li class="flex gap-3">
+                <span
+                  class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <span>Music for focus &amp; relaxation, designed for daily use.</span>
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <span>Affirmation subtitles ON/OFF for a clean viewing experience.</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Moment 3 -->
+        <article class="mt-14 grid items-center gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <div class="rounded-[28px] glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <img src="im_moment_003_final (1).png"
+                  alt="Marketing screenshot: Daily Positive Affirmations / Create Your Calm Style (Themes & Typography)"
+                  width="1200" height="1200" class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6">
+            <p class="text-xs font-semibold text-blue-700">Moment 03</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-semibold tracking-tight">
+              Daily Positive Affirmations <span class="text-slate-400">/</span> Create Your Calm Style
+            </h3>
+            <p class="mt-3 text-slate-700">
+              Browse uplifting cards, save favorites, and tune the experience to your taste with themes and typography
+              options.
+            </p>
+            <div class="mt-6 rounded-2xl glass p-5">
+              <div class="text-sm font-semibold text-slate-800">Personalization that feels premium</div>
+              <p class="mt-2 text-sm text-slate-600">
+                Choose your own theme and font style — so the app always matches your mood.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Moment 4 -->
+        <article class="mt-14 grid items-center gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-6 lg:order-2">
+            <div class="rounded-[28px] glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <img src="im4.png" alt="Marketing screenshot: Grow Your Mindset / Always Within Reach" width="1200"
+                  height="1200" class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:order-1">
+            <p class="text-xs font-semibold text-blue-700">Moment 04</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-semibold tracking-tight">
+              Grow Your Mindset <span class="text-slate-400">/</span> Always Within Reach
+            </h3>
+            <p class="mt-3 text-slate-700">
+              Discover powerful books, thoughtful insights, and meaningful inspiration gathered in one calm, focused
+              space.
+
+              Explore curated reads that expand perspective, highlight what resonates, and return to ideas that move you
+              forward. Build a personal library of wisdom that evolves with you.
+            </p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-2xl glass p-4">
+                <div class="text-sm font-semibold text-slate-800">Books & Inspiration</div>
+                <div class="mt-1 text-sm text-slate-600">Dive into transformative titles, reflect through notes, and
+                  deepen your understanding at your own pace..</div>
+              </div>
+              <div class="rounded-2xl glass p-4">
+                <div class="text-sm font-semibold text-slate-800">Books &amp; notes</div>
+                <div class="mt-1 text-sm text-slate-600">A quiet space for learning.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Moment 5 -->
+        <article class="mt-14 grid items-center gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <div class="rounded-[28px] glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-[22px] bg-white">
+                <img src="im_moment_5.png"
+                  alt="Marketing screenshot: Always Within Reach / Go Premium Anytime (trial, plans)" width="1200"
+                  height="1200" class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6">
+            <p class="text-xs font-semibold text-blue-700">Moment 05</p>
+            <h3 class="mt-2 font-serif text-2xl sm:text-3xl font-semibold tracking-tight">
+              Your Space, Your Control!
+            </h3>
+            <p class="mt-3 text-slate-700">
+              Customize every detail to match your rhythm — from notifications and daily affirmations to theme and
+              language preferences.
+            </p>
+            <div class="mt-6 rounded-2xl glass p-5">
+              <div class="text-sm font-semibold text-slate-800"></div>
+              <p class="mt-2 text-sm text-slate-600">
+                Stay connected with direct support via Telegram or email, and manage everything in one calm, organized
+                place.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Features grid -->
+    <section id="features" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="max-w-2xl">
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Features, designed for
+            daily calm.</h2>
+          <p class="mt-2 text-slate-700">A focused set of tools that stay out of your way — and gently support your
+            routine.</p>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Card 1 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.65-7 10-7 10z" stroke="currentColor"
+                    stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Daily Affirmations</h3>
+                <p class="mt-1 text-sm text-slate-600">Cards and quotes that uplift your mindset — easy to browse and
+                  save.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                  <path d="M9 18a2 2 0 1 1-4 0c0-1.1.9-2 2-2s2 .9 2 2z" stroke="currentColor" stroke-width="2" />
+                  <path d="M20 16a2 2 0 1 1-4 0c0-1.1.9-2 2-2s2 .9 2 2z" stroke="currentColor" stroke-width="2" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Music &amp; Nature Sounds</h3>
+                <p class="mt-1 text-sm text-slate-600">Focus and relaxation tracks for calm work, rest, or reset
+                  moments.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M7 4h10v16H7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Visual Stories</h3>
+                <p class="mt-1 text-sm text-slate-600">Aesthetic videos and photo experiences with optional affirmation
+                  subtitles.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5h14a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z" stroke="currentColor" stroke-width="2"
+                    stroke-linejoin="round" />
+                  <path d="M4 19h14a2 2 0 0 1 2 2V7" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Books &amp; Inspiration</h3>
+                <p class="mt-1 text-sm text-slate-600">A gentle library experience for learning, reflecting, and growing
+                  your mindset.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.65-7 10-7 10z" stroke="currentColor"
+                    stroke-width="2" stroke-linejoin="round" />
+                  <path d="M7 13h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Favorites</h3>
+                <p class="mt-1 text-sm text-slate-600">Save what inspires you — return to it anytime, across content
+                  types.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="rounded-3xl glass p-6">
+            <div class="flex items-start gap-4">
+              <div class="h-11 w-11 rounded-2xl bg-blue-600/10 text-blue-700 flex items-center justify-center"
+                aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">Personalization</h3>
+                <p class="mt-1 text-sm text-slate-600">Themes, typography, reminders, and languages — your calm, your
+                  way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium section -->
+    <section id="premium" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid gap-8 lg:grid-cols-12 items-start">
+          <div class="lg:col-span-6">
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Go Premium Anytime
+            </h2>
+            <p class="mt-2 text-slate-700 max-w-xl">
+              Unlock more of what helps you feel calm, focused, and inspired — with a simple upgrade flow.
+            </p>
+
+            <div class="mt-8 space-y-3">
+              <div class="flex gap-3 rounded-2xl glass p-4">
+                <span
+                  class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Access powerful affirmation books</div>
+                  <div class="mt-1 text-sm text-slate-600">Explore deeper content and curated collections.</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3 rounded-2xl glass p-4">
+                <span
+                  class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Save meaningful photos that strengthen positive
+                    beliefs</div>
+                  <div class="mt-1 text-sm text-slate-600">Build a library you’ll actually revisit.</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3 rounded-2xl glass p-4">
+                <span
+                  class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Keep all inspiration in one place</div>
+                  <div class="mt-1 text-sm text-slate-600">Organized favorites across categories.</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3 rounded-2xl glass p-4">
+                <span
+                  class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Revisit moments that strengthen your mindset</div>
+                  <div class="mt-1 text-sm text-slate-600">A simple habit loop you can repeat daily.</div>
+                </div>
+              </div>
+
+              <div class="flex gap-3 rounded-2xl glass p-4">
+                <span
+                  class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600/10 text-blue-700"
+                  aria-hidden="true">✓</span>
+                <div>
+                  <div class="text-sm font-semibold text-slate-900">Build a daily positivity habit</div>
+                  <div class="mt-1 text-sm text-slate-600">Gentle reminders and premium content access.</div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-6 text-xs text-slate-600">
+              Note: Example pricing may be shown in the app UI; final pricing and availability can change before
+              release.
+            </p>
+          </div>
+
+          <div class="lg:col-span-6">
+            <!-- Pricing UI teaser card -->
+            <div class="rounded-[28px] glass p-6 frame-shadow">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-xs font-semibold text-slate-600">Premium</div>
+                  <div class="mt-1 font-serif text-2xl font-semibold">Unlock Your Full Potential</div>
+                </div>
+                <div class="h-10 w-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-sm"
+                  aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2l1.5 6L20 10l-6.5 2L12 18l-1.5-6L4 10l6.5-2L12 2z" stroke="currentColor"
+                      stroke-width="2" stroke-linejoin="round" />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="mt-6 grid gap-3">
+                <div class="rounded-2xl bg-white/75 ring-1 ring-slate-900/10 p-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="text-sm font-semibold text-slate-900">Monthly Plan</div>
+                      <div class="mt-1 text-xs text-slate-600">Example pricing shown in app</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-lg font-semibold text-slate-900">$5.99 <span class="text-sm text-slate-500">/
+                          mo</span></div>
+                      <div class="text-xs text-slate-600">Billed monthly</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl bg-white/75 ring-2 ring-blue-600/40 p-4">
+                  <div class="flex items-center justify-between gap-3">
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <div class="text-sm font-semibold text-slate-900">Yearly Plan</div>
+                        <span
+                          class="rounded-full bg-blue-600/10 px-2 py-0.5 text-[11px] font-semibold text-blue-700">Best
+                          value</span>
+                      </div>
+                      <div class="mt-1 text-xs text-slate-600">Example pricing shown in app</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-lg font-semibold text-slate-900">$39.99 <span class="text-sm text-slate-500">/
+                          yr</span></div>
+                      <div class="text-xs text-slate-600">Save vs monthly</div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button"
+                  class="mt-2 rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+                  aria-label="Continue (coming soon)">
+                  Continue (coming soon)
+                </button>
+
+                <div
+                  class="flex items-center justify-between rounded-2xl bg-white/75 ring-1 ring-slate-900/10 px-4 py-3">
+                  <div class="text-sm font-semibold text-slate-800">Start trial</div>
+                  <div class="h-6 w-11 rounded-full bg-slate-200 relative" aria-hidden="true">
+                    <div class="absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow"></div>
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-600">
+                  Tip: Keep your Premium copy flexible — avoid hard claims until store listings are final.
+                </p>
+              </div>
+            </div>
+
+            <!-- Supporting screenshot preview (optional) -->
+            <div class="mt-6 rounded-3xl glass p-1 frame-shadow">
+              <div class="overflow-hidden rounded-2xl bg-white">
+                <img src="im_trial.png" alt="Premium flow marketing screenshot preview" width="1200" height="1200"
+                  class="w-full h-auto" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="max-w-2xl">
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">FAQ</h2>
+          <p class="mt-2 text-slate-700">Clear answers, without overpromising.</p>
+        </div>
+
+        <div class="mt-10 max-w-3xl space-y-3">
+          <!-- Item -->
+          <div class="rounded-3xl glass p-2">
+            <h3>
+              <button class="w-full flex items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left"
+                type="button" data-accordion="btn" aria-expanded="false">
+                <span class="text-base font-semibold text-slate-900">Is it free?</span>
+                <span class="shrink-0 rounded-xl bg-slate-900/5 p-2 text-slate-700" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="px-4 pb-4 text-sm text-slate-700 hidden" data-accordion="panel">
+              Yes — the app is designed to be usable for free, with an optional Premium upgrade for additional content
+              and features.
+            </div>
+          </div>
+
+          <div class="rounded-3xl glass p-2">
+            <h3>
+              <button class="w-full flex items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left"
+                type="button" data-accordion="btn" aria-expanded="false">
+                <span class="text-base font-semibold text-slate-900">What does Premium unlock?</span>
+                <span class="shrink-0 rounded-xl bg-slate-900/5 p-2 text-slate-700" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="px-4 pb-4 text-sm text-slate-700 hidden" data-accordion="panel">
+              Premium is presented as an optional upgrade to access more content (e.g., affirmation books) and a richer
+              experience.
+              Keep the exact list aligned with your store listing and in-app paywall.
+            </div>
+          </div>
+
+          <div class="rounded-3xl glass p-2">
+            <h3>
+              <button class="w-full flex items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left"
+                type="button" data-accordion="btn" aria-expanded="false">
+                <span class="text-base font-semibold text-slate-900">Can I change themes/fonts?</span>
+                <span class="shrink-0 rounded-xl bg-slate-900/5 p-2 text-slate-700" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="px-4 pb-4 text-sm text-slate-700 hidden" data-accordion="panel">
+              Yes — personalization includes themes and typography options, so the app feels consistent with your calm
+              style.
+            </div>
+          </div>
+
+          <div class="rounded-3xl glass p-2">
+            <h3>
+              <button class="w-full flex items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left"
+                type="button" data-accordion="btn" aria-expanded="false">
+                <span class="text-base font-semibold text-slate-900">Does it work offline?</span>
+                <span class="shrink-0 rounded-xl bg-slate-900/5 p-2 text-slate-700" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="px-4 pb-4 text-sm text-slate-700 hidden" data-accordion="panel">
+              Some experiences may work offline depending on what’s downloaded and how content is delivered.
+              If you want to promise offline support, align it with the app’s actual behavior and store description.
+            </div>
+          </div>
+
+          <div class="rounded-3xl glass p-2">
+            <h3>
+              <button class="w-full flex items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left"
+                type="button" data-accordion="btn" aria-expanded="false">
+                <span class="text-base font-semibold text-slate-900">How do I contact support?</span>
+                <span class="shrink-0 rounded-xl bg-slate-900/5 p-2 text-slate-700" aria-hidden="true">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </button>
+            </h3>
+            <div class="px-4 pb-4 text-sm text-slate-700 hidden" data-accordion="panel">
+              Use the Contact section below to copy the support email, or add your preferred support channel link (e.g.,
+              Telegram) once finalized.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 max-w-3xl text-xs text-slate-600">
+          Privacy note: This page uses “privacy-first” wording without making unverifiable claims. Add your Privacy
+          Policy link when it’s ready.
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="rounded-[32px] glass p-6 sm:p-10 frame-shadow">
+          <div class="grid gap-8 lg:grid-cols-12 items-start">
+            <div class="lg:col-span-6">
+              <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Contact</h2>
+              <p class="mt-2 text-slate-700 max-w-xl">
+                Want to collaborate, request a feature, or join the waitlist? Copy the email below.
+              </p>
+
+              <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center">
+                <button id="copyEmailBtn" type="button"
+                  class="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
+                  aria-label="Copy support email to clipboard">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                    <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  Copy email
+                </button>
+
+                <div class="rounded-2xl bg-white/75 ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-800">
+                  <span class="text-slate-500">Email:</span>
+                  <span id="supportEmail" class="font-semibold">yurii.sika@outlook.com</span>
+                </div>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href="https://www.linkedin.com/in/yurii-sika-ld-in/"
+                  class="rounded-2xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
+                  target="_blank" rel="noopener" aria-label="Open LinkedIn profile in a new tab">
+                  LinkedIn
+                </a>
+
+                <a href="https://github.com/yurasika25"
+                  class="rounded-2xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
+                  target="_blank" rel="noopener" aria-label="Open GitHub profile in a new tab">
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-6">
+              <div class="rounded-3xl bg-white/75 ring-1 ring-slate-900/10 p-6 sm:p-7">
+                <!-- Header -->
+                <div class="flex items-start gap-3">
+                  <div
+                    class="h-12 w-12 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-700 shrink-0"
+                    aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2l1.5 6L20 10l-6.5 2L12 18l-1.5-6L4 10l6.5-2L12 2z" stroke="currentColor"
+                        stroke-width="2" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="text-sm font-semibold text-slate-900">Join the waitlist</div>
+                    <div class="text-sm text-slate-600">Get launch updates and early access. No spam.</div>
+                  </div>
+                </div>
+
+                <!-- Formspree Waitlist Form -->
+                <form id="waitlistForm" action="https://formspree.io/f/xjgeqord" method="POST" class="mt-5 space-y-3"
+                  novalidate>
+
+                  <!-- Honeypot (anti-spam). Formspree recognizes _gotcha -->
+                  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off"
+                    aria-hidden="true" />
+
+                  <!-- Email subject for notifications -->
+                  <input type="hidden" name="_subject" value="New waitlist signup — Affirmation App" />
+
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <div>
+                      <label for="wl_name" class="text-xs font-semibold text-slate-700">
+                        Name <span class="text-slate-400">(optional)</span>
+                      </label>
+                      <input id="wl_name" name="name" type="text" autocomplete="name"
+                        class="mt-1 w-full rounded-2xl bg-white ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/30"
+                        placeholder="Your Name" />
+                    </div>
+
+                    <div>
+                      <label for="wl_email" class="text-xs font-semibold text-slate-700">Email</label>
+                      <input id="wl_email" name="email" type="email" autocomplete="email" required
+                        class="mt-1 w-full rounded-2xl bg-white ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/30"
+                        placeholder="Your Email" />
+                      <p id="wl_email_error" class="mt-1 hidden text-xs text-rose-600">Please enter a valid email.</p>
+                    </div>
+                  </div>
+
+                  <!-- Metadata -->
+                  <input type="hidden" name="source" value="landing" />
+                  <input id="wl_page" type="hidden" name="page" value="" />
+                  <input id="wl_ua" type="hidden" name="userAgent" value="" />
+
+                  <!-- Consent -->
+                  <div class="flex items-start gap-3 rounded-2xl bg-white/70 ring-1 ring-slate-900/10 p-4">
+                    <input id="wl_consent" name="consent" type="checkbox" required
+                      class="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-600/30" />
+                    <label for="wl_consent" class="text-xs text-slate-600">
+                      I agree to receive emails about updates and launch.
+                      <span class="text-slate-400">(unsubscribe anytime)</span>
+                    </label>
+                  </div>
+                  <p id="wl_consent_error" class="hidden text-xs text-rose-600">Consent is required.</p>
+
+                  <!-- Submit -->
+                  <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between pt-1">
+                    <button id="waitlistSubmit" type="submit"
+                      class="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                      <span id="wl_btn_label">Join waitlist</span>
+                      <svg id="wl_spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"
+                        aria-hidden="true">
+                        <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                      </svg>
+                    </button>
+
+                    <div class="text-xs text-slate-500">Prefer email? Use the copy button on the left.</div>
+                  </div>
+
+                  <!-- Status -->
+                  <div id="wl_status"
+                    class="hidden rounded-2xl bg-emerald-50 ring-1 ring-emerald-200 px-4 py-3 text-sm text-emerald-900">
+                    You’re on the list ✓
+                  </div>
+
+                  <div id="wl_error"
+                    class="hidden rounded-2xl bg-rose-50 ring-1 ring-rose-200 px-4 py-3 text-sm text-rose-900">
+                    Something went wrong. Please try again.
+                  </div>
+
+                  <div class="text-[11px] text-slate-500">
+                    By joining, you accept our
+                    <a href="/affirmation-app/privacy.html" class="hover:text-slate-900 transition-colors">
+                      Privacy Policy
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 hidden z-[60]" role="status" aria-live="polite"
+        aria-atomic="true">
+        <div class="rounded-2xl bg-slate-900 text-white px-4 py-3 shadow-lg">
+          Copied ✓
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pb-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl glass px-5 py-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+          <!-- Left -->
+          <div class="text-sm text-slate-700">
+            © 2026 Affirmation App. All rights reserved.
+          </div>
+
+          <!-- Right -->
+          <div class="flex items-center gap-6 text-xs text-slate-600">
+
+            <nav class="flex items-center gap-4" aria-label="Footer legal links">
+              <a href="/affirmation-app/privacy.html" class="hover:text-slate-900 transition-colors">
+                Privacy Policy
+              </a>
+
+              <span class="text-slate-400">•</span>
+
+              <a href="./terms.html" class="hover:text-slate-900 transition-colors">
+                Terms of Use
+              </a>
+            </nav>
+
+            <img src="affirm_logo_512.png" alt="Affirmation App icon" width="32" height="32"
+              class="h-8 w-8 rounded-2xl object-cover ring-1 ring-slate-900/10" />
+
+          </div>
+
+        </div>
+      </div>
     </div>
-  </section>
-
-  <!-- WAITLIST -->
-  <section class="py-24 bg-slate-100 text-center px-6">
-    <h2 class="serif text-4xl mb-4">Coming Soon</h2>
-    <p class="text-slate-500 mb-8">
-      Currently in development. Launching soon on iPhone and Android.
-    </p>
-
-    <form class="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto">
-      <input type="email" placeholder="your@email.com"
-        class="px-4 py-3 rounded-xl border border-slate-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-      <button class="px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
-        Join Waitlist
-      </button>
-    </form>
-  </section>
-
-  <script>
-    function copyEmail() {
-      navigator.clipboard.writeText("yurii.sika@outlook.com");
-      const msg = document.getElementById("copyMessage");
-      msg.classList.remove("opacity-0");
-      setTimeout(() => {
-        msg.classList.add("opacity-0");
-      }, 2000);
-    }
-  </script>
-
-
-  <footer class="border-t border-slate-300/50 py-10 text-center">
-    <!-- contact row -->
-    <div class="flex flex-wrap justify-center gap-10 text-[14px] font-semibold text-slate-900">
-      <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-        class="hover:opacity-70 transition">
-        LinkedIn
-      </a>
-
-      <a target="_blank" rel="noopener" href="https://github.com/yurasika25" class="hover:opacity-70 transition">
-        GitHub
-      </a>
-
-      <button type="button" data-copy="yurii.sika@outlook.com"
-        class="hover:opacity-70 transition font-semibold cursor-pointer">
-        yurii.sika@outlook.com
-      </button>
-    </div>
-
-    <!-- project copyright -->
-    <p class="mt-6 text-sm text-slate-500">
-      © 2026 Affirmation App. All rights reserved.
-    </p>
   </footer>
-
-  <!-- Bottom Toast -->
-  <div id="contactToast" class="fixed bottom-6 left-1/2 -translate-x-1/2 
-            opacity-0 translate-y-2
-            transition-all duration-300 ease-out
-            pointer-events-none z-50">
-    <div class="bg-white/80 backdrop-blur-md
-            text-slate-800 text-sm font-semibold
-            px-6 py-3 rounded-full
-            shadow-[0_20px_50px_rgba(15,23,42,0.15)]
-            ring-1 ring-black/5">
-      Copied ✓
-    </div>
-  </div>
-
   <script>
     (function () {
-      const toast = document.getElementById('contactToast');
 
-      function showToast(text) {
-        if (!toast) return;
-        toast.querySelector('div').textContent = text || 'Copied ✓';
+      // =========================
+      // Mobile menu
+      // =========================
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
 
-        toast.classList.remove('opacity-0', 'translate-y-2');
-        toast.classList.add('opacity-100', 'translate-y-0');
-
-        clearTimeout(window.__contactToastTimer);
-        window.__contactToastTimer = setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-2');
-          toast.classList.remove('opacity-100', 'translate-y-0');
-        }, 1300);
+      function closeMenu() {
+        if (!mobileMenu || !menuBtn) return;
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
       }
 
-      async function copyText(value) {
+      function toggleMenu() {
+        if (!mobileMenu || !menuBtn) return;
+        const isHidden = mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', !isHidden);
+        menuBtn.setAttribute('aria-expanded', String(isHidden));
+      }
+
+      menuBtn?.addEventListener('click', toggleMenu);
+      mobileMenu?.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if (a) closeMenu();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      // =========================
+      // FAQ accordion
+      // =========================
+      const accButtons = document.querySelectorAll('[data-accordion="btn"]');
+      accButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const panel = btn.closest('.glass')?.querySelector('[data-accordion="panel"]');
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+          // close others
+          accButtons.forEach((b) => {
+            if (b !== btn) {
+              b.setAttribute('aria-expanded', 'false');
+              const p = b.closest('.glass')?.querySelector('[data-accordion="panel"]');
+              p?.classList.add('hidden');
+            }
+          });
+
+          btn.setAttribute('aria-expanded', String(!expanded));
+          panel?.classList.toggle('hidden', expanded);
+        });
+      });
+
+      // =========================
+      // Copy-to-clipboard + toast
+      // =========================
+      const copyBtn = document.getElementById('copyEmailBtn');
+      const emailEl = document.getElementById('supportEmail');
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        const box = toast.querySelector('div');
+        if (box && message) box.textContent = message;
+
+        toast.classList.remove('hidden');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.add('hidden'), 1400);
+      }
+
+      copyBtn?.addEventListener('click', async () => {
+        const email = (emailEl?.textContent || '').trim();
+        if (!email) return;
+
         try {
-          await navigator.clipboard.writeText(value);
+          await navigator.clipboard.writeText(email);
           showToast('Copied ✓');
-        } catch (e) {
+        } catch (err) {
+          // fallback
           const ta = document.createElement('textarea');
-          ta.value = value;
-          ta.style.position = 'fixed';
+          ta.value = email;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
           ta.style.left = '-9999px';
           document.body.appendChild(ta);
           ta.select();
@@ -457,17 +1105,99 @@
           document.body.removeChild(ta);
           showToast('Copied ✓');
         }
+      });
+
+      // =========================
+      // Waitlist (Formspree)
+      // =========================
+      const wlForm = document.getElementById('waitlistForm');
+      const wlSubmit = document.getElementById('waitlistSubmit');
+      const wlSpinner = document.getElementById('wl_spinner');
+      const wlBtnLabel = document.getElementById('wl_btn_label');
+
+      const wlEmail = document.getElementById('wl_email');
+      const wlEmailErr = document.getElementById('wl_email_error');
+
+      const wlConsent = document.getElementById('wl_consent');
+      const wlConsentErr = document.getElementById('wl_consent_error');
+
+      const wlOk = document.getElementById('wl_status');
+      const wlErr = document.getElementById('wl_error');
+
+      const wlPage = document.getElementById('wl_page');
+      const wlUA = document.getElementById('wl_ua');
+
+      function wlSetLoading(isLoading) {
+        if (!wlSubmit) return;
+        wlSubmit.disabled = isLoading;
+        wlSpinner?.classList.toggle('hidden', !isLoading);
+        if (wlBtnLabel) wlBtnLabel.textContent = isLoading ? 'Joining...' : 'Join waitlist';
       }
 
-      document.querySelectorAll('[data-copy]').forEach(btn => {
-        btn.addEventListener('click', () =>
-          copyText(btn.getAttribute('data-copy'))
-        );
+      function wlResetStatus() {
+        wlOk?.classList.add('hidden');
+        wlErr?.classList.add('hidden');
+      }
+
+      function wlValidEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v).trim());
+      }
+
+      if (wlPage) wlPage.value = location.href;
+      if (wlUA) wlUA.value = navigator.userAgent;
+
+      wlForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        wlResetStatus();
+
+        const emailVal = (wlEmail?.value || '').trim();
+        const consentOk = !!wlConsent?.checked;
+
+        let ok = true;
+
+        if (!wlValidEmail(emailVal)) {
+          wlEmailErr?.classList.remove('hidden');
+          ok = false;
+        } else {
+          wlEmailErr?.classList.add('hidden');
+        }
+
+        if (!consentOk) {
+          wlConsentErr?.classList.remove('hidden');
+          ok = false;
+        } else {
+          wlConsentErr?.classList.add('hidden');
+        }
+
+        if (!ok) return;
+
+        wlSetLoading(true);
+
+        try {
+          const res = await fetch(wlForm.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(wlForm)
+          });
+
+          if (res.ok) {
+            wlOk?.classList.remove('hidden');
+            wlForm.reset();
+            // restore metadata after reset
+            if (wlPage) wlPage.value = location.href;
+            if (wlUA) wlUA.value = navigator.userAgent;
+          } else {
+            wlErr?.classList.remove('hidden');
+          }
+        } catch (err) {
+          wlErr?.classList.remove('hidden');
+        } finally {
+          wlSetLoading(false);
+        }
       });
+
     })();
   </script>
-
-
 </body>
 
 </html>
