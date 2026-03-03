@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Easy NoteBook — Simple notes. Clear mind.</title>
-    <meta name="description" content="Easy NoteBook is a minimal note app built for fast capture, calm focus, and privacy by design. Your notes stay on your device — no clutter, no noise.">
+    <meta name="description"
+        content="Easy NoteBook is a minimal note app built for fast capture, calm focus, and privacy by design. Your notes stay on your device — no clutter, no noise.">
 
     <link rel="canonical" href="https://yuriisika.com/easy-notebook/">
 
@@ -607,6 +608,12 @@
 
             items.forEach(el => io.observe(el));
         })();
+    </script>
+
+    <script>
+        if (location.pathname.endsWith('/index.html')) {
+            location.replace(location.pathname.replace('/index.html', '/'));
+        }
     </script>
 </body>
 

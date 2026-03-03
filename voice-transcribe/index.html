@@ -17,7 +17,8 @@
     <!-- Open Graph -->
     <title>Voice Transcribe — Speech to text. Simplified</title>
 
-    <meta name="description" content="Voice Transcribe is a fast, minimal speech-to-text app. Tap, speak, and instantly get accurate text — in 14 languages." />
+    <meta name="description"
+        content="Voice Transcribe is a fast, minimal speech-to-text app. Tap, speak, and instantly get accurate text — in 14 languages." />
 
     <link rel="canonical" href="https://yuriisika.com/voice-transcribe/" />
 
@@ -818,6 +819,11 @@
             })();
         </script>
     </main>
+    <script>
+        if (location.pathname.endsWith('/index.html')) {
+            location.replace(location.pathname.replace('/index.html', '/'));
+        }
+    </script>
 </body>
 
 </html>
