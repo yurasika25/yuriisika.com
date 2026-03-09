@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZV2LLNLML"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YZV2LLNLML');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sika Labs | Mobile Apps for Mindset, Productivity & AI</title>
+
+  <meta name="description"
+    content="Sika Labs builds premium mobile apps in mindset, productivity, and AI. Explore Affirmation App, Voice Transcribe, Easy Notebook, and modern mobile product engineering." />
+
+  <link rel="canonical" href="https://yuriisika.com/sika-labs/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yuriisika.com/sika-labs/" />
+  <meta property="og:title" content="Sika Labs | Mobile Apps for Mindset, Productivity & AI" />
+  <meta property="og:description"
+    content="A focused mobile product studio creating premium apps for mindset, productivity, and AI-powered workflows." />
+  <meta property="og:image" content="https://yuriisika.com/sika-labs/sika_logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sika Labs | Mobile Apps for Mindset, Productivity & AI" />
+  <meta name="twitter:description"
+    content="Premium mobile apps for mindset, productivity, and AI-powered workflows by Sika Labs." />
+  <meta name="twitter:image" content="https://yuriisika.com/sika-labs/sika_logo.png" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="icon" href="./favicon_sika_lab_32.png" sizes="32x32" />
+  <link rel="icon" href="./favicon_sika_lab_192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./favicon_sika_lab_512.png" />
+  <meta name="msapplication-TileImage" content="./favicon_sika_lab_512.png" />
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --primary: #0057b8;
+      --primary-hover: #3aa0f3;
+      --gradient-start: #0057b8;
+      --gradient-end: #00aaff;
+      --ring: rgba(0, 87, 184, 0.35);
+      --navy: #003366;
+    }
+
+
+
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(15, 23, 42, .08);
+    }
+
+    .dark .glass {
+      background: rgba(15, 23, 42, .76);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      background: white;
+      color: #0f172a;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, .15);
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      left: 12px;
+    }
+
+    .dark .skip-link {
+      background: #111827;
+      color: #e5e7eb;
+      border-color: rgba(255, 255, 255, .12);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--ring);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .hero-glow {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+
+    .chip {
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: .83rem;
+      font-weight: 700;
+      line-height: 1.1;
+      border: 1px solid rgba(59, 130, 246, .14);
+    }
+
+    .dark .chip {
+      background: rgba(0, 87, 184, 0.12);
+      border-color: rgba(0, 87, 184, 0.35);
+      color: var(--primary);
+    }
+
+    .card,
+    .contact-card,
+    .product-card,
+    .service-card,
+    .metric-card {
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .card:hover,
+    .contact-card:hover,
+    .product-card:hover,
+    .service-card:hover,
+    .metric-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .product-card:hover,
+    .service-card:hover,
+    .contact-card:hover,
+    .metric-card:hover {
+      box-shadow: 0 18px 45px rgba(2, 6, 23, .08);
+    }
+
+    .dark .product-card:hover,
+    .dark .service-card:hover,
+    .dark .contact-card:hover,
+    .dark .metric-card:hover {
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .28);
+    }
+
+    .grid-noise {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .2;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, .04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+    }
+
+    .section-fade {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .65) 100%);
+    }
+
+    .dark .section-fade {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, .55) 100%);
+    }
+
+    .hero-carousel-shell {
+      position: relative;
+      border-radius: 34px;
+      padding: 0px;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, .18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(99, 102, 241, .16), transparent 35%),
+        rgba(255, 255, 255, .72);
+      border: 1px solid rgba(148, 163, 184, .18);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, .10);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    .dark .hero-carousel-shell {
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, .20), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(129, 140, 248, .18), transparent 35%),
+        rgba(2, 6, 23, .72);
+      border-color: rgba(51, 65, 85, .7);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .34);
+    }
+
+    .hero-slider {
+      position: relative;
+      min-height: 620px;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(28px) scale(.985);
+      transition: opacity .45s ease, transform .45s ease, visibility .45s ease;
+      pointer-events: none;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .hero-slide-card {
+      position: relative;
+      height: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(15, 23, 42, .72));
+      border: 1px solid rgba(255, 255, 255, .22);
+      box-shadow: 0 16px 45px rgba(15, 23, 42, .18);
+      cursor: pointer;
+      transition: transform .35s ease;
+    }
+
+    .hero-slide-card:hover {
+      transform: translateY(-2px);
+    }
+
+
+
+    .hero-slide-card:hover .hero-slide-media {
+      transform: scale(1.08) translateY(-6px);
+      filter: brightness(.96);
+    }
+
+
+
+    .hero-slide-card:hover .hero-slide-overlay {
+      opacity: 0.92;
+    }
+
+    .dark .hero-slide-card {
+      border-color: rgba(255, 255, 255, .08);
+    }
+
+
+    .hero-slide-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      transform: scale(1);
+      transition:
+        transform 1.2s cubic-bezier(.22, .61, .36, 1),
+        filter .8s ease;
+    }
+
+    .hero-slide h3,
+    .hero-slide p {
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(15, 23, 42, 0.04) 0%,
+          rgba(15, 23, 42, 0.10) 26%,
+          rgba(15, 23, 42, 0.25) 46%,
+          rgba(15, 23, 42, 0.50) 64%,
+          rgba(15, 23, 42, 0.85) 82%,
+          rgba(15, 23, 42, 1) 100%),
+        linear-gradient(90deg,
+          rgba(2, 6, 23, 0.18) 0%,
+          rgba(2, 6, 23, 0.03) 45%,
+          rgba(2, 6, 23, 0.20) 100%);
+    }
+
+    .hero-slide-content {
+      position: relative;
+      z-index: 2;
+      padding: 28px 28px 92px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      gap: 14px;
+      color: white;
+    }
+
+    .hero-slide-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .hero-product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .16);
+      backdrop-filter: blur(12px);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .hero-product-category {
+      color: rgba(255, 255, 255, .92);
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .18);
+      backdrop-filter: blur(12px);
+      white-space: nowrap;
+    }
+
+    .hero-slide h3 {
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      max-width: 12ch;
+    }
+
+    .hero-slide p {
+      font-size: 1.04rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .88);
+      max-width: 56ch;
+    }
+
+    .hero-slide-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-slide-tags span {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .14);
+      color: rgba(255, 255, 255, .94);
+      font-size: .82rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-slide-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-slide-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 18px;
+      color: #0f172a;
+      background: white;
+      font-weight: 800;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .hero-slide-link:hover {
+      transform: translateY(-1px);
+      opacity: .95;
+    }
+
+    .hero-slide-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, .82);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .hero-slider-controls {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 26px;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      pointer-events: none;
+    }
+
+    .hero-dots {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+
+    .hero-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 9999px;
+      border: 2px solid rgba(96, 165, 250, 0.95);
+      background: transparent;
+      opacity: 0.95;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+
+    .hero-dot:hover {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    .hero-dot.is-active {
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.16);
+      border-color: transparent;
+    }
+
+
+
+
+
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+
+    .hero-nav-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 9999px;
+      display: inline-grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(45, 212, 191, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: white;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .hero-nav-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.34);
+      filter: brightness(1.04);
+    }
+
+
+
+    @media (max-width: 1023px) {
+      .hero-slider {
+        min-height: 560px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-carousel-shell {
+        position: relative;
+        border-radius: 34px;
+        padding: 8px;
+        background:
+          radial-gradient(circle at top left, rgba(96, 165, 250, .18), transparent 35%),
+          radial-gradient(circle at bottom right, rgba(99, 102, 241, .16), transparent 35%),
+          rgba(255, 255, 255, .72);
+        border: 1px solid rgba(148, 163, 184, .18);
+        box-shadow: 0 30px 80px rgba(15, 23, 42, .10);
+        backdrop-filter: blur(16px);
+        overflow: hidden;
+      }
+
+      .hero-slider {
+        min-height: 520px;
+      }
+
+      .hero-slide-content {
+        padding: 22px 20px 104px;
+      }
+
+      .hero-slide-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-slide h3 {
+        max-width: 16ch;
+      }
+
+      .hero-slide-actions {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-slider-controls {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .hero-dot {
+        width: 12px;
+        height: 12px;
+      }
+
+      .hero-nav-btn {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            brand: '#1e356f'
+          },
+          boxShadow: {
+            soft: '0 15px 40px rgba(15, 23, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-gray-100 transition-colors duration-300">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 font-black tracking-tight" aria-label="SIKA Labs home">
+        <img src="./sika_logo.png" alt="SIKA Labs logo" class="h-10 md:h-11 w-auto object-contain">
+        <span class="text-base md:text-lg">Sika <span class="text-primary">Labs</span></span>
+      </a>
+
+      <nav class="flex items-center gap-4" aria-label="Primary">
+        <a href="#products"
+          class="hidden md:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">Products</a>
+        <a href="#services"
+          class="hidden md:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">What
+          we do</a>
+        <a href="#process"
+          class="hidden md:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">Process</a>
+        <a href="#contact"
+          class="hidden md:inline text-sm font-semibold text-slate-700 dark:text-gray-200 hover:text-primary transition-colors">Contact</a>
+        <button id="theme-toggle" class="p-2 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle theme">
+          <i id="theme-icon" class="fa-solid fa-moon" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="pt-32 pb-20 px-4 relative overflow-hidden">
+      <div class="grid-noise"></div>
+      <div class="max-w-7xl mx-auto hero-glow relative">
+        <div class="grid lg:grid-cols-[1fr_1.02fr] gap-10 items-center">
+          <div>
+            <div
+              class="inline-flex items-center gap-2 rounded-full border border-blue-200/70 dark:border-blue-500/20 bg-white/80 dark:bg-slate-900/70 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm mb-6">
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+              Mobile product studio
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[0.98] mb-6">
+              Premium mobile apps for
+              <span class="brand-gradient">mindset, productivity, and AI</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-8">
+              Sika Labs builds polished mobile products with strong product thinking, modern engineering, and a calm
+              premium aesthetic.
+              We create our own apps and help turn ambitious ideas into reliable mobile experiences.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mb-8">
+              <span class="chip">iOS & Android</span>
+              <span class="chip">Kotlin Multiplatform</span>
+              <span class="chip">AI Features</span>
+              <span class="chip">Product Design</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+              <a href="#products"
+                class="inline-flex justify-center items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
+                Explore products
+                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              </a>
+              <a href="#contact"
+                class="inline-flex justify-center items-center gap-2 px-6 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                Contact Sika Labs
+              </a>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -top-10 -right-6 h-36 w-36 rounded-full bg-blue-400/20 blur-3xl"></div>
+            <div class="absolute -bottom-10 -left-6 h-36 w-36 rounded-full bg-indigo-400/20 blur-3xl"></div>
+
+            <div class="hero-carousel-shell">
+              <div class="hero-slider" id="heroSlider" aria-label="Featured products carousel">
+                <article class="hero-slide is-active" data-slide data-index="0" data-href="/affirmation-app/"
+                  aria-hidden="false">
+                  <div class="hero-slide-card">
+                    <img src="/sika-labs/im_affirm_slide.png" alt="Affirmation App preview" class="hero-slide-media">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="hero-slide-content">
+
+                      <div>
+                        <h3>Affirmation App</h3>
+                        <p>
+                          A calm, premium mobile product designed for confidence, focus, emotional reset, and daily
+                          mindset rituals.
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                </article>
+
+                <article class="hero-slide" data-slide data-index="1" data-href="/voice-transcribe/" aria-hidden="true">
+                  <div class="hero-slide-card">
+                    <img src="/sika-labs/im_voice_slide.png" alt="Voice Transcribe preview" class="hero-slide-media">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="hero-slide-content">
+
+                      <div>
+                        <h3>Voice Transcribe</h3>
+                        <p>
+                          Fast multilingual speech-to-text built for capture, transcription, and turning spoken input
+                          into structured output.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="hero-slide" data-slide data-index="2" data-href="/easy-notebook/" aria-hidden="true">
+                  <div class="hero-slide-card">
+                    <img src="/sika-labs/im_easy_note_book_slide.png" alt="Easy Notebook preview"
+                      class="hero-slide-media">
+                    <div class="hero-slide-overlay"></div>
+                    <div class="hero-slide-content">
+
+                      <div>
+                        <h3>Easy Notebook</h3>
+                        <p>
+                          A lightweight note-taking experience focused on low friction capture, clarity, and fast mobile
+                          writing.
+                        </p>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </article>
+
+                <div class="hero-slider-controls">
+                  <div class="hero-dots" role="tablist" aria-label="Choose featured product">
+                    <button class="hero-dot is-active" type="button" aria-label="Show Affirmation App"
+                      aria-selected="true" role="tab" data-dot="0"></button>
+                    <button class="hero-dot" type="button" aria-label="Show Voice Transcribe" aria-selected="false"
+                      role="tab" data-dot="1"></button>
+                    <button class="hero-dot" type="button" aria-label="Show Easy Notebook" aria-selected="false"
+                      role="tab" data-dot="2"></button>
+                  </div>
+
+                  <div class="hero-nav">
+                    <button class="hero-nav-btn" id="heroPrev" type="button" aria-label="Previous product">
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="hero-nav-btn" id="heroNext" type="button" aria-label="Next product">
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-8 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div
+            class="card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <p class="text-sm font-semibold text-primary mb-2">Studio focus</p>
+            <h3 class="font-black text-xl mb-3">Consumer mobile products</h3>
+            <p class="text-slate-600 dark:text-slate-400">We focus on apps people actually open every day: wellness,
+              productivity, communication, and AI-assisted workflows.</p>
+          </div>
+          <div
+            class="card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <p class="text-sm font-semibold text-primary mb-2">Approach</p>
+            <h3 class="font-black text-xl mb-3">Product + engineering</h3>
+            <p class="text-slate-600 dark:text-slate-400">Sika Labs combines UI quality, product thinking, scalable
+              architecture, and launch discipline in one workflow.</p>
+          </div>
+          <div
+            class="card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <p class="text-sm font-semibold text-primary mb-2">Built with</p>
+            <h3 class="font-black text-xl mb-3">Modern mobile stack</h3>
+            <p class="text-slate-600 dark:text-slate-400">Kotlin, Jetpack Compose, Kotlin Multiplatform, strong UI
+              systems, analytics, release pipelines, and premium product presentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">Products</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Products built under Sika Labs</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto text-lg">
+            A growing portfolio of mobile apps across mindset, productivity, and AI-powered utility.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <article
+            class="product-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7 shadow-sm">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="text-2xl font-black">Affirmation App</h3>
+              <span class="chip">Wellness</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+              A calm and premium affirmation product built to support confidence, focus, emotional reset, and consistent
+              daily mindset rituals.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="chip">KMP</span>
+              <span class="chip">iOS & Android</span>
+              <span class="chip">Premium UI</span>
+            </div>
+
+          </article>
+
+          <article
+            class="product-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7 shadow-sm">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="text-2xl font-black">Voice Transcribe</h3>
+              <span class="chip">AI Tools</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+              A multilingual speech-to-text app designed for fast capture, transcription, and structured text output
+              across real-world workflows.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="chip">Speech-to-Text</span>
+              <span class="chip">Real-time</span>
+              <span class="chip">Productivity</span>
+            </div>
+
+          </article>
+
+          <article
+            class="product-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7 shadow-sm">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="text-2xl font-black">Easy Notebook</h3>
+              <span class="chip">Productivity</span>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-5">
+              A lightweight note-taking experience focused on clarity, low friction, fast capture, and a
+              distraction-free mobile writing flow.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="chip">Notes</span>
+              <span class="chip">Android</span>
+              <span class="chip">Minimal UX</span>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 bg-white dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto">
+        <header class="mb-12 text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">What we do</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">What Sika Labs helps build</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto text-lg">
+            From concept to shipped app, we focus on mobile products that need thoughtful UX, scalable engineering, and
+            a clean launch-ready presentation.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <article
+            class="service-card bg-slate-50 dark:bg-slate-950 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3 class="font-black text-xl mb-3">Mobile app development</h3>
+            <p class="text-slate-600 dark:text-slate-400">Native-quality Android and cross-platform mobile products
+              built with modern architecture and maintainable delivery practices.</p>
+          </article>
+
+          <article
+            class="service-card bg-slate-50 dark:bg-slate-950 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h3 class="font-black text-xl mb-3">Product strategy</h3>
+            <p class="text-slate-600 dark:text-slate-400">Feature prioritisation, app positioning, premium UX direction,
+              and practical product decisions shaped for real users and real launches.</p>
+          </article>
+
+          <article
+            class="service-card bg-slate-50 dark:bg-slate-950 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3 class="font-black text-xl mb-3">AI-powered experiences</h3>
+            <p class="text-slate-600 dark:text-slate-400">Speech, text, productivity assistance, and applied AI features
+              integrated into useful mobile flows rather than novelty-only demos.</p>
+          </article>
+
+          <article
+            class="service-card bg-slate-50 dark:bg-slate-950 rounded-[28px] border border-slate-200 dark:border-slate-800 p-7">
+            <div
+              class="h-14 w-14 rounded-2xl bg-blue-100 dark:bg-blue-900/30 text-primary grid place-items-center text-xl mb-5">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h3 class="font-black text-xl mb-3">Launch packaging</h3>
+            <p class="text-slate-600 dark:text-slate-400">Store presentation, product pages, brand consistency, and
+              launch assets designed to make the app look credible from day one.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">Process</p>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">How SIKA Labs works</h2>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+              The studio approach is straightforward: define the product clearly, design the user experience carefully,
+              build the right architecture, and ship with polish.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <article
+              class="card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="flex gap-4 items-start">
+                <div class="h-12 w-12 shrink-0 rounded-2xl bg-primary text-white grid place-items-center font-black">1
+                </div>
+                <div>
+                  <h3 class="font-black text-xl mb-2">Clarify the product</h3>
+                  <p class="text-slate-600 dark:text-slate-400">Define the audience, key use cases, and what the product
+                    should feel like before engineering starts.</p>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="flex gap-4 items-start">
+                <div class="h-12 w-12 shrink-0 rounded-2xl bg-primary text-white grid place-items-center font-black">2
+                </div>
+                <div>
+                  <h3 class="font-black text-xl mb-2">Design for trust and usability</h3>
+                  <p class="text-slate-600 dark:text-slate-400">Prioritise clean interfaces, calm visual systems,
+                    intuitive flows, and a premium feel across the product surface.</p>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="flex gap-4 items-start">
+                <div class="h-12 w-12 shrink-0 rounded-2xl bg-primary text-white grid place-items-center font-black">3
+                </div>
+                <div>
+                  <h3 class="font-black text-xl mb-2">Build scalable mobile systems</h3>
+                  <p class="text-slate-600 dark:text-slate-400">Use strong architecture, modern Android tooling, and
+                    maintainable patterns that support iteration and growth.</p>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="flex gap-4 items-start">
+                <div class="h-12 w-12 shrink-0 rounded-2xl bg-primary text-white grid place-items-center font-black">4
+                </div>
+                <div>
+                  <h3 class="font-black text-xl mb-2">Ship professionally</h3>
+                  <p class="text-slate-600 dark:text-slate-400">Polish the release, landing page, store assets,
+                    analytics, and positioning so the product presents at a high standard.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="py-20 px-4 bg-white dark:bg-slate-900/40">
+      <div class="max-w-7xl mx-auto">
+        <header class="mb-10 text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">Stack</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Core capabilities</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-3xl mx-auto text-lg">The technical and product disciplines
+            behind Sika Labs.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article
+            class="bg-slate-50 dark:bg-slate-950 p-7 rounded-[28px] border border-slate-200 dark:border-slate-800">
+            <h3 class="font-black text-xl mb-4">Mobile engineering</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+              <li>Kotlin</li>
+              <li>Jetpack Compose</li>
+              <li>Kotlin Multiplatform</li>
+              <li>Coroutines / Flow</li>
+            </ul>
+          </article>
+
+          <article
+            class="bg-slate-50 dark:bg-slate-950 p-7 rounded-[28px] border border-slate-200 dark:border-slate-800">
+            <h3 class="font-black text-xl mb-4">Architecture</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+              <li>Clean Architecture</li>
+              <li>MVVM / MVI</li>
+              <li>Modularisation</li>
+              <li>Scalable systems</li>
+            </ul>
+          </article>
+
+          <article
+            class="bg-slate-50 dark:bg-slate-950 p-7 rounded-[28px] border border-slate-200 dark:border-slate-800">
+            <h3 class="font-black text-xl mb-4">Product delivery</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+              <li>CI/CD</li>
+              <li>Analytics</li>
+              <li>Release ownership</li>
+              <li>Performance optimisation</li>
+            </ul>
+          </article>
+
+          <article
+            class="bg-slate-50 dark:bg-slate-950 p-7 rounded-[28px] border border-slate-200 dark:border-slate-800">
+            <h3 class="font-black text-xl mb-4">Design & launch</h3>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300">
+              <li>UI direction</li>
+              <li>Brand consistency</li>
+              <li>Landing pages</li>
+              <li>Store assets</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-8 items-start">
+          <div
+            class="bg-white dark:bg-slate-900 rounded-[30px] border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">About</p>
+            <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-5">Built by Yurii Sika</h2>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+              Sika Labs is the product studio built around Yurii Sika’s mobile engineering and product-building work. It
+              combines Android expertise, product design sensibility, premium branding, and an execution-focused
+              approach to launching useful apps.
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              The studio is centred on creating strong consumer-facing products and presenting them at a level that
+              feels modern, trustworthy, and commercially credible.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div
+              class="metric-card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="text-3xl font-black text-primary mb-2">5+</div>
+              <p class="font-bold mb-1">Years in mobile</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Modern Android engineering, architecture, and
+                product delivery.</p>
+            </div>
+            <div
+              class="metric-card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="text-3xl font-black text-primary mb-2">3</div>
+              <p class="font-bold mb-1">Core product pillars</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Mindset, productivity, and practical AI tools.</p>
+            </div>
+            <div
+              class="metric-card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="text-3xl font-black text-primary mb-2">1</div>
+              <p class="font-bold mb-1">Unified studio brand</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">Products, design system, landing pages, and launch
+                identity.</p>
+            </div>
+            <div
+              class="metric-card bg-white dark:bg-slate-900 rounded-[26px] border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+              <div class="text-3xl font-black text-primary mb-2">100%</div>
+              <p class="font-bold mb-1">Product ownership mindset</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">From app architecture to presentation, conversion,
+                and release readiness.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto relative">
+        <header class="text-center mb-10">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary mb-3">Contact</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Let’s build something strong</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+            For product collaboration, mobile app work, or studio enquiries, email is the fastest path.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <article
+            class="contact-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/70 dark:border-slate-800 shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">Email</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all">yurii.sika@outlook.com</div>
+              </div>
+            </div>
+            <div class="mt-5 flex gap-2">
+              <button type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors"
+                data-copy="yurii.sika@outlook.com">
+                Copy
+              </button>
+              <a href="mailto:yurii.sika@outlook.com"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                Open
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="contact-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/70 dark:border-slate-800 shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-brands fa-linkedin"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">LinkedIn</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all">sika-labs-ld-in</div>
+              </div>
+            </div>
+            <div class="mt-5 flex gap-2">
+              <button type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                data-copy="https://www.linkedin.com/in/yurii-sika-ld-in/">
+                Copy
+              </button>
+              <a target="_blank" rel="noopener" href="https://www.linkedin.com/company/sika-labs/"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
+                Open
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="contact-card bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/70 dark:border-slate-800 shadow-sm p-6">
+            <div class="flex items-center gap-3">
+              <span class="h-12 w-12 rounded-2xl grid place-items-center bg-blue-100 dark:bg-blue-900/30 text-primary">
+                <i class="fa-brands fa-github"></i>
+              </span>
+              <div>
+                <div class="font-bold text-lg">GitHub</div>
+                <div class="text-sm text-slate-600 dark:text-gray-400 break-all">github.com/yurasika25</div>
+              </div>
+            </div>
+            <div class="mt-5 flex gap-2">
+              <button type="button"
+                class="inline-flex flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-700 font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                data-copy="https://github.com/yurasika25">
+                Copy
+              </button>
+              <a target="_blank" rel="noopener" href="https://github.com/yurasika25"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-primary text-white font-semibold hover:bg-[color:var(--primary-hover)] transition-colors">
+                Open
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div id="contactToast"
+        class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[999] opacity-0 translate-y-2 pointer-events-none transition duration-200">
+        <div
+          class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-slate-200/70 dark:border-slate-700 shadow-lg rounded-2xl px-4 py-3 text-sm font-semibold">
+          Copied ✓
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 py-10 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="flex flex-wrap justify-center gap-6 mb-4"> <a href="#products"
+          class="font-semibold hover:text-primary transition-colors">Products</a> <a href="#services"
+          class="font-semibold hover:text-primary transition-colors">What we do</a> <a href="#contact"
+          class="font-semibold hover:text-primary transition-colors">Contact</a> </div>
+      <p class="text-slate-500 dark:text-slate-400 text-sm">&copy; <span id="year"></span> Sika Labs. Built by Yurii
+        Sika.</p>
+    </div>
+  </footer>
+  <script> document.getElementById('year').textContent = new Date().getFullYear(); const themeToggle = document.getElementById('theme-toggle'); const themeIcon = document.getElementById('theme-icon'); const htmlElement = document.documentElement; if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { htmlElement.classList.add('dark'); themeIcon.classList.replace('fa-moon', 'fa-sun'); } themeToggle.addEventListener('click', () => { const isDark = htmlElement.classList.contains('dark'); if (isDark) { htmlElement.classList.remove('dark'); themeIcon.classList.replace('fa-sun', 'fa-moon'); localStorage.theme = 'light'; } else { htmlElement.classList.add('dark'); themeIcon.classList.replace('fa-moon', 'fa-sun'); localStorage.theme = 'dark'; } }); </script>
+
+  <script> (function () { const toast = document.getElementById('contactToast'); function showToast(text) { if (!toast) return; toast.querySelector('div').textContent = text || 'Copied ✓'; toast.classList.remove('opacity-0', 'translate-y-2'); toast.classList.add('opacity-100', 'translate-y-0'); clearTimeout(window.__contactToastTimer); window.__contactToastTimer = setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-2'); toast.classList.remove('opacity-100', 'translate-y-0'); }, 1300); } async function copyText(value) { try { await navigator.clipboard.writeText(value); showToast('Copied ✓'); } catch (e) { const ta = document.createElement('textarea'); ta.value = value; ta.style.position = 'fixed'; ta.style.left = '-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('Copied ✓'); } } document.querySelectorAll('[data-copy]').forEach(btn => { btn.addEventListener('click', () => copyText(btn.getAttribute('data-copy'))); }); })(); </script>
+
+  <script> if (location.pathname.endsWith('/index.html')) { location.replace(location.pathname.replace('/index.html', '/')); } </script>
+
+  <script>
+    (function () {
+      const slider = document.getElementById('heroSlider');
+      if (!slider) return;
+
+      const slides = Array.from(slider.querySelectorAll('[data-slide]'));
+      const dots = Array.from(slider.querySelectorAll('[data-dot]'));
+      const prevBtn = document.getElementById('heroPrev');
+      const nextBtn = document.getElementById('heroNext');
+
+      if (!slides.length) return;
+
+      slides.forEach((slide) => {
+        const href = slide.getAttribute('data-href');
+        const card = slide.querySelector('.hero-slide-card');
+
+        if (!href || !card) return;
+
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', 'Open project');
+
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('.hero-slider-controls')) return;
+          window.location.href = href;
+        });
+
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            window.location.href = href;
+          }
+        });
+      });
+
+      let currentIndex = slides.findIndex(slide => slide.classList.contains('is-active'));
+      if (currentIndex < 0) currentIndex = 0;
+
+      let autoplayId = null;
+
+      function renderSlide(index) {
+        slides.forEach((slide, i) => {
+          const isActive = i === index;
+          slide.classList.toggle('is-active', isActive);
+          slide.setAttribute('aria-hidden', String(!isActive));
+        });
+
+        dots.forEach((dot, i) => {
+          const isActive = i === index;
+          dot.classList.toggle('is-active', isActive);
+          dot.setAttribute('aria-selected', String(isActive));
+        });
+
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        const nextIndex = (currentIndex + 1) % slides.length;
+        renderSlide(nextIndex);
+      }
+
+      function prevSlide() {
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        renderSlide(prevIndex);
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayId = setInterval(nextSlide, 4000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayId !== null) {
+          clearInterval(autoplayId);
+          autoplayId = null;
+        }
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          nextSlide();
+          startAutoplay();
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          prevSlide();
+          startAutoplay();
+        });
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          renderSlide(index);
+          startAutoplay();
+        });
+      });
+
+      slider.addEventListener('mouseenter', stopAutoplay);
+      slider.addEventListener('mouseleave', startAutoplay);
+
+      renderSlide(currentIndex);
+      startAutoplay();
+    })();
+  </script>
+</body>
+
+</html>
