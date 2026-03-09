@@ -1299,29 +1299,7 @@
       startAutoplay();
     })();
   </script>
-
   <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/147981247.js"></script>
-
-  <script>
-    window.addEventListener('load', function () {
-      if (window.HubSpotConversations) {
-        const settings = {
-          widgetName: "Yurii from Sika Labs",
-          greeting: "Hi! Got any questions? I’m here to help.",
-          primaryColor: "#0047AB",
-          openDelay: 2000,
-          alignment: "right"
-        };
-
-        const checkHubSpot = setInterval(() => {
-          if (window.HubSpotConversations.widget) {
-            clearInterval(checkHubSpot);
-            window.HubSpotConversations.widget.setSettings(settings);
-          }
-        }, 500);
-      }
-    });
-  </script>
 </body>
 
 </html>
