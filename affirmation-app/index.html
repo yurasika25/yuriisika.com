@@ -1,26 +1,21 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AffirmationApp – Everyday Wellbeing, Four Ways to Begin</title>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZV2LLNLML"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-YZV2LLNLML');x
-  </script>
+  <link rel="stylesheet" href="privacy-controls.css">
+  <script defer src="analytics-preferences.js"></script>
 
   <meta name="description"
     content="AffirmationApp is an in-development Android and iOS wellbeing app combining AI conversations, affirmations, guided meditations and relaxing sounds." />
 
   <link rel="canonical" href="https://yuriisika.com/affirmation-app/" />
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="landing.css">
+  <script defer src="landing.js"></script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -30,687 +25,134 @@
     content="AffirmationApp is an in-development Android and iOS wellbeing app combining AI conversations, affirmations, guided meditations and relaxing sounds." />
   <meta property="og:image" content="https://yuriisika.com/affirmation-app/logo-current-small.png" />
   <meta property="og:image:width" content="240" />
-  <meta property="og:image:height" content="240" />
+  <meta property="og:image:height" content="233" />
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="AffirmationApp – Everyday Wellbeing, Four Ways to Begin" />
   <meta name="twitter:description"
     content="AffirmationApp is an in-development Android and iOS wellbeing app combining AI conversations, affirmations, guided meditations and relaxing sounds." />
   <meta name="twitter:image" content="https://yuriisika.com/affirmation-app/logo-current-small.png" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon_32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="../favicon_192.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="../favicon_512.png">
-  <meta name="theme-color" content="#e5e7eb">
-
-  <style>
-    :root {
-      color-scheme: light;
-    }
-
-    body {
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-
-    .font-serif {
-      font-family: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    }
-
-    :focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
-      border-radius: 12px;
-    }
-
-    .noise {
-      background-image:
-        radial-gradient(900px 420px at 18% 12%, rgba(217, 223, 234, 0.14), transparent 60%),
-        radial-gradient(900px 420px at 82% 18%, rgba(99, 102, 241, 0.10), transparent 60%),
-        radial-gradient(900px 420px at 50% 90%, rgba(231, 243, 249, 0.08), transparent 60%),
-        linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 35%, rgba(255, 255, 255, 1) 100%);
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.70);
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .frame-shadow {
-      box-shadow:
-        0 18px 55px rgba(15, 23, 42, 0.14),
-        0 1px 0 rgba(255, 255, 255, 0.85) inset;
-    }
-  </style>
+  <link rel="icon" type="image/png" href="logo-current-small.png">
+  <link rel="apple-touch-icon" href="logo-current-small.png">
+  <meta name="theme-color" content="#f8f7f1">
 </head>
-
-<body class="noise text-slate-900">
-  <!-- Skip link -->
-  <a href="#main"
-    class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:rounded-xl focus:shadow-lg">
-    Skip to content
-  </a>
-
-  <!-- Sticky Top Nav -->
-  <header class="sticky top-0 z-50">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav class="mt-3 flex items-center justify-between rounded-2xl glass px-4 py-3">
-        <a href="#" class="flex items-center gap-3" aria-label="AffirmationApp home">
-          <img src="./logo-current-small.png" alt="AffirmationApp logo" width="40" height="40"
-            class="h-10 w-10 rounded-2xl object-cover ring-1 ring-slate-900/10" loading="eager" decoding="async" />
-          <div class="leading-tight">
-            <div class="font-serif text-lg font-semibold tracking-tight">AffirmationApp</div>
-            <div class="text-xs text-slate-600">Everyday wellbeing</div>
-          </div>
-        </a>
-
-        <!-- Desktop nav -->
-
-        <div class="hidden md:flex items-center gap-6 text-sm">
-          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#about">About</a>
-          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#experiences">Features</a>
-          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#premium">Premium</a>
-          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#faq">FAQ</a>
-          <a class="text-slate-700 hover:text-slate-900 transition-colors" href="#contact">Contact</a>
-
-        </div>
-
-        <!-- Desktop CTAs -->
-        <div class="hidden md:flex items-center gap-3">
-          <a href="#contact"
-            class="rounded-xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors">
-            Join waitlist
-          </a>
-          <a href="#hero"
-            class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
-            aria-label="Get the app (coming soon)">
-            Coming soon
-          </a>
-        </div>
-
-        <!-- Mobile menu button -->
-        <button id="menuBtn" type="button"
-          class="md:hidden inline-flex items-center justify-center rounded-xl bg-slate-900/5 px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
-          aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-          <span class="sr-only">Open navigation menu</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </button>
-      </nav>
-
-      <!-- Mobile menu -->
-      <div id="mobileMenu" class="md:hidden hidden mt-3 rounded-2xl glass p-4" aria-hidden="true">
-        <div class="grid gap-2 text-sm">
-          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#experiences">Features</a>
-          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#screenshots">Screenshots</a>
-          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#premium">Premium</a>
-          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#faq">FAQ</a>
-          <a class="rounded-xl px-3 py-2 hover:bg-slate-900/5" href="#contact">Contact</a>
-
-          <a href="#contact"
-            class="mt-2 rounded-xl bg-slate-900/5 px-3 py-2 text-center font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
-            aria-label="Join waitlist">
-            Join waitlist →
-          </a>
-
-          <a class="rounded-xl bg-blue-600 px-3 py-2 text-center font-semibold text-white hover:bg-blue-700 transition-colors"
-            href="#hero">
-            Coming soon
-          </a>
-        </div>
-      </div>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><nav class="wrap nav" aria-label="Main navigation">
+  <a class="brand" href="#hero"><img src="logo-current-small.png" width="40" height="39" alt="">AffirmationApp</a>
+  <div class="navlinks"><a href="#about">The idea</a>
+<a href="#experiences">Experiences</a>
+<a href="#screenshots">Gallery</a>
+<a href="#premium">Plans</a>
+<a href="#faq">FAQ</a></div>
+  <a class="pill small" href="#contact" aria-label="Join the waitlist">Waitlist <span aria-hidden="true">↗</span></a>
+  <button id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Navigation menu"><span></span><span></span></button>
+  <div id="mobileMenu" hidden><a href="#about">The idea</a>
+<a href="#experiences">Experiences</a>
+<a href="#screenshots">Gallery</a>
+<a href="#premium">Plans</a>
+<a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+</nav></header>
+<main id="main">
+<section id="hero">
+  <div class="landscape" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow light"><span class="rule"></span> Everyday wellbeing</p>
+      <h1>A calmer way <br>to choose what<br><em>helps today.</em></h1>
+      <p class="intro">A conversation, an affirmation, a guided meditation or a familiar sound. Choose a way into your day that feels right for you.</p>
+      <div class="actions"><a class="pill cream" href="#experiences">Explore the experiences <span aria-hidden="true">↓</span></a><a class="line-link" href="#contact">Join the waitlist</a></div>
     </div>
-  </header>
-
-  <main id="main">
-<section id="hero" class="relative">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-12">
-  <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-   <div class="lg:col-span-7">
-    <p class="inline-flex items-center gap-2 rounded-full bg-white/80 ring-1 ring-slate-900/10 px-4 py-2 text-xs font-semibold tracking-wide text-slate-700"><span class="h-2 w-2 bg-teal-500 rounded-full"></span> WORKING PROTOTYPE · ANDROID &amp; IOS · IN DEVELOPMENT</p>
-    <h1 class="mt-6 font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-slate-900">A calmer way to choose what helps today.</h1>
-    <p class="mt-6 text-lg leading-relaxed text-slate-700 max-w-2xl">AffirmationApp brings AI conversations, affirmations, guided meditations and relaxing sounds into one everyday wellbeing experience. Four ways to pause, reflect or unwind — whenever it suits you.</p>
-    <p class="mt-4 text-sm text-slate-600 max-w-xl">Built for adults interested in simple, self-guided wellbeing practices. UK-first launch planned, with international ambitions.</p>
-    <div class="mt-8 flex flex-wrap gap-3">
-     <a href="#experiences" class="rounded-xl bg-blue-700 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-blue-800 transition-colors">Explore the experiences</a>
-     <a href="#contact" class="rounded-xl bg-white/85 px-6 py-3 text-sm font-semibold text-slate-900 ring-1 ring-slate-900/10 hover:bg-white transition-colors">Join the waitlist</a>
-    </div>
-    <div class="mt-8 grid sm:grid-cols-2 gap-3 max-w-xl">
-     <div class="glass rounded-2xl p-4"><div class="font-semibold text-slate-900 text-sm">Four connected experiences</div><p class="mt-1 text-xs text-slate-600">Choose what fits the moment, not a fixed daily routine.</p></div>
-     <div class="glass rounded-2xl p-4"><div class="font-semibold text-slate-900 text-sm">Built, not just imagined</div><p class="mt-1 text-xs text-slate-600">Authentic iOS development screens. Not yet publicly released.</p></div>
-    </div>
-   </div>
-   <div class="lg:col-span-5"><figure class="relative rounded-[36px] bg-gradient-to-br from-[#e9f4ff] via-[#f8fbff] to-[#d8e6f4] ring-1 ring-blue-900/10 p-6 sm:p-9 text-center frame-shadow">
-    <img src="./screen-home.png" alt="Authentic iOS development screen showing a daily affirmation and four mood options" width="540" height="809" class="mx-auto max-h-[630px] w-auto drop-shadow-2xl" fetchpriority="high" decoding="async"/>
-    <figcaption class="mt-4 text-xs font-semibold tracking-wide text-slate-600">REAL IOS DEVELOPMENT BUILD · CURRENT PROTOTYPE</figcaption>
-   </figure></div>
+    <figure class="hero-art">
+      <img src="media/screen-meditation-player.webp" width="720" height="1472" alt="" class="rear" fetchpriority="high" decoding="async">
+      <img src="media/screen-home.webp" width="720" height="1472" alt="Prototype home screen with daily affirmations and a mood check-in" class="front" fetchpriority="high" decoding="async">
+      <figcaption>Inside the iOS prototype</figcaption>
+    </figure>
   </div>
- </div>
 </section>
-<section id="about" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <div class="rounded-[32px] bg-[#0d2945] px-7 py-9 sm:px-12 sm:py-12 text-white shadow-xl">
-   <div class="grid gap-7 lg:grid-cols-12 lg:items-center">
-    <div class="lg:col-span-7"><p class="text-xs tracking-[0.20em] font-bold text-blue-200">WHY AFFIRMATIONAPP</p><h2 class="mt-4 font-serif text-3xl sm:text-4xl font-semibold">Everyday wellbeing should be easier to begin.</h2>
-    <p class="mt-5 text-blue-100/90 leading-relaxed max-w-2xl">Some moments call for a few encouraging words. Others call for a guided pause, a soundscape or a conversation. The idea behind AffirmationApp is a calm starting point for all four — without prescribing a single way to feel better.</p></div>
-    <div class="lg:col-span-5 grid gap-3">
-     <div class="rounded-2xl border border-white/15 bg-white/10 p-4"><strong>Start with a thought</strong><p class="mt-1 text-sm text-blue-100/80">Explore a daily affirmation.</p></div>
-     <div class="rounded-2xl border border-white/15 bg-white/10 p-4"><strong>Notice the moment</strong><p class="mt-1 text-sm text-blue-100/80">Choose the mood that feels closest right now.</p></div>
-     <div class="rounded-2xl border border-white/15 bg-white/10 p-4"><strong>Choose your experience</strong><p class="mt-1 text-sm text-blue-100/80">Read, listen, meditate or talk.</p></div>
-    </div>
-   </div>
-  </div>
- </div>
+<div class="status-strip"><div class="wrap"><span><i></i> Working prototype</span><span>Android &amp; iOS <b> / </b> In development</span></div></div>
+<section id="about" class="wrap space">
+  <div class="split"><div><p class="eyebrow">The idea</p><h2>Four ways in.<br><em>One connected experience.</em></h2></div>
+  <div class="aside"><p>Some mornings start with a thought you want to keep. Other days call for a voice, a little music or room to think. Begin with the moment you’re in.</p>
+  <ol class="flow"><li>Start with a thought</li><li>Notice the moment</li><li>Choose an experience</li></ol></div></div>
 </section>
-<section id="experiences" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <div class="max-w-3xl"><p class="text-xs font-bold tracking-[0.2em] text-blue-700">THE PRODUCT</p>
-   <h2 class="mt-3 font-serif text-3xl sm:text-4xl font-semibold text-slate-900">Four ways in. One connected experience.</h2>
-   <p class="mt-4 text-slate-700 leading-relaxed">Each of these four areas is central to AffirmationApp. The screens below are from an internal iOS build, not conceptual app-store mock-ups.</p>
-  </div>
-  <div class="mt-10 grid md:grid-cols-2 gap-5">
-   <article class="rounded-[30px] glass p-6 sm:p-8 frame-shadow flex flex-col gap-5">
-  <div class="flex items-center justify-between gap-3"><span class="text-xs font-bold tracking-[0.18em] text-blue-700">01 / FOUR PILLARS</span><span class="h-2 w-2 rounded-full bg-blue-500"></span></div>
-  <h3 class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">AI Wellbeing Companion</h3>
-  <p class="text-slate-700 leading-relaxed">Text chat and timed, interactive live voice for everyday reflection. Supportive wellbeing conversation — not medical advice, therapy or crisis care.</p>
-  <div class="mt-auto flex justify-center rounded-[25px] bg-gradient-to-b from-[#f3f8ff] to-[#dceaf5] p-5 overflow-hidden">
-    <img src="./screen-ai-voice.jpg" alt="iOS prototype screen showing a live AI voice session with remaining time and controls" class="h-72 sm:h-80 w-auto object-contain drop-shadow-xl" loading="lazy" decoding="async" />
-  </div>
+<section id="experiences" class="wrap"><div class="section-head"><p class="eyebrow">The experiences</p><h2>Choose your way in.</h2></div>
+<div class="chapters">
+<article class="chapter voice">
+  <div class="chapter-stage"><div class="etch" aria-hidden="true"></div><img src="media/screen-ai-voice.webp" width="720" height="1472" alt="Live voice session with time remaining and microphone controls" class="" loading="lazy" decoding="async"><span class="stage-label">Text &amp; voice</span></div>
+  <div class="chapter-copy"><h3>AI Wellbeing Companion</h3><p class="chapter-lead">Talk it through.</p><p>Follow a thought in a text conversation, or speak with the companion in a timed voice session. A space for everyday reflection.</p></div>
 </article>
-   <article class="rounded-[30px] glass p-6 sm:p-8 frame-shadow flex flex-col gap-5">
-  <div class="flex items-center justify-between gap-3"><span class="text-xs font-bold tracking-[0.18em] text-blue-700">02 / FOUR PILLARS</span><span class="h-2 w-2 rounded-full bg-blue-500"></span></div>
-  <h3 class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">Affirmations</h3>
-  <p class="text-slate-700 leading-relaxed">Read, save and listen to positive statements. Add relaxing background audio to make the experience your own.</p>
-  <div class="mt-auto flex justify-center rounded-[25px] bg-gradient-to-b from-[#f3f8ff] to-[#dceaf5] p-5 overflow-hidden">
-    <img src="./screen-affirmations.jpg" alt="iOS prototype affirmation viewer with read, save and listen features" class="h-72 sm:h-80 w-auto object-contain drop-shadow-xl" loading="lazy" decoding="async" />
-  </div>
+<article class="chapter affirm">
+  <div class="chapter-stage"><div class="etch" aria-hidden="true"></div><img src="media/screen-affirmations.webp" width="720" height="1472" alt="Affirmation viewer with reading, listening and favourite controls" class="" loading="lazy" decoding="async"><span class="stage-label">Read &amp; listen</span></div>
+  <div class="chapter-copy"><h3>Affirmations</h3><p class="chapter-lead">Find words to carry.</p><p>Read or listen to an affirmation. Save one that speaks to you, and pair it with a background sound of your choice.</p></div>
 </article>
-   <article class="rounded-[30px] glass p-6 sm:p-8 frame-shadow flex flex-col gap-5">
-  <div class="flex items-center justify-between gap-3"><span class="text-xs font-bold tracking-[0.18em] text-blue-700">03 / FOUR PILLARS</span><span class="h-2 w-2 rounded-full bg-blue-500"></span></div>
-  <h3 class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">Guided Meditations</h3>
-  <p class="text-slate-700 leading-relaxed">Discover short narrated sessions, then listen at your own pace. Two sessions are in the current development catalogue.</p>
-  <div class="mt-auto flex justify-center rounded-[25px] bg-gradient-to-b from-[#f3f8ff] to-[#dceaf5] p-5 overflow-hidden">
-    <img src="./screen-meditations.jpg" alt="iOS prototype meditation library with categories and a featured session" class="h-72 sm:h-80 w-auto object-contain drop-shadow-xl" loading="lazy" decoding="async" />
-  </div>
+<article class="chapter meditate">
+  <div class="chapter-stage"><div class="etch" aria-hidden="true"></div><img src="media/screen-meditations.webp" width="720" height="1472" alt="Guided meditation library with session artwork" class="" loading="lazy" decoding="async"><span class="stage-label">Narrated sessions</span></div>
+  <div class="chapter-copy"><h3>Guided Meditations</h3><p class="chapter-lead">Let a voice guide you.</p><p>Choose a narrated session and follow at your own pace. The internal library currently includes two meditations.</p></div>
 </article>
-   <article class="rounded-[30px] glass p-6 sm:p-8 frame-shadow flex flex-col gap-5">
-  <div class="flex items-center justify-between gap-3"><span class="text-xs font-bold tracking-[0.18em] text-blue-700">04 / FOUR PILLARS</span><span class="h-2 w-2 rounded-full bg-blue-500"></span></div>
-  <h3 class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">Relaxing Sounds</h3>
-  <p class="text-slate-700 leading-relaxed">Explore nature sounds and ambient audio in a dedicated player, or play sounds alongside an affirmation.</p>
-  <div class="mt-auto flex justify-center rounded-[25px] bg-gradient-to-b from-[#f3f8ff] to-[#dceaf5] p-5 overflow-hidden">
-    <img src="./screen-sounds.jpg" alt="iOS development audio screen with a playlist and sound playback" class="h-72 sm:h-80 w-auto object-contain drop-shadow-xl" loading="lazy" decoding="async" />
-  </div>
+<article class="chapter sound">
+  <div class="chapter-stage"><div class="etch" aria-hidden="true"></div><img src="media/screen-sounds.webp" width="720" height="1472" alt="Nature sounds and ambient tracks in the audio player" class="" loading="lazy" decoding="async"><span class="stage-label">Ambient audio</span></div>
+  <div class="chapter-copy"><h3>Relaxing Sounds</h3><p class="chapter-lead">Set the atmosphere.</p><p>Browse nature and ambient sounds. Build a playlist, adjust playback, or let a sound accompany your affirmations.</p></div>
 </article>
-  </div>
- </div>
-</section>
-<section id="screenshots" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <div class="flex flex-col md:flex-row md:justify-between gap-4 md:items-end"><div><p class="text-xs font-bold tracking-[0.2em] text-blue-700">PRODUCT IN PROGRESS</p><h2 class="mt-3 font-serif text-3xl sm:text-4xl font-semibold text-slate-900">A closer look inside.</h2><p class="mt-3 text-slate-700 max-w-2xl">Selected development screens from our iOS prototype. Android is being developed through the same Kotlin Multiplatform product foundation.</p></div><span class="text-xs font-semibold text-slate-600">Screens reflect an internal build and may change before release.</span></div>
-  <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-   <figure class="glass rounded-3xl p-5 text-center"><img class="h-80 w-auto mx-auto object-contain" src="./screen-ai-chat.jpg" alt="Actual AI text conversation screen" loading="lazy"/><figcaption class="mt-4 text-sm font-semibold text-slate-800">AI text conversation</figcaption></figure>
-   <figure class="glass rounded-3xl p-5 text-center"><img class="h-80 w-auto mx-auto object-contain" src="./screen-meditation-player.jpg" alt="Actual narrated meditation player screen" loading="lazy"/><figcaption class="mt-4 text-sm font-semibold text-slate-800">Narrated meditation</figcaption></figure>
-   <figure class="glass rounded-3xl p-5 text-center"><img class="h-80 w-auto mx-auto object-contain" src="./screen-home.png" alt="Actual home and mood check-in screen" loading="lazy"/><figcaption class="mt-4 text-sm font-semibold text-slate-800">Home and mood check-in</figcaption></figure>
-  </div>
- </div>
-</section>
-<section id="features" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid md:grid-cols-3 gap-4">
-   <div class="glass rounded-3xl p-6"><h3 class="font-semibold text-lg text-slate-900">Made for different moments</h3><p class="mt-2 text-slate-700 text-sm leading-relaxed">A morning reflection, study break, difficult day or a quiet evening — without limiting wellbeing to a specific routine.</p></div>
-   <div class="glass rounded-3xl p-6"><h3 class="font-semibold text-lg text-slate-900">A genuine cross-platform foundation</h3><p class="mt-2 text-slate-700 text-sm leading-relaxed">Kotlin Multiplatform and Compose Multiplatform connect Android and iOS development, with Supabase supporting the backend.</p></div>
-   <div class="glass rounded-3xl p-6"><h3 class="font-semibold text-lg text-slate-900">Still in development</h3><p class="mt-2 text-slate-700 text-sm leading-relaxed">An internal working prototype, not a public release. Product quality, content rights, safety and payments are being prepared.</p></div>
-  </div>
- </div>
-</section>
-<section id="premium" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <div class="max-w-3xl"><p class="text-xs font-bold tracking-[0.2em] text-blue-700">PLANNED BUSINESS MODEL</p><h2 class="mt-3 font-serif text-3xl sm:text-4xl font-semibold text-slate-900">Free to explore. More depth with Premium.</h2><p class="mt-4 text-slate-700 leading-relaxed">The following is a proposal for release, not live billing. Entitlements, voice allowances and final UK prices are still being defined.</p></div>
-  <div class="mt-9 grid md:grid-cols-3 gap-5">
-   <div class="glass rounded-3xl p-6"><p class="text-xs tracking-[0.16em] text-blue-700 font-bold">01 / PLANNED</p><h3 class="mt-3 font-serif text-2xl font-semibold">Free</h3><p class="mt-3 text-slate-700 text-sm leading-relaxed">A limited selection of affirmations, meditations and relaxing sounds, with limited AI text access.</p></div>
-   <div class="glass rounded-3xl p-6 ring-2 ring-blue-600/20"><p class="text-xs tracking-[0.16em] text-blue-700 font-bold">02 / PLANNED</p><h3 class="mt-3 font-serif text-2xl font-semibold">Premium</h3><p class="mt-3 text-slate-700 text-sm leading-relaxed">Broader access to licensed content and AI text experiences. Final catalogue and limits are not yet set.</p><p class="mt-5 text-xl font-bold text-slate-900">£4.99 / month <span class="text-sm text-slate-500 font-normal">or £44.99 / year</span></p><p class="mt-2 text-xs text-slate-600">Illustrative UK pricing only · not available to purchase</p></div>
-   <div class="glass rounded-3xl p-6"><p class="text-xs tracking-[0.16em] text-blue-700 font-bold">03 / PLANNED</p><h3 class="mt-3 font-serif text-2xl font-semibold">Voice Packs</h3><p class="mt-3 text-slate-700 text-sm leading-relaxed">Time-limited, metered interactive voice sessions. Pack prices, included minutes and usage terms are not finalised.</p></div>
-  </div>
-  <p class="mt-5 text-xs text-slate-600">No subscriptions or Voice Packs are currently being sold. The app has not yet launched publicly.</p>
- </div>
-</section>
-<section id="faq" class="scroll-mt-24">
- <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-  <div class="grid lg:grid-cols-12 gap-9"><div class="lg:col-span-4"><p class="text-xs font-bold tracking-[0.2em] text-blue-700">QUESTIONS</p><h2 class="mt-3 font-serif text-3xl sm:text-4xl font-semibold text-slate-900">FAQ</h2><p class="mt-3 text-slate-700">Accurate information about the current stage of AffirmationApp.</p></div>
-   <div class="lg:col-span-8 space-y-3">
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-1" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- Is AffirmationApp available to download?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-1" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">Not yet. We are developing and testing an internal Android and iOS prototype. Public store links will be shared when a release is ready.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-2" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- What can I do in the current prototype?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-2" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">The development build demonstrates a daily affirmation and mood check-in, affirmation reading and listening, narrated meditation, nature sounds, AI text chat and timed AI voice conversations.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-3" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- Are subscriptions available?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-3" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">No. The planned Free, Premium and Voice Packs model is not live. Any example prices on this website are indicative only and may change.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-4" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- Can the AI companion replace a therapist?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-4" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">No. AI Wellbeing Companion is designed for everyday reflection, not diagnosis, medical treatment, professional mental-health care or emergency support.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-5" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- How many meditations and sounds are available?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-5" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">The internal development inventory contained 2 meditation sessions and 24 active sound records on 5 November 2026. This is not a finished public catalogue, and content may change before launch.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-6" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- Will the app work on Android and iOS?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-6" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">Both platforms are in development through Kotlin Multiplatform and Compose Multiplatform. Release dates have not been announced.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-7" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- How do I hear about the launch?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-7" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">You can register your interest in the waitlist below. We have not announced a release date.</div>
- </div>
-    <div class="rounded-2xl glass p-2">
- <h3><button type="button" data-accordion="btn" aria-expanded="false" aria-controls="faq-panel-8" class="w-full flex items-center justify-between gap-4 rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-900">
- How can I contact the founder?<span class="shrink-0 rounded-full bg-slate-900/5 px-3 py-1 text-lg" aria-hidden="true">+</span></button></h3>
- <div id="faq-panel-8" data-accordion="panel" class="hidden px-4 pb-4 text-sm leading-7 text-slate-700">Use the email in the contact section below or the links to the founder's professional profiles.</div>
- </div>
-   </div>
-  </div>
- </div>
-</section>
-<!-- Contact -->
-    <section id="contact" class="relative">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div class="rounded-[32px] glass p-6 sm:p-10 frame-shadow">
-          <div class="grid gap-8 lg:grid-cols-12 items-start">
-            <div class="lg:col-span-6">
-              <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900">Contact</h2>
-              <p class="mt-2 text-slate-700 max-w-xl">
-                Want to collaborate, request a feature, or join the waitlist? Copy the email below.
-              </p>
-
-              <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center">
-                <button id="copyEmailBtn" type="button"
-                  class="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
-                  aria-label="Copy support email to clipboard">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M9 9h10v10H9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-                    <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" />
-                  </svg>
-                  Copy email
-                </button>
-
-                <div class="rounded-2xl bg-white/75 ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-800">
-                  <span class="text-slate-500">Email:</span>
-                  <span id="supportEmail" class="font-semibold">yurii.sika@outlook.com</span>
-                </div>
-              </div>
-
-              <div class="mt-6 flex flex-wrap gap-3">
-                <a href="https://www.linkedin.com/in/yurii-sika-ld-in/"
-                  class="rounded-2xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
-                  target="_blank" rel="noopener" aria-label="Open LinkedIn profile in a new tab">
-                  LinkedIn
-                </a>
-
-                <a href="https://github.com/yurasika25"
-                  class="rounded-2xl bg-slate-900/5 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-900/10 transition-colors"
-                  target="_blank" rel="noopener" aria-label="Open GitHub profile in a new tab">
-                  GitHub
-                </a>
-              </div>
-            </div>
-
-            <div class="lg:col-span-6">
-              <div class="rounded-3xl bg-white/75 ring-1 ring-slate-900/10 p-6 sm:p-7">
-                <div class="flex items-start gap-3">
-                  <div
-                    class="h-12 w-12 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-700 shrink-0"
-                    aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2l1.5 6L20 10l-6.5 2L12 18l-1.5-6L4 10l6.5-2L12 2z" stroke="currentColor"
-                        stroke-width="2" stroke-linejoin="round" />
-                    </svg>
-                  </div>
-                  <div class="min-w-0">
-                    <div class="text-sm font-semibold text-slate-900">Join the waitlist</div>
-                    <div class="text-sm text-slate-600">Get launch updates and early access. No spam.</div>
-                  </div>
-                </div>
-
-                <form id="waitlistForm" action="https://formspree.io/f/xjgeqord" method="POST" class="mt-5 space-y-3"
-                  novalidate>
-                  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off"
-                    aria-hidden="true" />
-                  <input type="hidden" name="_subject" value="New AffirmationApp waitlist signup" />
-
-                  <div class="grid gap-3 sm:grid-cols-2">
-                    <div>
-                      <label for="wl_name" class="text-xs font-semibold text-slate-700">
-                        Name <span class="text-slate-400">(optional)</span>
-                      </label>
-                      <input id="wl_name" name="name" type="text" autocomplete="name"
-                        class="mt-1 w-full rounded-2xl bg-white ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/30"
-                        placeholder="Your Name" />
-                    </div>
-
-                    <div>
-                      <label for="wl_email" class="text-xs font-semibold text-slate-700">Email</label>
-                      <input id="wl_email" name="email" type="email" autocomplete="email" required
-                        class="mt-1 w-full rounded-2xl bg-white ring-1 ring-slate-900/10 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-600/30"
-                        placeholder="Your Email" />
-                      <p id="wl_email_error" class="mt-1 hidden text-xs text-rose-600">Please enter a valid email.</p>
-                    </div>
-                  </div>
-
-                  <input type="hidden" name="source" value="landing" />
-                  <input id="wl_page" type="hidden" name="page" value="" />
-                  <input id="wl_ua" type="hidden" name="userAgent" value="" />
-
-                  <div class="flex items-center gap-3 rounded-2xl bg-white/70 ring-1 ring-slate-900/10 p-4">
-                    <input id="wl_consent" name="consent" type="checkbox" required
-                      class="h-4 w-4 rounded border-slate-300 accent-blue-600 focus:ring-blue-600/30" />
-                    <label for="wl_consent" class="text-xs text-slate-600">
-                      I agree to receive emails about updates and launch.
-                      <span class="text-slate-400">(unsubscribe anytime)</span>
-                    </label>
-                  </div>
-                  <p id="wl_consent_error" class="hidden text-xs text-rose-600">Consent is required.</p>
-                  <div class="flex flex-col sm:flex-row items-center gap-3 sm:justify-between pt-1">
-                    <button id="waitlistSubmit" type="submit"
-                      class="rounded-2xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
-                      <span id="wl_btn_label">Join waitlist</span>
-                      <svg id="wl_spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"
-                        aria-hidden="true">
-                        <path d="M12 3a9 9 0 1 0 9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                      </svg>
-                    </button>
-
-                    <div class="text-xs text-slate-500">Prefer email? Use the copy button on the left.</div>
-                  </div>
-
-                  <div id="wl_status"
-                    class="hidden rounded-2xl bg-emerald-50 ring-1 ring-emerald-200 px-4 py-3 text-sm text-emerald-900">
-                    You’re on the list ✓
-                  </div>
-
-                  <div id="wl_error"
-                    class="hidden rounded-2xl bg-rose-50 ring-1 ring-rose-200 px-4 py-3 text-sm text-rose-900">
-                    Something went wrong. Please try again.
-                  </div>
-
-                  <div class="text-[11px] text-slate-500">
-                    By joining, you accept our
-                    <a href="/affirmation-app/privacy.html"
-                      class="text-slate-600 underline decoration-slate-300 decoration-1 underline-offset-2 hover:text-slate-900 hover:decoration-slate-400 transition">
-                      Privacy Policy
-                    </a>.
-                  </div>
-                </form>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- Toast -->
-      <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 hidden z-[60]" role="status" aria-live="polite"
-        aria-atomic="true">
-        <div class="rounded-2xl bg-slate-900 text-white px-4 py-3 shadow-lg">
-          Copied ✓
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="pb-10">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="rounded-2xl glass px-5 py-4">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div class="text-sm text-slate-700">
-            © 2026 AffirmationApp. All rights reserved.
-          </div>
-
-          <div class="flex items-center gap-6 text-xs text-slate-600">
-            <nav class="flex items-center gap-4" aria-label="Footer legal links">
-              <a href="/affirmation-app/privacy.html" class="hover:text-slate-900 transition-colors">
-                Privacy Policy
-              </a>
-              <span class="text-slate-400">•</span>
-              <a href="./terms.html" class="hover:text-slate-900 transition-colors">
-                Terms of Use
-              </a>
-            </nav>
-
-            <img src="logo-current-small.png" alt="AffirmationApp icon" width="32" height="32"
-              class="h-8 w-8 rounded-2xl object-cover ring-1 ring-slate-900/10" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      // =========================
-      // Mobile menu
-      // =========================
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-
-      function setMenuOpen(open) {
-        if (!menuBtn || !mobileMenu) return;
-        mobileMenu.classList.toggle('hidden', !open);
-        menuBtn.setAttribute('aria-expanded', String(open));
-        mobileMenu.setAttribute('aria-hidden', String(!open));
-      }
-
-      function toggleMenu() {
-        if (!mobileMenu) return;
-        const isHidden = mobileMenu.classList.contains('hidden');
-        setMenuOpen(isHidden);
-      }
-
-      menuBtn?.addEventListener('click', toggleMenu);
-
-      mobileMenu?.addEventListener('click', (e) => {
-        const a = e.target.closest('a');
-        if (a) setMenuOpen(false);
-      });
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') setMenuOpen(false);
-      });
-
-      // Close mobile menu if user resizes to desktop breakpoint
-      window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 768px)').matches) setMenuOpen(false);
-      });
-
-      // =========================
-      // FAQ accordion
-      // =========================
-      const accButtons = document.querySelectorAll('[data-accordion="btn"]');
-
-      function getPanel(btn) {
-        // each item is a .glass card wrapper
-        return btn.closest('.glass')?.querySelector('[data-accordion="panel"]') || null;
-      }
-
-      accButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const panel = getPanel(btn);
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-
-          // close others
-          accButtons.forEach((b) => {
-            if (b !== btn) {
-              b.setAttribute('aria-expanded', 'false');
-              getPanel(b)?.classList.add('hidden');
-            }
-          });
-
-          btn.setAttribute('aria-expanded', String(!expanded));
-          panel?.classList.toggle('hidden', expanded);
-        });
-      });
-
-      // =========================
-      // Copy-to-clipboard + toast
-      // =========================
-      const copyBtn = document.getElementById('copyEmailBtn');
-      const emailEl = document.getElementById('supportEmail');
-      const toast = document.getElementById('toast');
-      let toastTimer = null;
-
-      function showToast(message) {
-        if (!toast) return;
-        const box = toast.querySelector('div');
-        if (box && message) box.textContent = message;
-
-        toast.classList.remove('hidden');
-        if (toastTimer) clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => toast.classList.add('hidden'), 1400);
-      }
-
-      async function copyText(text) {
-        try {
-          await navigator.clipboard.writeText(text);
-          return true;
-        } catch (_) {
-          return false;
-        }
-      }
-
-      function fallbackCopy(text) {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'absolute';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch (_) { /* noop */ }
-        document.body.removeChild(ta);
-      }
-
-      copyBtn?.addEventListener('click', async () => {
-        const email = (emailEl?.textContent || '').trim();
-        if (!email) return;
-
-        const ok = await copyText(email);
-        if (!ok) fallbackCopy(email);
-        showToast('Copied ✓');
-      });
-
-      // =========================
-      // Waitlist (Formspree)
-      // =========================
-      const wlForm = document.getElementById('waitlistForm');
-      const wlSubmit = document.getElementById('waitlistSubmit');
-      const wlSpinner = document.getElementById('wl_spinner');
-      const wlBtnLabel = document.getElementById('wl_btn_label');
-
-      const wlEmail = document.getElementById('wl_email');
-      const wlEmailErr = document.getElementById('wl_email_error');
-
-      const wlConsent = document.getElementById('wl_consent');
-      const wlConsentErr = document.getElementById('wl_consent_error');
-
-      const wlOk = document.getElementById('wl_status');
-      const wlErr = document.getElementById('wl_error');
-
-      const wlPage = document.getElementById('wl_page');
-      const wlUA = document.getElementById('wl_ua');
-
-      function wlSetLoading(isLoading) {
-        if (!wlSubmit) return;
-        wlSubmit.disabled = isLoading;
-        wlSpinner?.classList.toggle('hidden', !isLoading);
-        if (wlBtnLabel) wlBtnLabel.textContent = isLoading ? 'Joining...' : 'Join waitlist';
-      }
-
-      function wlResetStatus() {
-        wlOk?.classList.add('hidden');
-        wlErr?.classList.add('hidden');
-      }
-
-      function wlValidEmail(v) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v).trim());
-      }
-
-      if (wlPage) wlPage.value = location.href;
-      if (wlUA) wlUA.value = navigator.userAgent;
-
-      wlForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        wlResetStatus();
-
-        const emailVal = (wlEmail?.value || '').trim();
-        const consentOk = !!wlConsent?.checked;
-
-        let ok = true;
-
-        if (!wlValidEmail(emailVal)) {
-          wlEmailErr?.classList.remove('hidden');
-          ok = false;
-        } else {
-          wlEmailErr?.classList.add('hidden');
-        }
-
-        if (!consentOk) {
-          wlConsentErr?.classList.remove('hidden');
-          ok = false;
-        } else {
-          wlConsentErr?.classList.add('hidden');
-        }
-
-        if (!ok) return;
-
-        wlSetLoading(true);
-
-        try {
-          const res = await fetch(wlForm.action, {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(wlForm)
-          });
-
-          if (res.ok) {
-            wlOk?.classList.remove('hidden');
-            wlForm.reset();
-            if (wlPage) wlPage.value = location.href;
-            if (wlUA) wlUA.value = navigator.userAgent;
-          } else {
-            wlErr?.classList.remove('hidden');
-          }
-        } catch (_) {
-          wlErr?.classList.remove('hidden');
-        } finally {
-          wlSetLoading(false);
-        }
-      });
-    })();
-  </script>
-
-  <script>
-    if (location.pathname.endsWith('/affirmation-app/index.html')) {
-      location.replace('/affirmation-app/');
-    }
-  </script>
+</div></section>
+<section id="screenshots" class="gallery space"><div class="wrap gallery-grid"><div>
+  <p class="eyebrow light">Prototype gallery</p><h2>Inside the <em>app.</em></h2>
+  <p class="gallery-note">Explore seven screens from the current iOS build. The interface may change as development continues.</p>
+  <ul class="screen-list" aria-label="Choose a prototype screen">
+    <li><a data-screen data-alt="Daily affirmation, mood choices and experience shortcuts" href="media/screen-home.webp" aria-current="true">Home &amp; mood check-in<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Chat history and message field" href="media/screen-ai-chat.webp">AI text conversation<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Voice session timer and call controls" href="media/screen-ai-voice.webp">Live voice session<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Affirmation with listen and save actions" href="media/screen-affirmations.webp">Affirmation viewer<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Meditation categories and featured sessions" href="media/screen-meditations.webp">Meditation library<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Narrated session and playback controls" href="media/screen-meditation-player.webp">Meditation player<span aria-hidden="true">↗</span></a></li>
+    <li><a data-screen data-alt="Ambient sound tracks and player controls" href="media/screen-sounds.webp">Sound playlist<span aria-hidden="true">↗</span></a></li>
+  </ul></div>
+  <figure class="viewer"><img src="media/screen-home.webp" width="720" height="1472" alt="Daily affirmation, mood choices and experience shortcuts" class="" loading="lazy" decoding="async"><figcaption aria-live="polite">Home &amp; mood check-in</figcaption></figure></div></section>
+<section id="features" class="wrap moments space"><p class="eyebrow">Everyday moments</p><h2>A pause that fits <em>your day.</em></h2>
+<div class="moment-list"><p><strong>Morning light</strong>Read a thought before the day gets busy.</p><p><strong>Between commitments</strong>Listen to rain during a study break or a demanding afternoon.</p><p><strong>Evening quiet</strong>Reflect in a conversation or wind down with a narrated session.</p></div></section>
+<section id="premium" class="plans"><div class="wrap space split"><div><p class="eyebrow">Planned access</p><h2>Room to <em>explore.</em></h2><p class="measure">The UK is our first planned market. These plans are proposals for release. Purchases and subscriptions are unavailable during development.</p></div>
+<dl class="plan-list"><div><dt>Free</dt><dd>Selected affirmations, meditations and sounds, with limited AI text access.</dd></div>
+<div><dt>Premium</dt><dd>Expanded content and AI text access.<strong>£4.99 / month <small>or</small> £44.99 / year</strong>Illustrative UK prices. Final pricing and limits may change.</dd></div>
+<div><dt>Voice Packs</dt><dd>Metered time for interactive voice sessions. Pack prices, minutes and terms are still to be decided.</dd></div></dl></div></section>
+<section id="faq" class="wrap space split"><div><p class="eyebrow">FAQ</p><h2>A few <em>answers.</em></h2></div><div class="questions">
+  <details name="questions"><summary>Can I download AffirmationApp today?</summary><p id="faq-panel-1">AffirmationApp is an internal working prototype. A public release date has yet to be announced.</p></details>
+  <details name="questions"><summary>Which platforms are in development?</summary><p id="faq-panel-2">Android and iOS share a Kotlin Multiplatform and Compose Multiplatform foundation, with Supabase supporting the backend.</p></details>
+  <details name="questions"><summary>What can I try in the prototype?</summary><p id="faq-panel-3">The internal build includes a mood check-in, AI conversations, affirmations you can read or listen to, narrated meditations and sound playlists.</p></details>
+  <details name="questions"><summary>How does the AI companion work?</summary><p id="faq-panel-4">It offers text conversations and timed interactive voice sessions for adults who want to reflect on everyday thoughts.</p></details>
+  <details name="questions"><summary>Is this a medical or crisis service?</summary><p id="faq-panel-5">AffirmationApp is for self-guided everyday wellbeing. It does not provide diagnosis, therapy, medical treatment or emergency crisis support.</p></details>
+  <details name="questions"><summary>Are subscriptions available now?</summary><p id="faq-panel-6">There is no live subscription or checkout. The prices shown here illustrate the proposed UK launch model.</p></details>
+  <details name="questions"><summary>How would Premium and Voice Packs differ?</summary><p id="faq-panel-7">Premium would expand content and AI text access. Separate Voice Packs would provide metered interactive voice time. Allowances and terms remain undecided.</p></details>
+  <details name="questions"><summary>How can I hear about launch?</summary><p id="faq-panel-8">Join the waitlist below with your email address and consent to receive updates.</p></details>
+</div></section>
+<section id="contact" class="contact"><div class="wrap space split"><div>
+<p class="eyebrow light">Launch updates</p><h2>Stay <em>in touch.</em></h2><p class="measure">Join the waitlist for news as AffirmationApp takes shape for Android and iOS.</p>
+<div class="contact-details"><a id="supportEmail" href="mailto:yurii.sika@outlook.com">yurii.sika@outlook.com</a>
+<button type="button" id="copyEmailBtn">Copy email</button></div><span id="toast" role="status"></span></div>
+<form id="waitlistForm" action="https://formspree.io/f/xjgeqord" method="POST">
+  <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off">
+  <input type="hidden" name="_subject" value="New AffirmationApp waitlist signup">
+  <input type="hidden" name="source" value="landing">
+  <input type="hidden" id="wl_page" name="page"><input type="hidden" id="wl_ua" name="userAgent">
+  <label for="wl_name">Name <small>(optional)</small></label><input id="wl_name" type="text" name="name" autocomplete="name">
+  <label for="wl_email">Email address</label><input id="wl_email" type="email" name="email" autocomplete="email" required aria-describedby="wl_email_error">
+  <p id="wl_email_error" class="error" hidden>Enter a valid email address.</p>
+  <label class="consent"><input id="wl_consent" type="checkbox" name="consent" required aria-describedby="wl_consent_error"><span>I agree to receive emails about updates and launch. I can unsubscribe anytime.</span></label>
+  <p id="wl_consent_error" class="error" hidden>Consent is required to join.</p>
+  <button type="submit" id="waitlistSubmit" class="pill cream">Join the waitlist <span aria-hidden="true">↗</span></button>
+  <p class="fine">Read how we use your details in our <a href="privacy.html">Privacy Policy</a>.</p>
+  <p id="wl_status" role="status"></p><p id="wl_error" role="alert"></p>
+</form></div></section></main>
+<footer class="wrap"><a class="brand" href="#hero"><img src="logo-current-small.png" width="40" height="39" alt="">AffirmationApp</a><p>© 2026 AffirmationApp.</p>
+<nav aria-label="Footer"><a href="#contact">Contact</a><a href="https://www.linkedin.com/in/yurii-sika-ld-in/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/yurasika25" target="_blank" rel="noopener">GitHub</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><button id="analytics-settings" class="privacy-settings" data-analytics-open hidden type="button">Analytics preferences</button></nav></footer>
+<dialog id="analytics-dialog" aria-labelledby="analytics-title" aria-describedby="analytics-purpose">
+  <h2 id="analytics-title">Analytics preferences</h2>
+  <p id="analytics-purpose">Allow Google Analytics to use cookies to measure visits and interactions on these pages? Google receives browser and page information. You can use the site and join the waitlist either way.</p>
+  <p data-state role="status">Optional analytics are off.</p>
+  <p><a href="privacy.html#analytics">About analytics and cookies</a></p>
+  <div class="analytics-actions"><button type="button" data-choice="accept">Accept analytics</button><button type="button" data-choice="reject">Reject analytics</button></div>
+  <form method="dialog"><button class="privacy-settings">Close</button></form>
+</dialog>
 </body>
-
 </html>

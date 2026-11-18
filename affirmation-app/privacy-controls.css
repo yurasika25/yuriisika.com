@@ -1,0 +1,10 @@
+.privacy-settings { border: 0; padding: 10px 0; background: transparent; font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: .23em; }
+#analytics-dialog { width: min(460px,calc(100% - 32px)); max-height: 85vh; border: 1px solid #b3bebc; border-radius: 22px; padding: clamp(22px,4vw,35px); color: #182e39; background: #f8f7f1; }
+#analytics-dialog::backdrop { background: rgb(14 34 46 / 60%); }
+#analytics-dialog h2 { font: 400 2rem/1.1 var(--serif); letter-spacing: -.03em; }
+#analytics-dialog p { margin-block: 14px; }
+#analytics-dialog [data-state] { font-size: .9rem; font-weight: 600; }
+.analytics-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-block: 18px 8px; }
+.analytics-actions button { flex: 1; border: 1px solid #415c65; border-radius: 24px; padding: 10px; background: transparent; font: inherit; font-weight: 600; color: #182e39; }
+.analytics-actions button:hover { background: #e3ebe7; }
+#analytics-dialog form { margin: 0; }
